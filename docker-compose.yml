@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web:
+    build: .
+    volumes:
+    - .:/opt/rxsto/web
+    - /opt/rxsto/web/node_modules
+    ports:
+    - "127.0.0.1:3000:3000"
+    restart: always
+    command: npm run start
