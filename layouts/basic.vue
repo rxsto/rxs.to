@@ -1,29 +1,5 @@
 <template>
-  <div>
+  <div id="__wrapper">
     <nuxt />
   </div>
 </template>
-
-<style>
-:root {
-  --green-light: #cedb9d;
-  --green-avg: #789C51;
-  --green-dark: #215c05;
-  --black: #000000;
-  --white: #ffffff;
-  --darkest: #222222;
-  --darker: #313131;
-  --dark: #424242;
-  --grey-light: #fafafa;
-  --grey: #757575;
-}
-
-html,
-body {
-  height: 100%;
-  width: 100%;
-  background: url('/img/background.png');
-  font-family: 'Space Mono', monospace;
-  color: var(--darkest);
-}
-</style>

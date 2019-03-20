@@ -7,6 +7,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=no' },
       { hid: 'description', name: 'description', content: '' },
+      { hid: 'google-site-verification', name: 'google-site-verification', content: 'a0LyeGNO7c4b47BfgGaDdIm_NZ_5rWpvhCVUimCm8sQ' },
       { hid: 'author', name: 'author', content: 'Oskar "Rxsto" Lang (https://rxsto.me)' },
       { hid: 'publisher', name: 'publisher', content: 'Oskar "Rxsto" Lang (https://rxsto.me)' },
       { hid: 'image', name: 'image', content: 'https://rxsto.me/img/avatar.png' },
@@ -38,7 +39,9 @@ export default {
   loading: { color: '#cedb9d' },
 
   css: [
-    '~/static/css/reset.css'
+    '~/static/css/reset.css',
+    '~/static/css/default.css',
+    '~/static/css/animate.css'
   ],
 
   modules: [

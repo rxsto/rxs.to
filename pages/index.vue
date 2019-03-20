@@ -3,64 +3,35 @@
     <div class="index-wrapper">
       <div class="index-intro">
         <div class="index-intro-image">
-          <img class="index-intro-image-source" src="/img/avatar.png" alt="Rxsto's avatar">
+          <img class="index-intro-image-source animated jackInTheBox" src="/img/avatar.png" alt="Rxsto's avatar">
         </div>
         <div class="index-intro-text">
-          <h1 class="index-intro-text-title">
+          <h1 class="index-intro-text-title animated rubberBand">
             Rxsto
           </h1>
-          <h2 class="index-intro-text-subtitle">
+          <h2 class="index-intro-text-subtitle animated rubberBand" style="animation-delay: 100ms">
             Oskar Lang
           </h2>
         </div>
       </div>
-      <div class="index-about">
-        <h2 class="index-about-title">
-          Who am I?
-        </h2>
-        <div class="index-about-description">
-          <div v-for="field in me" :id="field.title" :key="field.title" class="index-about-description-part">
-            <p class="index-about-description-part-label">
-              {{ field.title }}
-            </p>
-            <h2 class="index-about-description-part-value">
-              {{ field.value }}
-            </h2>
-          </div>
-        </div>
-        <span class="index-about-space" />
-        <h2 class="index-about-title right">
-          My skills?
-        </h2>
-        <div class="index-about-description right">
-          <div v-for="field in skills" :id="field.title" :key="field.title" class="index-about-description-part">
-            <p class="index-about-description-part-label">
-              {{ field.title }}
-            </p>
-            <h2 class="index-about-description-part-value">
-              {{ field.value }}
-            </h2>
-          </div>
-        </div>
-      </div>
       <div class="index-contact">
-        <a href="https://github.com/rxsto" class="index-contact-link">
+        <a href="https://github.com/rxsto" class="index-contact-link animated bounceIn" style="animation-delay: 0ms">
           <i class="fab fa-github index-contact-link-icon" />
         </a>
-        <a href="https://twitter.com/rxsto_official" class="index-contact-link">
+        <a href="https://twitter.com/rxsto_official" class="index-contact-link animated bounceIn" style="animation-delay: 50ms">
           <i class="fab fa-twitter index-contact-link-icon" />
         </a>
-        <a href="https://www.linkedin.com/in/oskar-lang-155644178/" class="index-contact-link">
+        <a href="https://www.linkedin.com/in/oskar-lang-155644178/" class="index-contact-link animated bounceIn" style="animation-delay: 100ms">
           <i class="fab fa-linkedin-in index-contact-link-icon" />
         </a>
-        <a href="https://instagram.com/oskar.xy" class="index-contact-link">
+        <a href="https://instagram.com/oskar.xy" class="index-contact-link animated bounceIn" style="animation-delay: 150ms">
           <i class="fab fa-instagram index-contact-link-icon" />
         </a>
-        <a href="https://discord.gg/xwHFt32" class="index-contact-link">
+        <a href="https://discord.gg/xwHFt32" class="index-contact-link animated bounceIn" style="animation-delay: 200ms">
           <i class="fab fa-discord index-contact-link-icon" />
         </a>
       </div>
-      <div class="index-footer">
+      <div class="index-footer animated fadeIn">
         <div class="index-footer-links">
           <nuxt-link class="index-footer-link" to="/imprint">
             Imprint
@@ -93,32 +64,33 @@ export default {
 
 <style lang="scss" scoped>
 .index {
+  height: 100%;
 
   .index-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px;
+    justify-content: space-between;
+    height: 95%;
 
     .index-intro {
       display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      width: 75%;
+      flex-direction: column;
+      justify-content: center;
 
       .index-intro-image {
 
         .index-intro-image-source {
-          height: 450px;
+          height: 400px;
           border-radius: 100%;
+          margin: 50px;
         }
       }
 
       .index-intro-text {
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        align-items: center;
 
         .index-intro-text-title {
           font-size: 100px;
@@ -127,65 +99,8 @@ export default {
 
         .index-intro-text-subtitle {
           font-size: 30px;
-          margin-top: 5px;
           letter-spacing: 3px;
         }
-      }
-    }
-
-    .index-about {
-      display: flex;
-      flex-direction: column;
-      width: 75%;
-      align-items: center;
-      margin: 100px 0;
-
-      .index-about-title {
-        font-size: 55px;
-        font-weight: 700;
-        align-self: flex-start;
-        margin: 20px;
-      }
-
-      .index-about-description {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-
-        .index-about-description-part {
-          background: var(--green-light);
-          padding: 15px;
-          box-shadow: 2px 2px 2px 0px var(--green-avg);
-          transition: .2s ease-in-out;
-          margin: 10px;
-
-          &:hover {
-            transform: translateY(1px);
-            box-shadow: 1px 1px 1px 0px var(--green-avg);
-          }
-
-          .index-about-description-part-label {
-            font-size: 13px;
-            letter-spacing: 2px;
-            margin-bottom: 2px;
-          }
-
-          .index-about-description-part-value {
-            font-size: 20px;
-            font-weight: 700;
-          }
-        }
-      }
-
-      .index-about-space {
-        height: 150px;
-        width: 100%;
-      }
-
-      .right {
-        align-self: flex-end;
-        text-align: right;
-        justify-content: flex-end;
       }
     }
 
@@ -214,7 +129,6 @@ export default {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 50px;
 
       .index-footer-links {
         display: flex;
@@ -259,30 +173,12 @@ export default {
   }
 }
 
-@media only screen and (max-width: 1000px) {
-  .index {
-
-    .index-wrapper {
-
-      .index-intro {
-        flex-direction: column;
-
-        .index-intro-image {
-          margin-bottom: 50px;
-        }
-      }
-    }
-  }
-}
-
 @media only screen and (max-width: 600px) {
   .index {
 
     .index-wrapper {
-      padding: 25px;
 
       .index-intro {
-        width: 85%;
 
         .index-intro-image {
 
@@ -301,32 +197,6 @@ export default {
           .index-intro-text-subtitle {
             font-size: 25px;
           }
-        }
-      }
-
-      .index-about {
-        width: 85%;
-        margin: 50px 0;
-
-        .index-about-title {
-          font-size: 35px;
-        }
-
-        .index-about-description {
-
-          .index-about-description-part {
-            width: 100%;
-          }
-        }
-
-        .index-about-space {
-          height: 50px;
-        }
-
-        .right {
-          align-self: flex-start;
-          text-align: left;
-          justify-content: flex-start;
         }
       }
 
