@@ -1,4 +1,4 @@
-FROM node:10-alpine
+FROM node:11-alpine
 
 ENV APP_ROOT /src
 
@@ -12,3 +12,5 @@ RUN npm run build
 EXPOSE 3000
 
 ENV HOST 0.0.0.0
+
+CMD [ "npm", "start" ]
