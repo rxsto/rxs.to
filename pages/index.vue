@@ -22,6 +22,7 @@
           :style="animDelay(index)"
           :tooltip="social.name"
           class="index-contact-link animated bounceIn"
+          target="_blank"
         >
           <i :class="iconClass(social.icon)" />
         </a>
