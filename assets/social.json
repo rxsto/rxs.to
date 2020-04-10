@@ -15,6 +15,11 @@
     "icon": "fa-linkedin-in"
   },
   {
+    "name": "E-Mail",
+    "url": "mailto:hi@rxs.to",
+    "icon": "fas fa-at"
+  },
+  {
     "name": "Twitter",
     "url": "https://rxs.to/twitter",
     "icon": "fa-twitter"
