@@ -15,33 +15,21 @@
         </div>
       </div>
       <div class="index-contact">
-        <a href="https://github.com/rxsto" class="index-contact-link animated bounceIn" style="animation-delay: 0ms">
-          <i class="fab fa-github index-contact-link-icon" />
-        </a>
-        <a href="https://twitter.com/rxsto_official" class="index-contact-link animated bounceIn" style="animation-delay: 50ms">
-          <i class="fab fa-twitter index-contact-link-icon" />
-        </a>
-        <a href="https://www.linkedin.com/in/oskar-lang-155644178/" class="index-contact-link animated bounceIn" style="animation-delay: 100ms">
-          <i class="fab fa-linkedin-in index-contact-link-icon" />
-        </a>
-        <a href="https://instagram.com/oskar.xy" class="index-contact-link animated bounceIn" style="animation-delay: 150ms">
-          <i class="fab fa-instagram index-contact-link-icon" />
-        </a>
-        <a href="https://discord.gg/xwHFt32" class="index-contact-link animated bounceIn" style="animation-delay: 200ms">
-          <i class="fab fa-discord index-contact-link-icon" />
+        <a
+          v-for="(social, index) in socials"
+          :key="social.name"
+          :href="social.url"
+          :style="animDelay(index)"
+          :tooltip="social.name"
+          class="index-contact-link animated bounceIn"
+        >
+          <i :class="iconClass(social.icon)" />
         </a>
       </div>
       <div class="index-footer animated fadeIn">
-        <div class="index-footer-links">
-          <nuxt-link class="index-footer-link" to="/imprint">
-            Imprint
-          </nuxt-link>
-          <nuxt-link class="index-footer-link" to="/privacy">
-            Privacy
-          </nuxt-link>
-        </div>
+        <i class="far fa-copyright icon" />
         <p class="index-footer-copyright">
-          © Rxsto
+          Rxsto
         </p>
       </div>
     </div>
@@ -49,14 +37,21 @@
 </template>
 
 <script>
-import about from '~/assets/about.json'
+import socials from '~/assets/social.json'
 
 export default {
   layout: 'basic',
   data() {
     return {
-      me: about.me,
-      skills: about.skills
+      socials
+    }
+  },
+  methods: {
+    animDelay(i) {
+      return `animation-delay: ${i * 50}ms`
+    },
+    iconClass(c) {
+      return `fab ${c} index-contact-link-icon`
     }
   }
 }
@@ -65,13 +60,15 @@ export default {
 <style lang="scss" scoped>
 .index {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   .index-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 95%;
 
     .index-intro {
       display: flex;
@@ -81,9 +78,9 @@ export default {
       .index-intro-image {
 
         .index-intro-image-source {
-          height: 400px;
+          height: 350px;
           border-radius: 100%;
-          margin: 50px;
+          margin: 25px;
         }
       }
 
@@ -108,6 +105,7 @@ export default {
       display: flex;
       flex-direction: row;
       justify-content: center;
+      margin: 50px 0;
 
       .index-contact-link {
         margin: 15px;
@@ -127,29 +125,19 @@ export default {
 
     .index-footer {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
+      justify-content: center;
 
-      .index-footer-links {
-        display: flex;
-
-        .index-footer-link {
-          margin: 10px;
-          text-decoration: none;
-          color: var(--green-avg);
-          transition: .25s ease-in-out;
-          font-size: 15px;
-
-          &:hover {
-            color: var(--green-dark);
-          }
-        }
+      .icon {
+        color: var(--dark);
       }
 
       .index-footer-copyright {
         font-size: 20px;
         letter-spacing: 5px;
         color: var(--dark);
+        margin-left: 15px;
       }
     }
   }

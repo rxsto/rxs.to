@@ -1,6 +1,6 @@
 # rxsto-web
 
-> My new personal website
+> Rxsto's public portfolio, including projects and work.
 
 ## Build Setup
 
