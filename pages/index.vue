@@ -7,7 +7,7 @@
         </div>
         <div class="index-intro-text">
           <h1 class="index-intro-text-title animated rubberBand">
-            Rxsto
+            rxsto
           </h1>
           <h2 class="index-intro-text-subtitle animated rubberBand" style="animation-delay: 100ms">
             Oskar Lang
@@ -29,7 +29,7 @@
       <div class="index-footer animated fadeIn">
         <i class="far fa-copyright icon" />
         <p class="index-footer-copyright">
-          Rxsto
+          {{ footer() }}
         </p>
       </div>
     </div>
@@ -52,6 +52,9 @@ export default {
     },
     iconClass(c) {
       return `${c} index-contact-link-icon`
+    },
+    footer() {
+      return `rxsto ${new Date().getFullYear()}`
     }
   }
 }
