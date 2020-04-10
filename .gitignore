@@ -82,6 +82,3 @@ dist
 
 # Service worker
 sw.*
-
-# npm
-package-lock.json

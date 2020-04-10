@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Discord",
+    "url": "https://rxs.to/discord",
+    "icon": "fa-discord"
+  },
+  {
+    "name": "GitHub",
+    "url": "https://rxs.to/github",
+    "icon": "fa-github"
+  },
+  {
+    "name": "LinkedIn",
+    "url": "https://rxs.to/linkedin",
+    "icon": "fa-linkedin-in"
+  },
+  {
+    "name": "Twitter",
+    "url": "https://rxs.to/twitter",
+    "icon": "fa-twitter"
+  }, 
+  {
+    "name": "Instagram",
+    "url": "https://rxs.to/instagram",
+    "icon": "fa-instagram"
+  },
+  {
+    "name": "Patreon",
+    "url": "https://rxs.to/patreon",
+    "icon": "fa-patreon"
+  }
+]
