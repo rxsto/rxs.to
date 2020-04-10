@@ -2,17 +2,17 @@
   {
     "name": "Discord",
     "url": "https://rxs.to/discord",
-    "icon": "fa-discord"
+    "icon": "fab fa-discord"
   },
   {
     "name": "GitHub",
     "url": "https://rxs.to/github",
-    "icon": "fa-github"
+    "icon": "fab fa-github"
   },
   {
     "name": "LinkedIn",
     "url": "https://rxs.to/linkedin",
-    "icon": "fa-linkedin-in"
+    "icon": "fab fa-linkedin-in"
   },
   {
     "name": "E-Mail",
@@ -22,16 +22,16 @@
   {
     "name": "Twitter",
     "url": "https://rxs.to/twitter",
-    "icon": "fa-twitter"
+    "icon": "fab fa-twitter"
   }, 
   {
     "name": "Instagram",
     "url": "https://rxs.to/instagram",
-    "icon": "fa-instagram"
+    "icon": "fab fa-instagram"
   },
   {
     "name": "Patreon",
     "url": "https://rxs.to/patreon",
-    "icon": "fa-patreon"
+    "icon": "fab fa-patreon"
   }
 ]

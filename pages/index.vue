@@ -51,7 +51,7 @@ export default {
       return `animation-delay: ${i * 50}ms`
     },
     iconClass(c) {
-      return `fab ${c} index-contact-link-icon`
+      return `${c} index-contact-link-icon`
     }
   }
 }
