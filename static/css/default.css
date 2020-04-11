@@ -1,14 +1,17 @@
 :root {
-  --green-light: #cedb9d;
-  --green-avg: #789C51;
-  --green-dark: #215c05;
+  --green-darkest: #2e6b33;
+  --green-darker: #3b9933;
+  --green-dark: #59cc3d;
+  --green-light: #8de052;
+  --green-lighter: #c6f075;
+  --green-lightest: #e3fa9e;
   --black: #000000;
-  --white: #ffffff;
   --darkest: #222222;
   --darker: #313131;
   --dark: #424242;
-  --grey-light: #fafafa;
   --grey: #757575;
+  --grey-light: #fafafa;
+  --white: #ffffff;
 }
 
 html,
