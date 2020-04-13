@@ -6,9 +6,7 @@
           <img class="index-intro-image-source animated jackInTheBox" src="/img/avatar.png" alt="Rxsto's avatar">
         </div>
         <div class="index-intro-text">
-          <h1 class="index-intro-text-title animated rubberBand">
-            rxsto
-          </h1>
+          <img src="/img/logos/rxsto-light.svg" class="index-intro-text-title animated rubberBand" draggable="false">
           <h2 class="index-intro-text-subtitle animated rubberBand" style="animation-delay: 100ms">
             Oskar Lang
           </h2>
@@ -94,13 +92,15 @@ export default {
         align-items: center;
 
         .index-intro-text-title {
-          font-size: 100px;
-          font-weight: 700;
+          height: 75px;
+          width: auto;
+          margin-bottom: 10px;
         }
 
         .index-intro-text-subtitle {
           font-size: 30px;
           letter-spacing: 3px;
+          user-select: none;
         }
       }
     }
@@ -118,7 +118,7 @@ export default {
         transition: .25s ease-in-out;
 
         &:hover {
-          color: var(--green-dark);
+          color: var(--green-darker);
         }
 
          .index-contact-link-icon {
