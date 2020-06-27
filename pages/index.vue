@@ -1,18 +1,18 @@
 <template>
-  <div class="flex flex-col justify-center items-center">
-    <picture class="flex flex-col items-center">
+  <div class="flex flex-col justify-center items-center py-8">
+    <picture class="flex flex-col items-center w-2/3 md:w-1/2 lg:w-1/4 xl:max-w-md">
       <source type="image/webp" srcset="/img/avatars/avatar.webp">
       <source type="image/jp2" srcset="/img/avatars/avatar.jp2">
       <source type="image/jxr" srcset="/img/avatars/avatar.jxr">
       <source type="image/jpeg" srcset="/img/avatars/avatar.jpg">
       <img
-        class="rounded-full w-2/3 align-center transition ease-in-out jackInTheBox"
+        class="rounded-full align-center transition ease-in-out jackInTheBox"
         src="/img/avatars/avatar.jpg"
         alt="rxsto's avatar"
         draggable="false"
       >
     </picture>
-    <logo class="w-2/3 max-w-md mt-4" />
+    <logo class="w-2/3 md:w-1/2 lg:w-1/4 xl:max-w-md mt-4" />
     <h1 class="text-3xl sm:text-6xl mt-4 sm:mt-6">
       Oskar Lang
     </h1>
