@@ -1,37 +1,44 @@
 [
   {
     "name": "Discord",
-    "url": "https://rxs.to/discord",
-    "icon": "fab fa-discord"
+    "url": "/discord",
+    "icon": "discord",
+    "brand": true
   },
   {
     "name": "GitHub",
-    "url": "https://rxs.to/github",
-    "icon": "fab fa-github"
+    "url": "/github",
+    "icon": "github",
+    "brand": true
   },
   {
     "name": "LinkedIn",
-    "url": "https://rxs.to/linkedin",
-    "icon": "fab fa-linkedin-in"
+    "url": "/linkedin",
+    "icon": "linkedin",
+    "brand": true
   },
   {
     "name": "E-Mail",
     "url": "mailto:hi@rxs.to",
-    "icon": "fas fa-at"
+    "icon": "at",
+    "brand": false
   },
   {
     "name": "Twitter",
-    "url": "https://rxs.to/twitter",
-    "icon": "fab fa-twitter"
+    "url": "/twitter",
+    "icon": "twitter",
+    "brand": true
   }, 
   {
     "name": "Instagram",
-    "url": "https://rxs.to/instagram",
-    "icon": "fab fa-instagram"
+    "url": "/instagram",
+    "icon": "instagram",
+    "brand": true
   },
   {
     "name": "Patreon",
-    "url": "https://rxs.to/patreon",
-    "icon": "fab fa-patreon"
+    "url": "/patreon",
+    "icon": "patreon",
+    "brand": true
   }
 ]
