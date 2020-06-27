@@ -1,0 +1,30 @@
+name: Stage
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  stage:
+    name: Stage
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v1.4.2
+      with:
+        node-version: 12
+    - name: Install pnpm
+      run: npm install --global pnpm
+    - name: Install Firebase CLI
+      run: pnpm install --global firebase-tools
+    - name: Install Dependencies
+      run: pnpm install --prod --shamefully-hoist
+    - name: Update Version
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: pnpx semantic-release  
+    - name: Stage Application
+      run: pnpm run stage
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

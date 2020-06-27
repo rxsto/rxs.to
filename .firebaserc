@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "rxsto-web"
+  },
+  "targets": {
+    "rxsto-web": {
+      "hosting": {
+        "production": [
+          "rxsto-web"
+        ],
+        "staging": [
+          "rxsto-web-staging"
+        ]
+      }
+    }
+  }
+}

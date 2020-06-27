@@ -1,0 +1,32 @@
+{
+  "hosting": [{
+    "target": "production",
+    "public": "dist",
+    "ignore": [
+      "**/*.js.map"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false
+  },
+  {
+    "target": "staging",
+    "public": "dist",
+    "ignore": [
+      "**/*.js.map"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false
+  }]
+}
