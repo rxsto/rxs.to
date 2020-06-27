@@ -1,37 +1,37 @@
 {
   "name": "rxsto-web",
-  "version": "1.0.1",
-  "description": "Rxsto's public portfolio, including all projects and work.",
-  "author": "Oskar 'Rxsto' Lang (https://rxs.to) <hi@rxs.to>",
+  "version": "2.0.0",
+  "description": "An efficient and SEO-improved portfolio",
+  "author": "Oskar (rxsto) Lang <hi@rxs.to> (https://rxs.to)",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "dev": "nuxt dev",
+    "serve": "npm run generate && nuxt serve",
+    "analyze": "nuxt build --analyze",
+    "generate": "nuxt build && nuxt export",
+    "release": "npm run generate && firebase deploy --only hosting:production",
+    "stage": "npm run generate && firebase deploy --only hosting:staging",
+    "lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
-    "@nuxtjs/pwa": "^2.6.0",
-    "cross-env": "^5.2.1",
-    "node-sass": "^4.13.1",
-    "nuxt": "^2.12.2",
-    "sass-loader": "^7.3.1"
+    "@fortawesome/free-brands-svg-icons": "^5.13.1",
+    "@fortawesome/free-regular-svg-icons": "^5.13.1",
+    "@fortawesome/free-solid-svg-icons": "^5.13.1",
+    "@nuxtjs/fontawesome": "^1.1.2",
+    "@nuxtjs/gtm": "^2.3.0",
+    "@nuxtjs/imagemin": "^0.2.0",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "@nuxtjs/sitemap": "^2.3.2",
+    "@nuxtjs/tailwindcss": "^2.0.0",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "nuxt": "^2.13.0",
+    "nuxt-user-agent": "^1.2.2"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^0.0.1",
-    "babel-eslint": "^8.2.1",
-    "eslint": "^5.16.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-loader": "^2.2.1",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jest": "^23.8.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-nuxt": "^0.5.2",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-vue": "^5.2.3",
-    "nodemon": "^1.19.4"
+    "@nuxtjs/eslint-config": "^3.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.3.0",
+    "eslint-plugin-nuxt": "^1.0.0"
   }
 }
