@@ -112,7 +112,10 @@ export default {
 
   sitemap: {
     hostname: 'https://rxs.to',
-    exclude: []
+    exclude: [],
+    routes () {
+      return []
+    }
   },
 
   modules: [
