@@ -101,6 +101,7 @@ export default {
         'faLinkedin',
         'faDiscord',
         'faInstagram',
+        'faYoutube',
         'faPatreon'
       ]
     }
@@ -119,6 +120,7 @@ export default {
   },
 
   modules: [
+    '@nuxtjs/axios',
     '@nuxtjs/pwa'
   ]
 }

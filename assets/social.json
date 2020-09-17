@@ -6,6 +6,12 @@
     "brand": true
   },
   {
+    "name": "YouTube",
+    "url": "/youtube",
+    "icon": "youtube",
+    "brand": true
+  },
+  {
     "name": "GitHub",
     "url": "/github",
     "icon": "github",

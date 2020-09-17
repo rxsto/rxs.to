@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/rxsto/rxsto.github.io/compare/v1.0.1...v1.1.0) (2020-09-17)
+
+
+### Features
+
+* add youtube link and latest video popup ([bb17c67](https://github.com/rxsto/rxsto.github.io/commit/bb17c677abfc6ba34c1a901c99c7f9bd4afd1f4d))
+
+## [1.0.1](https://github.com/rxsto/rxsto.github.io/compare/v1.0.0...v1.0.1) (2020-07-09)
+
+
+### Bug Fixes
+
+* remove redirects from sitemap.xml ([6e10791](https://github.com/rxsto/rxsto.github.io/commit/6e1079121664f4fd45f9cae6ccfaf12a112ef226))
+
 # 1.0.0 (2020-06-27)
 
 
