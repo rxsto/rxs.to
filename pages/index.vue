@@ -26,7 +26,7 @@
         target="_blank"
         class="mr-3 sm:mr-6 last:mr-0 relative hover:text-green-base"
       >
-        <fa class="text-4xl sm:text-6xl" :icon="[social.brand ? 'fab' : 'fas', social.icon]" />
+        <fa class="text-2xl sm:text-4xl md:text-6xl" :icon="[social.brand ? 'fab' : 'fas', social.icon]" />
       </a>
     </div>
     <div class="flex items-center opacity-50">
