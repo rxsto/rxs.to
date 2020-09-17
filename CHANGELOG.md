@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/rxsto/rxsto.github.io/compare/v1.1.0...v1.1.1) (2020-09-17)
+
+
+### Bug Fixes
+
+* update to newest building process ([5a1f152](https://github.com/rxsto/rxsto.github.io/commit/5a1f15245467e6f6e6c0acfb12bcefbc8999c25a))
+
 # [1.1.0](https://github.com/rxsto/rxsto.github.io/compare/v1.0.1...v1.1.0) (2020-09-17)
 
 
