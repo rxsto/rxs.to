@@ -6,9 +6,10 @@
   "private": true,
   "scripts": {
     "dev": "nuxt dev",
-    "serve": "npm run generate && nuxt serve",
     "analyze": "nuxt build --analyze",
-    "generate": "nuxt build && nuxt export",
+    "generate": "nuxt generate",
+    "start": "nuxt start",
+    "serve": "npm run generate && npm run start",
     "release": "npm run generate && firebase deploy --only hosting:production",
     "stage": "npm run generate && firebase deploy --only hosting:staging",
     "lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore ."
