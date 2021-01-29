@@ -28,3 +28,6 @@ jobs:
       run: pnpm run stage
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        API_PREFIX: /
+        API_HOST: api-staging.rxs.to
+        API_PORT: 443
