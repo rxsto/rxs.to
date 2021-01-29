@@ -56,6 +56,10 @@ export default {
     ]
   },
 
+  plugins: [
+    '~/plugins/util.js'
+  ],
+
   loading: {
     color: '#cedb9d',
     height: '3px'
