@@ -1,3 +1,18 @@
+# [1.2.0](https://github.com/rxsto/rxsto.github.io/compare/v1.1.1...v1.2.0) (2021-01-29)
+
+
+### Bug Fixes
+
+* generally use major version for github actions ([955393f](https://github.com/rxsto/rxsto.github.io/commit/955393f5d986f7b4f3db322e74efacba80e56c7d))
+* improve latest video requesting ([26f2ff1](https://github.com/rxsto/rxsto.github.io/commit/26f2ff19f7aaecef7c9729e63f08b01c23b44d0d))
+
+
+### Features
+
+* add a store utility ([d1e28da](https://github.com/rxsto/rxsto.github.io/commit/d1e28da5b89137ea25009c31d00d4657f2ac9b72))
+* add logging utility ([8b8cbc8](https://github.com/rxsto/rxsto.github.io/commit/8b8cbc87a6eee5ca1bbb96add195c745b08a5bb8))
+* add utility plugin ([e6e2a07](https://github.com/rxsto/rxsto.github.io/commit/e6e2a074959e591239787b3d64bf03d394bde39e))
+
 ## [1.1.1](https://github.com/rxsto/rxsto.github.io/compare/v1.1.0...v1.1.1) (2020-09-17)
 
 
