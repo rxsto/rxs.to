@@ -15,25 +15,25 @@
     "lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
-    "@fortawesome/free-brands-svg-icons": "^5.14.0",
-    "@fortawesome/free-regular-svg-icons": "^5.14.0",
-    "@fortawesome/free-solid-svg-icons": "^5.14.0",
-    "@nuxtjs/axios": "^5.12.2",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@nuxtjs/axios": "^5.12.5",
     "@nuxtjs/fontawesome": "^1.1.2",
-    "@nuxtjs/gtm": "^2.3.2",
+    "@nuxtjs/gtm": "^2.4.0",
     "@nuxtjs/imagemin": "^0.2.0",
-    "@nuxtjs/pwa": "^3.0.2",
+    "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/sitemap": "^2.4.0",
-    "@nuxtjs/tailwindcss": "^3.0.2",
+    "@nuxtjs/tailwindcss": "^3.4.2",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
-    "nuxt": "^2.14.5",
+    "nuxt": "^2.14.12",
     "nuxt-user-agent": "^1.2.2"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^3.1.0",
+    "@nuxtjs/eslint-config": "^5.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.9.0",
-    "eslint-plugin-nuxt": "^1.0.0"
+    "eslint": "^7.18.0",
+    "eslint-plugin-nuxt": "^2.0.0"
   }
 }

@@ -126,5 +126,9 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/pwa'
-  ]
+  ],
+
+  axios: {
+    https: true
+  }
 }
