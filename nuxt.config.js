@@ -56,6 +56,10 @@ export default {
     ]
   },
 
+  plugins: [
+    '~/plugins/util.js'
+  ],
+
   loading: {
     color: '#cedb9d',
     height: '3px'
@@ -122,5 +126,9 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/pwa'
-  ]
+  ],
+
+  axios: {
+    https: true
+  }
 }
