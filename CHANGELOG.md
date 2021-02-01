@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/rxsto/rxsto.github.io/compare/v1.2.0...v1.3.0) (2021-02-01)
+
+
+### Features
+
+* simplify and improve latest video handling by just requesting ID ([5948a06](https://github.com/rxsto/rxsto.github.io/commit/5948a0665aca12cc165b9dc47cde5c7cd0d6f893))
+
 # [1.2.0](https://github.com/rxsto/rxsto.github.io/compare/v1.1.1...v1.2.0) (2021-01-29)
 
 
