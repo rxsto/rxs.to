@@ -25,7 +25,7 @@ export const actions = {
     if (!state.latestRequested) {
       try {
         commit('setLatestRequested', true)
-        commit('setLatest', await this.$axios.$get('/videos/latest'))
+        commit('setLatest', await this.$axios.$get('/videos/latest/id'))
         commit('setLatestLoaded', true)
       } catch (err) {
         commit('setLatestErrored', true)

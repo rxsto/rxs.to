@@ -1,6 +1,6 @@
 <template>
   <transition name="fade-in">
-    <div v-if="latestLoaded" class="p-4 md:p-8 flex fade-in">
+    <div v-if="latestLoaded" class="p-4 md:p-8 flex fade-in absolute w-full">
       <div class="p-4 sm:px-6 bg-grey-darker w-full rounded-lg flex justify-between items-center">
         <p class="text-white text-xs sm:text-base md:text-lg">
           Check out my latest video!
@@ -18,7 +18,7 @@ export default {
   computed: {
     ...mapState('data/videos', ['latest', 'latestLoaded']),
     link () {
-      return `https://www.youtube.com/watch?v=${this.latest.id}`
+      return `https://www.youtube.com/watch?v=${this.latest}`
     }
   },
   mounted () {
