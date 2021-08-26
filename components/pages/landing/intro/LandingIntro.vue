@@ -21,6 +21,7 @@
               v-for="social in socials"
               :key="social.id"
               v-tooltip.bottom="social.display"
+              target="_blank"
               :href="`/${social.id}`"
               class="text-xl xs:text-2xl lg:text-3xl text-white cursor-pointer ease-in-out duration-100 hover:opacity-75"
             >
