@@ -40,7 +40,7 @@
           </div>
         </div>
         <transition name="jump-in">
-          <fa v-if="hovering" icon="external-link-square-alt" class="absolute top-1 right-1 text-2xl text-green-dark opacity-50" />
+          <fa v-if="hovering" icon="external-link-square-alt" class="absolute top-1 right-1 text-2xl text-green-dark opacity-75" />
         </transition>
       </div>
     </transition>
@@ -85,7 +85,7 @@ export default {
     }
     setTimeout(() => {
       this.hidden = this.wasAlreadyHidden
-    }, 1500)
+    }, 4000)
   },
   methods: {
     redirect () {
@@ -106,7 +106,7 @@ export default {
 <style scoped>
 .jump-in-enter-active, .jump-in-leave-active {
   transition: all 100ms cubic-bezier(0, 0, .25, 1) !important;
-  transform: scale(1) !important;
+  transform: scale(.75) !important;
   opacity: 1 !important;
 }
 
