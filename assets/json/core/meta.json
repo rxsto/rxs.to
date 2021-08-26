@@ -1,0 +1,16 @@
+{
+  "author": "rxsto",
+  "host": "https://rxs.to",
+  "color": {
+    "primary": "#fff",
+    "secondary": "#fff",
+    "contrast": "#fff"
+  },
+  "pages": {
+    "home": {
+      "short": "TODO",
+      "title": "TODO",
+      "description": "TODO"
+    }
+  }
+}

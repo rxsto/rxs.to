@@ -3,3 +3,18 @@
 @import 'tailwindcss/utilities';
 
 @import './extensions/fonts.css';
+@import './extensions/tooltips.css';
+
+body {
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+img {
+  -webkit-user-drag: none;
+}

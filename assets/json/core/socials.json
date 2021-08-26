@@ -1,0 +1,37 @@
+[
+  {
+    "id": "github",
+    "display": "Github",
+    "icon": "github"
+  },
+  {
+    "id": "twitter",
+    "display": "Twitter",
+    "icon": "twitter"
+  },
+  {
+    "id": "discord",
+    "display": "Discord",
+    "icon": "discord"
+  },
+  {
+    "id": "youtube",
+    "display": "YouTube",
+    "icon": "youtube"
+  },
+  {
+    "id": "instagram",
+    "display": "Instagram",
+    "icon": "instagram"
+  },
+  {
+    "id": "patreon",
+    "display": "Patreon",
+    "icon": "patreon"
+  },
+  {
+    "id": "linkedin",
+    "display": "LinkedIn",
+    "icon": "linkedin"
+  }
+]

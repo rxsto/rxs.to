@@ -1,0 +1,23 @@
+[
+  {
+    "id": "groovy",
+    "color": "#79a5fa",
+    "url": "https://groovy.bot",
+    "name": "Groovy",
+    "description": "Discord's best music bot"
+  },
+  {
+    "id": "hydra",
+    "color": "#1F2228",
+    "url": "https://hydra.bot",
+    "name": "Hydra",
+    "description": "The perfect Discord bot"
+  },
+  {
+    "id": "aero",
+    "color": "#bfcbf5",
+    "url": "https://aero.bot",
+    "name": "Aero",
+    "description": "An intuitive community management tool"
+  }
+]
