@@ -1,6 +1,6 @@
 <template>
   <div v-if="!hidden" ref="splash" class="flex justify-center items-center w-full min-h-screen absolute z-50 bg-green-lighter">
-    <div class="spin relative flex justify-center items-center h-64 w-64">
+    <div class="spin flex relative justify-center items-center h-64 w-64" style="transform: scale(0)">
       <div class="absolute h-8 w-40 bg-green-dark rounded-full transform rotate-45" />
       <div class="absolute h-8 w-40 bg-green-dark rounded-full transform -rotate-45" />
     </div>
@@ -43,7 +43,7 @@ export default {
   animation-delay: .5s, 1s, 3s;
   animation-duration: .5s, 1s, .5s;
   animation-iteration-count: 1, 2, 1;
-  animation-fill-mode: none, none, forwards;
+  animation-fill-mode: forwards, forwards, forwards;
   animation-timing-function: ease-in-out;
 }
 
