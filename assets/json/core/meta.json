@@ -2,15 +2,15 @@
   "author": "rxsto",
   "host": "https://rxs.to",
   "color": {
-    "primary": "#fff",
-    "secondary": "#fff",
-    "contrast": "#fff"
+    "primary": "#637D40",
+    "secondary": "#515934",
+    "contrast": "#273921"
   },
   "pages": {
     "home": {
-      "short": "TODO",
-      "title": "TODO",
-      "description": "TODO"
+      "short": "rxsto",
+      "title": "rxsto - self-employed full stack / devops engineer",
+      "description": "I'm a self-employed fullstack / devops engineer working on various amazing projects! There is a lot to come in the future, many of my projects are in active development! If you want to learn more about my work feel free to get in touch on my Discord."
     }
   }
 }

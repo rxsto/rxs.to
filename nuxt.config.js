@@ -1,20 +1,33 @@
+import redirects from './assets/json/core/redirects.json'
 import { author, host, color, pages } from './assets/json/core/meta.json'
 const { short, title, description } = pages.home
 
 export default {
   target: 'static',
+  modern: process.env.NODE_ENV === 'production' && 'client',
 
   head: {
-    title: 'rxs.to',
+    title,
+    htmlAttrs: {
+      lang: 'en'
+    },
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { hid: 'viewport', name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'format-detection', name: 'format-detection', content: 'telephone=no' },
+      { hid: 'publisher', name: 'publisher', content: author },
+      { hid: 'robots', name: 'robots', content: 'index, follow' },
+      { hid: 'application-name', name: 'application-name', content: short }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'preconnect', href: 'https://www.googletagmanager.com' },
+      { rel: 'preconnect', href: 'https://www.google-analytics.com' }
     ]
+  },
+
+  loading: {
+    color: color.secondary,
+    height: '4px'
   },
 
   plugins: [
@@ -25,6 +38,16 @@ export default {
   components: [
     { path: '~/components', pathPrefix: false }
   ],
+
+  generate: {
+    subFolders: false,
+    routes () {
+      return [].concat(
+        redirects.map(redirect => `/${redirect.id}`)
+      )
+    },
+    fallback: true
+  },
 
   buildModules: [
     '@aceforth/nuxt-optimized-images',
@@ -54,7 +77,7 @@ export default {
   },
 
   gtm: {
-    id: 'TODO',
+    id: 'GTM-N33Q6PV',
     enabled: process.env.NODE_ENV === 'production' && process.env.GTM_ENABLED === 'true',
     debug: process.env.NODE_ENV !== 'production',
     scriptDefer: true
@@ -80,6 +103,17 @@ export default {
         'faPatreon',
         'faLinkedin'
       ]
+    }
+  },
+
+  sitemap: {
+    hostname: 'https://rxs.to',
+    exclude: [],
+    filter ({ routes }) {
+      return routes.filter(route => !redirects.find(redirect => `/${redirect.id}` === route.url))
+    },
+    defaults: {
+      lastmod: new Date()
     }
   },
 
@@ -115,7 +149,5 @@ export default {
       description,
       background_color: color.contrast
     }
-  },
-
-  content: {}
+  }
 }
