@@ -1,0 +1,47 @@
+name: cloudflare
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  ci:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        node: [ 14 ]
+
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/pnpm-lock.yaml')) }}
+
+      - uses: pnpm/action-setup@v2.1.0
+        with:
+          version: 6
+
+      - name: Install
+        run: pnpm i --shamefully-hoist
+
+      - name: Build
+        run: pnpm run build
+        env:
+          NITRO_PRESET: cloudflare
+          BASE_URL: https://lva.rxs.to/
+
+      - name: Publish to Cloudflare
+        uses: cloudflare/wrangler-action@1.3.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}

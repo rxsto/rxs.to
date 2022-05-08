@@ -1,0 +1,37 @@
+.scrolling-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrolling-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrolling-container {
+  scrollbar-width: thin;
+  scrollbar-color: theme('colors.neutral.800') transparent;
+  @apply overscroll-contain;
+}
+
+.scrolling-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrolling-container::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.scrolling-container::-webkit-scrollbar-thumb {
+  background-clip: padding-box;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  background-color: theme('colors.neutral.800');
+  min-height: 40px;
+}
+
+.scrolling-container::-webkit-scrollbar-track {
+  border-color: transparent;
+  background-color: transparent;
+  border: 2px solid transparent;
+}

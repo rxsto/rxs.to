@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 67.733332 67.733335"
+   version="1.1"
+   id="svg1094"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="groovy.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1096"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="px"
+     inkscape:zoom="1.5554293"
+     inkscape:cx="125.04586"
+     inkscape:cy="256.52082"
+     inkscape:window-width="2554"
+     inkscape:window-height="1352"
+     inkscape:window-x="1275"
+     inkscape:window-y="961"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1091">
+    <linearGradient
+       y2="156.1198"
+       x2="105.3606"
+       y1="290.58389"
+       x1="105.5798"
+       gradientUnits="userSpaceOnUse"
+       id="SVGID_1_">
+      <stop
+         id="stop4"
+         style="stop-color:#0D55FF;stop-opacity:0"
+         offset="0.0665" />
+      <stop
+         id="stop6"
+         style="stop-color:#0C5CFF;stop-opacity:0.1173"
+         offset="0.1377" />
+      <stop
+         id="stop8"
+         style="stop-color:#0B6FFF;stop-opacity:0.2878"
+         offset="0.2412" />
+      <stop
+         id="stop10"
+         style="stop-color:#088FFF;stop-opacity:0.4909"
+         offset="0.3645" />
+      <stop
+         id="stop12"
+         style="stop-color:#05BBFF;stop-opacity:0.719"
+         offset="0.503" />
+      <stop
+         id="stop14"
+         style="stop-color:#01F3FF;stop-opacity:0.9651"
+         offset="0.6524" />
+      <stop
+         id="stop16"
+         style="stop-color:#00FCFF"
+         offset="0.6736" />
+    </linearGradient>
+    <linearGradient
+       y2="91.223801"
+       x2="148.7776"
+       y1="91.223801"
+       x1="69.742699"
+       gradientUnits="userSpaceOnUse"
+       id="SVGID_2_">
+      <stop
+         id="stop51"
+         style="stop-color:#00FCFF"
+         offset="0" />
+      <stop
+         id="stop53"
+         style="stop-color:#01EEFF;stop-opacity:0.8696"
+         offset="0.1304" />
+      <stop
+         id="stop55"
+         style="stop-color:#04C9FF;stop-opacity:0.6226"
+         offset="0.3774" />
+      <stop
+         id="stop57"
+         style="stop-color:#098DFF;stop-opacity:0.2882"
+         offset="0.7118" />
+      <stop
+         id="stop59"
+         style="stop-color:#0D55FF;stop-opacity:0"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       y2="37.834801"
+       x2="56.947701"
+       y1="124.2443"
+       x1="158.81599"
+       gradientUnits="userSpaceOnUse"
+       id="SVGID_3_">
+      <stop
+         id="stop64"
+         style="stop-color:#0D55FF;stop-opacity:0"
+         offset="0" />
+      <stop
+         id="stop66"
+         style="stop-color:#098DFF;stop-opacity:0.2882"
+         offset="0.2882" />
+      <stop
+         id="stop68"
+         style="stop-color:#04C9FF;stop-opacity:0.6226"
+         offset="0.6226" />
+      <stop
+         id="stop70"
+         style="stop-color:#01EEFF;stop-opacity:0.8696"
+         offset="0.8696" />
+      <stop
+         id="stop72"
+         style="stop-color:#00FCFF"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       y2="7.4833999"
+       x2="9.5493002"
+       y1="80.629799"
+       x1="95.7817"
+       gradientUnits="userSpaceOnUse"
+       id="SVGID_4_">
+      <stop
+         id="stop77"
+         style="stop-color:#0D55FF;stop-opacity:0"
+         offset="0" />
+      <stop
+         id="stop79"
+         style="stop-color:#098DFF;stop-opacity:0.2882"
+         offset="0.2882" />
+      <stop
+         id="stop81"
+         style="stop-color:#04C9FF;stop-opacity:0.6226"
+         offset="0.6226" />
+      <stop
+         id="stop83"
+         style="stop-color:#01EEFF;stop-opacity:0.8696"
+         offset="0.8696" />
+      <stop
+         id="stop85"
+         style="stop-color:#00FCFF"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       y2="45.7356"
+       x2="185.5558"
+       y1="131.93829"
+       x1="160.7319"
+       gradientUnits="userSpaceOnUse"
+       id="SVGID_5_">
+      <stop
+         id="stop116"
+         style="stop-color:#0D55FF;stop-opacity:0"
+         offset="0" />
+      <stop
+         id="stop118"
+         style="stop-color:#0B69FF;stop-opacity:0.0627"
+         offset="0.0627" />
+      <stop
+         id="stop120"
+         style="stop-color:#0896FF;stop-opacity:0.22"
+         offset="0.22" />
+      <stop
+         id="stop122"
+         style="stop-color:#05BAFF;stop-opacity:0.3786"
+         offset="0.3786" />
+      <stop
+         id="stop124"
+         style="stop-color:#03D7FF;stop-opacity:0.5364"
+         offset="0.5364" />
+      <stop
+         id="stop126"
+         style="stop-color:#01ECFF;stop-opacity:0.693"
+         offset="0.693" />
+      <stop
+         id="stop128"
+         style="stop-color:#00F8FF;stop-opacity:0.8481"
+         offset="0.8481" />
+      <stop
+         id="stop130"
+         style="stop-color:#00FCFF"
+         offset="1" />
+    </linearGradient>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       data-name="Layer 2"
+       id="Layer_2"
+       transform="matrix(0.14226105,0,0,0.14226105,3.6561823e-7,14.07531)"
+       inkscape:export-filename="C:\Users\oskar\Desktop\groovy_rounded.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <g
+         data-name="Layer 2"
+         id="Layer_2-2">
+        <rect
+           height="34.360001"
+           width="161.74001"
+           y="78.989998"
+           x="314.38"
+           class="cls-1"
+           data-name="&lt;Path&gt;"
+           id="_Path_"
+           style="fill:#ffe9eb" />
+        <rect
+           height="34.360001"
+           width="161.74001"
+           y="78.989998"
+           class="cls-1"
+           data-name="&lt;Path&gt;"
+           id="_Path_2"
+           x="0"
+           style="fill:#ffe9eb" />
+        <rect
+           height="199.23"
+           width="152.64"
+           y="78.989998"
+           x="161.74001"
+           class="cls-2"
+           data-name="&lt;Path&gt;"
+           id="_Path_3"
+           style="fill:#ff8af9" />
+        <g
+           class="cls-3"
+           data-name="&lt;Group&gt;"
+           id="_Group_"
+           style="opacity:0.2">
+          <path
+             id="path1499"
+             d="m 304.62,141.61 v 8.66 a 3.44,3.44 0 0 1 -1.05,2.48 3.37,3.37 0 0 1 -2.38,1 h -39.9 a 3.45,3.45 0 0 1 -2.38,-1 l -2.48,-2.52 1.43,-0.63 v -8 a 3.42,3.42 0 0 1 3.43,-3.43 h 22.62 l 2.92,-1.28 h 14.5 l 2.05,2.06 0.19,0.18 a 3.4,3.4 0 0 1 1.05,2.48 z"
+             class="cls-4"
+             inkscape:connector-curvature="0"
+             style="fill:#000051" />
+        </g>
+        <g
+           class="cls-3"
+           data-name="&lt;Group&gt;"
+           id="_Group_2"
+           style="opacity:0.2">
+          <path
+             id="path1502"
+             d="m 296.19,209.82 v 43.35 a 7.24,7.24 0 0 1 -7.24,7.24 h -88.34 a 7.2,7.2 0 0 1 -5,-2 l -0.14,-0.13 -6.86,-6.87 4.74,-2.57 v -39 a 7.25,7.25 0 0 1 7.24,-7.25 h 78.22 l 8.51,-4.61 6.37,6.37 v 0 a 7.24,7.24 0 0 1 2.5,5.47 z"
+             class="cls-4"
+             inkscape:connector-curvature="0"
+             style="fill:#000051" />
+        </g>
+        <g
+           class="cls-3"
+           data-name="&lt;Group&gt;"
+           id="_Group_3"
+           style="opacity:0.2">
+          <path
+             id="path1505"
+             d="m 195.63,258.42 v 0 l -0.13,-0.13 z"
+             class="cls-4"
+             inkscape:connector-curvature="0"
+             style="fill:#000051" />
+        </g>
+        <g
+           data-name="&lt;Group&gt;"
+           id="_Group_4">
+          <path
+             d="m 7.25,40.44 h 461.63 a 7.24,7.24 0 0 1 7.24,7.24 V 79 H 0 V 47.68 a 7.24,7.24 0 0 1 7.25,-7.24 z"
+             class="cls-5"
+             data-name="&lt;Rectangle&gt;"
+             id="_Rectangle_"
+             inkscape:connector-curvature="0"
+             style="fill:#492991" />
+          <path
+             d="M 378.11,16.47 V 7.24 A 7.24,7.24 0 0 0 370.87,0 H 105.25 A 7.24,7.24 0 0 0 98,7.24 v 33.2 h 9.11 v -24 H 369 v 24 h 9.1 v -24 z"
+             class="cls-5"
+             data-name="&lt;Path&gt;"
+             id="_Path_4"
+             inkscape:connector-curvature="0"
+             style="fill:#492991" />
+        </g>
+        <g
+           data-name="&lt;Group&gt;"
+           id="_Group_5">
+          <rect
+             height="38.560001"
+             width="280.10001"
+             y="40.43"
+             x="98.010002"
+             class="cls-6"
+             data-name="&lt;Path&gt;"
+             id="_Path_5"
+             style="fill:#b056d6" />
+          <rect
+             height="23.110001"
+             width="161.73"
+             y="84.620003"
+             x="0.0099999998"
+             class="cls-6"
+             data-name="&lt;Path&gt;"
+             id="_Path_6"
+             style="fill:#b056d6" />
+          <path
+             d="M 0,113.35 H 161.74 V 278.22 H 7.25 A 7.24,7.24 0 0 1 0,271 Z"
+             class="cls-6"
+             data-name="&lt;Path&gt;"
+             id="_Path_7"
+             inkscape:connector-curvature="0"
+             style="fill:#b056d6" />
+          <rect
+             height="23.110001"
+             width="161.74001"
+             y="84.620003"
+             x="314.38"
+             class="cls-6"
+             data-name="&lt;Path&gt;"
+             id="_Path_8"
+             style="fill:#b056d6" />
+          <path
+             d="M 314.38,113.35 H 476.12 V 271 a 7.24,7.24 0 0 1 -7.24,7.24 h -154.5 z"
+             class="cls-6"
+             data-name="&lt;Path&gt;"
+             id="_Path_9"
+             inkscape:connector-curvature="0"
+             style="fill:#b056d6" />
+        </g>
+        <rect
+           ry="7.2399998"
+           rx="7.2399998"
+           height="57.84"
+           width="102.83"
+           y="195.86"
+           x="186.64999"
+           class="cls-6"
+           data-name="&lt;Rectangle&gt;"
+           id="_Rectangle_2"
+           style="fill:#b056d6" />
+        <g
+           data-name="&lt;Group&gt;"
+           id="_Group_6">
+          <g
+             data-name="&lt;Group&gt;"
+             id="_Group_7">
+            <path
+               d="M 88.91,55 H 28.39 a 2.81,2.81 0 0 1 0,-5.62 h 60.52 a 2.81,2.81 0 0 1 0,5.62 z"
+               class="cls-1"
+               data-name="&lt;Path&gt;"
+               id="_Path_10"
+               inkscape:connector-curvature="0"
+               style="fill:#ffe9eb" />
+          </g>
+          <g
+             data-name="&lt;Group&gt;"
+             id="_Group_8">
+            <path
+               d="m 259.28,55 h -136.1 a 2.81,2.81 0 0 1 0,-5.62 h 136.1 a 2.81,2.81 0 1 1 0,5.62 z"
+               class="cls-1"
+               data-name="&lt;Path&gt;"
+               id="_Path_11"
+               inkscape:connector-curvature="0"
+               style="fill:#ffe9eb" />
+          </g>
+          <g
+             data-name="&lt;Group&gt;"
+             id="_Group_9">
+            <path
+               d="M 283.85,55 H 269 a 2.81,2.81 0 0 1 0,-5.62 h 14.86 a 2.81,2.81 0 0 1 0,5.62 z"
+               class="cls-1"
+               data-name="&lt;Path&gt;"
+               id="_Path_12"
+               inkscape:connector-curvature="0"
+               style="fill:#ffe9eb" />
+          </g>
+          <g
+             data-name="&lt;Group&gt;"
+             id="_Group_10">
+            <path
+               d="m 359.37,55 h -62.52 a 2.81,2.81 0 0 1 0,-5.62 h 62.52 a 2.81,2.81 0 0 1 0,5.62 z"
+               class="cls-1"
+               data-name="&lt;Path&gt;"
+               id="_Path_13"
+               inkscape:connector-curvature="0"
+               style="fill:#ffe9eb" />
+          </g>
+          <g
+             data-name="&lt;Group&gt;"
+             id="_Group_11">
+            <path
+               d="m 445.33,55 h -55.44 a 2.81,2.81 0 0 1 0,-5.62 h 55.44 a 2.81,2.81 0 1 1 0,5.62 z"
+               class="cls-1"
+               data-name="&lt;Path&gt;"
+               id="_Path_14"
+               inkscape:connector-curvature="0"
+               style="fill:#ffe9eb" />
+          </g>
+        </g>
+        <g
+           data-name="&lt;Group&gt;"
+           id="_Group_12">
+          <g
+             data-name="&lt;Group&gt;"
+             id="_Group_13">
+            <path
+               d="M 292.77,169.64 H 183.35 a 2.81,2.81 0 0 1 0,-5.62 h 109.42 a 2.81,2.81 0 0 1 0,5.62 z"
+               class="cls-1"
+               data-name="&lt;Path&gt;"
+               id="_Path_15"
+               inkscape:connector-curvature="0"
+               style="fill:#ffe9eb" />
+          </g>
+          <g
+             data-name="&lt;Group&gt;"
+             id="_Group_14">
+            <path
+               d="M 221.93,182.49 H 190.6 a 2.81,2.81 0 1 1 0,-5.62 h 31.33 a 2.81,2.81 0 0 1 0,5.62 z"
+               class="cls-1"
+               data-name="&lt;Path&gt;"
+               id="_Path_16"
+               inkscape:connector-curvature="0"
+               style="fill:#ffe9eb" />
+          </g>
+          <g
+             data-name="&lt;Group&gt;"
+             id="_Group_15">
+            <path
+               d="m 243.69,182.49 h -9.11 a 2.81,2.81 0 1 1 0,-5.62 h 9.11 a 2.81,2.81 0 0 1 0,5.62 z"
+               class="cls-1"
+               data-name="&lt;Path&gt;"
+               id="_Path_17"
+               inkscape:connector-curvature="0"
+               style="fill:#ffe9eb" />
+          </g>
+          <g
+             data-name="&lt;Group&gt;"
+             id="_Group_16">
+            <path
+               d="m 286.34,182.49 h -27.86 a 2.81,2.81 0 0 1 0,-5.62 h 27.86 a 2.81,2.81 0 1 1 0,5.62 z"
+               class="cls-1"
+               data-name="&lt;Path&gt;"
+               id="_Path_18"
+               inkscape:connector-curvature="0"
+               style="fill:#ffe9eb" />
+          </g>
+        </g>
+        <g
+           data-name="&lt;Group&gt;"
+           id="_Group_17">
+          <polygon
+             id="polygon1538"
+             points="258.7,239.77 272.63,253.7 203.49,253.7 217.43,239.77 "
+             class="cls-5"
+             style="fill:#492991" />
+        </g>
+        <g
+           data-name="&lt;Group&gt;"
+           id="_Group_18">
+          <circle
+             id="circle1541"
+             r="71.769997"
+             cy="194.38"
+             cx="80.870003"
+             class="cls-5"
+             style="fill:#492991" />
+        </g>
+        <g
+           class="cls-3"
+           data-name="&lt;Group&gt;"
+           id="_Group_19"
+           style="opacity:0.2">
+          <path
+             id="path1544"
+             d="M 131.62,143.64 A 71.764267,71.764267 0 0 1 30.13,245.13 q -2.13,-2.12 -4,-4.38 A 71.76,71.76 0 0 0 127.24,139.62 c 1.51,1.26 2.97,2.61 4.38,4.02 z"
+             class="cls-4"
+             inkscape:connector-curvature="0"
+             style="fill:#000051" />
+        </g>
+        <circle
+           r="71.769997"
+           cy="194.38"
+           cx="395.25"
+           class="cls-5"
+           data-name="&lt;Path&gt;"
+           id="_Path_19"
+           style="fill:#492991" />
+        <g
+           data-name="&lt;Group&gt;"
+           id="_Group_20">
+          <circle
+             id="circle1548"
+             r="9.71"
+             cy="220.06"
+             cx="210.98"
+             class="cls-5"
+             style="fill:#492991" />
+        </g>
+        <g
+           data-name="&lt;Group&gt;"
+           id="_Group_21">
+          <circle
+             id="circle1551"
+             r="9.71"
+             cy="220.06"
+             cx="264.67001"
+             class="cls-5"
+             style="fill:#492991" />
+        </g>
+        <g
+           data-name="&lt;Group&gt;"
+           id="_Group_22">
+          <circle
+             id="circle1554"
+             r="9.71"
+             cy="110.54"
+             cx="183.35001"
+             class="cls-5"
+             style="fill:#492991" />
+        </g>
+        <g
+           data-name="&lt;Group&gt;"
+           id="_Group_23">
+          <circle
+             id="circle1557"
+             r="9.71"
+             cy="110.54"
+             cx="210.71001"
+             class="cls-5"
+             style="fill:#492991" />
+        </g>
+        <g
+           data-name="&lt;Group&gt;"
+           id="_Group_24">
+          <circle
+             id="circle1560"
+             r="9.71"
+             cy="110.54"
+             cx="238.06"
+             class="cls-5"
+             style="fill:#492991" />
+        </g>
+        <g
+           data-name="&lt;Group&gt;"
+           id="_Group_25">
+          <circle
+             id="circle1563"
+             r="9.71"
+             cy="110.54"
+             cx="265.42001"
+             class="cls-5"
+             style="fill:#492991" />
+        </g>
+        <g
+           data-name="&lt;Group&gt;"
+           id="_Group_26">
+          <circle
+             id="circle1566"
+             r="9.71"
+             cy="110.54"
+             cx="292.76999"
+             class="cls-5"
+             style="fill:#492991" />
+        </g>
+        <g
+           class="cls-3"
+           data-name="&lt;Group&gt;"
+           id="_Group_27"
+           style="opacity:0.2">
+          <path
+             id="path1569"
+             d="m 190.22,103.68 a 9.71,9.71 0 0 1 -13.73,13.73 10.12,10.12 0 0 1 -0.92,-1.06 9.72,9.72 0 0 0 13.59,-13.59 10.12,10.12 0 0 1 1.06,0.92 z"
+             class="cls-4"
+             inkscape:connector-curvature="0"
+             style="fill:#000051" />
+        </g>
+        <g
+           class="cls-3"
+           data-name="&lt;Group&gt;"
+           id="_Group_28"
+           style="opacity:0.2">
+          <path
+             id="path1572"
+             d="m 218.32,213.67 a 9.71,9.71 0 0 1 -13.73,13.72 9.19,9.19 0 0 1 -0.92,-1.06 9.71,9.71 0 0 0 13.59,-13.58 9.07,9.07 0 0 1 1.06,0.92 z"
+             class="cls-4"
+             inkscape:connector-curvature="0"
+             style="fill:#000051" />
+        </g>
+        <g
+           class="cls-3"
+           data-name="&lt;Group&gt;"
+           id="_Group_29"
+           style="opacity:0.2">
+          <path
+             id="path1575"
+             d="m 272,213.67 a 9.71,9.71 0 0 1 -13.73,13.72 9.19,9.19 0 0 1 -0.92,-1.06 9.71,9.71 0 0 0 13.65,-13.58 9.07,9.07 0 0 1 1,0.92 z"
+             class="cls-4"
+             inkscape:connector-curvature="0"
+             style="fill:#000051" />
+        </g>
+        <g
+           class="cls-3"
+           data-name="&lt;Group&gt;"
+           id="_Group_30"
+           style="opacity:0.2">
+          <path
+             id="path1578"
+             d="m 217.58,103.68 a 9.71,9.71 0 0 1 -13.73,13.73 8.32,8.32 0 0 1 -0.92,-1.06 9.72,9.72 0 0 0 13.59,-13.59 10.12,10.12 0 0 1 1.06,0.92 z"
+             class="cls-4"
+             inkscape:connector-curvature="0"
+             style="fill:#000051" />
+        </g>
+        <g
+           class="cls-3"
+           data-name="&lt;Group&gt;"
+           id="_Group_31"
+           style="opacity:0.2">
+          <path
+             id="path1581"
+             d="m 244.93,103.68 a 9.71,9.71 0 0 1 -13.73,13.73 10.12,10.12 0 0 1 -0.92,-1.06 9.72,9.72 0 0 0 13.59,-13.59 10.12,10.12 0 0 1 1.06,0.92 z"
+             class="cls-4"
+             inkscape:connector-curvature="0"
+             style="fill:#000051" />
+        </g>
+        <g
+           class="cls-3"
+           data-name="&lt;Group&gt;"
+           id="_Group_32"
+           style="opacity:0.2">
+          <path
+             id="path1584"
+             d="m 272.28,103.68 a 9.71,9.71 0 0 1 -13.73,13.73 10.12,10.12 0 0 1 -0.92,-1.06 9.72,9.72 0 0 0 13.59,-13.59 10.12,10.12 0 0 1 1.06,0.92 z"
+             class="cls-4"
+             inkscape:connector-curvature="0"
+             style="fill:#000051" />
+        </g>
+        <g
+           class="cls-3"
+           data-name="&lt;Group&gt;"
+           id="_Group_33"
+           style="opacity:0.2">
+          <path
+             id="path1587"
+             d="m 299.64,103.68 a 9.71,9.71 0 0 1 -13.73,13.73 8.32,8.32 0 0 1 -0.92,-1.06 9.72,9.72 0 0 0 13.59,-13.59 10.12,10.12 0 0 1 1.06,0.92 z"
+             class="cls-4"
+             inkscape:connector-curvature="0"
+             style="fill:#000051" />
+        </g>
+        <g
+           data-name="&lt;Rectangle&gt;"
+           id="_Rectangle_3">
+          <rect
+             id="rect1590"
+             ry="3.4400001"
+             rx="3.4400001"
+             height="15.53"
+             width="46.77"
+             y="136.03"
+             x="255.71001"
+             class="cls-5"
+             style="fill:#492991" />
+        </g>
+        <g
+           class="cls-3"
+           data-name="&lt;Group&gt;"
+           id="_Group_34"
+           style="opacity:0.2">
+          <path
+             id="path1593"
+             d="m 222.56,141.61 v 8.66 a 3.44,3.44 0 0 1 -1.05,2.48 3.37,3.37 0 0 1 -2.38,1 h -39.9 a 3.45,3.45 0 0 1 -2.38,-1 l -2.48,-2.52 1.43,-0.63 v -8 a 3.42,3.42 0 0 1 3.43,-3.43 h 22.62 l 2.92,-1.28 h 14.5 l 2,2.06 0.19,0.18 a 3.4,3.4 0 0 1 1.1,2.48 z"
+             class="cls-4"
+             inkscape:connector-curvature="0"
+             style="fill:#000051" />
+        </g>
+        <g
+           data-name="&lt;Rectangle&gt;"
+           id="_Rectangle_4">
+          <rect
+             id="rect1596"
+             ry="3.4400001"
+             rx="3.4400001"
+             height="15.53"
+             width="46.77"
+             y="136.03"
+             x="173.64999"
+             class="cls-5"
+             style="fill:#492991" />
+        </g>
+        <g
+           data-name="&lt;Group&gt;"
+           id="_Group_35">
+          <g
+             class="cls-3"
+             data-name="&lt;Group&gt;"
+             id="_Group_36"
+             style="opacity:0.2">
+            <path
+               id="path1599"
+               d="m 250.59,141.61 v 8.66 a 3.44,3.44 0 0 1 -1.05,2.48 3.37,3.37 0 0 1 -2.38,1 h -13.9 a 3.45,3.45 0 0 1 -2.38,-1 l -2.48,-2.52 1.43,-0.63 v -8 a 3.42,3.42 0 0 1 3.43,-3.43 h 9.62 l 2.92,-1.28 h 1.5 l 2,2.06 0.19,0.18 a 3.4,3.4 0 0 1 1.1,2.48 z"
+               class="cls-5"
+               inkscape:connector-curvature="0"
+               style="fill:#492991" />
+          </g>
+          <g
+             data-name="&lt;Rectangle&gt;"
+             id="_Rectangle_5">
+            <rect
+               id="rect1602"
+               ry="3.4400001"
+               rx="3.4400001"
+               height="15.53"
+               width="20.77"
+               y="136.03"
+               x="227.67999"
+               class="cls-5"
+               style="fill:#492991" />
+          </g>
+        </g>
+        <g
+           data-name="&lt;Group&gt;"
+           id="_Group_37">
+          <g
+             data-name="&lt;Group&gt;"
+             id="_Group_38">
+            <rect
+               height="5.6300001"
+               width="0.0099999998"
+               y="78.989998"
+               class="cls-7"
+               data-name="&lt;Path&gt;"
+               id="_Path_20"
+               x="0"
+               style="fill:#9fa6ff" />
+          </g>
+        </g>
+        <g
+           class="cls-3"
+           data-name="&lt;Group&gt;"
+           id="_Group_39"
+           style="opacity:0.2">
+          <path
+             id="path1609"
+             d="M 446,143.64 A 71.77,71.77 0 0 1 344.5,245.13 q -2.12,-2.12 -4,-4.38 A 71.76,71.76 0 0 0 441.62,139.62 c 1.5,1.26 2.96,2.61 4.38,4.02 z"
+             class="cls-4"
+             inkscape:connector-curvature="0"
+             style="fill:#000051" />
+        </g>
+        <line
+           y2="113.35"
+           x2="161.74001"
+           y1="122.62"
+           x1="161.74001"
+           class="cls-8"
+           data-name="&lt;Path&gt;"
+           id="_Path_21"
+           style="fill:none" />
+        <line
+           y2="113.35"
+           x2="314.38"
+           y1="120.24"
+           x1="314.38"
+           class="cls-8"
+           data-name="&lt;Path&gt;"
+           id="_Path_22"
+           style="fill:none" />
+      </g>
+    </g>
+  </g>
+  <style
+     id="style2"
+     type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:#00FCFF;}
+	.st2{fill:#F1FFFF;}
+	.st3{fill:#00C9F4;}
+	.st4{fill:#0D2161;}
+	.st5{fill:#0D0C36;}
+	.st6{fill:url(#SVGID_2_);}
+	.st7{fill:url(#SVGID_3_);}
+	.st8{fill:url(#SVGID_4_);}
+	.st9{fill:#FFF8FF;}
+	.st10{fill:#DCF2FF;}
+	.st11{fill:#FFFFFF;}
+	.st12{fill:#F13955;}
+	.st13{fill:#CFDEF7;}
+	.st14{fill:url(#SVGID_5_);}
+	.st15{fill:#0670F4;}
+	.st16{fill:#0D34AD;}
+	.st17{fill:none;stroke:#0670F4;stroke-miterlimit:10;}
+	.st18{fill:none;stroke:#0670F4;stroke-width:0.5;stroke-miterlimit:10;}
+	.st19{opacity:0.48;fill:#FFF8FF;}
+</style>
+</svg>

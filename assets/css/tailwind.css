@@ -1,0 +1,19 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import './ext/effects.css';
+@import './ext/fonts.css';
+@import './ext/patterns.css';
+@import './ext/responsiveness.css';
+@import './ext/scrolling.css';
+@import './ext/transitions.css';
+
+::selection {
+  @apply bg-primary-500;
+}
+
+html, body, #__nuxt {
+  @apply h-full;
+  @apply overflow-hidden;
+}
