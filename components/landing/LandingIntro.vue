@@ -35,7 +35,7 @@
       </div>
     </div>
     <div
-      class="flex z-30 gap-4 lg:gap-8 absolute bottom-0 left-0 pb-4 px-4 lg:p-8 w-full overflow-x-auto scrolling-container max-w-full">
+      class="flex z-30 gap-4 lg:gap-8 absolute bottom-0 left-0 p-4 lg:p-8 w-full overflow-x-auto scrolling-container max-w-full">
       <LandingCard v-for="project in projects" :project="project" />
     </div>
   </div>
