@@ -6,10 +6,12 @@
           class="h-8 lg:h-12 fill-white lg:fill-primary-500 drop-shadow-lg hover:drop-shadow-xl hover:scale-105 transition-all"
           :style="`transform: rotate(${clicks * 360}deg);`" />
       </a>
-      <div class="absolute z-20 lg:top-1/2 lg:-translate-y-1/2 -left-1 lg:left-auto -bottom-12 lg:bottom-auto lg:-right-20 h-8 w-12">
+      <div
+        class="absolute z-20 lg:top-1/2 lg:-translate-y-1/2 -left-1 lg:left-auto -bottom-12 lg:bottom-auto lg:-right-8 h-8">
         <TransitionGroup name="slide" tag="div">
-          <p v-for="tooltip in tooltips" :key="tooltip" class="absolute text-xs drop-shadow flex items-center justify-center glassmorphism w-12 h-8 rounded-lg text-white">
-            {{ tooltip % 100 === 0 ? 'EPIC!' : tooltip }}
+          <p v-for="tooltip in tooltips" :key="tooltip"
+            class="absolute text-xs drop-shadow flex items-center justify-center glassmorphism h-8 px-3 rounded-lg text-white whitespace-nowrap">
+            {{ display(tooltip) }}
           </p>
         </TransitionGroup>
       </div>
@@ -26,16 +28,54 @@
 <script lang="ts" setup>
 import { socials } from '~/assets/config/socials';
 
-const clicks = ref(0)
+const isMounted = ref(false)
 
+const clicks = ref(0)
 const tooltips = ref([])
 
+watch(clicks, (newClicks) => {
+  if (!isMounted.value) {
+    return
+  }
+
+  localStorage.setItem('biscuits', `${newClicks}`)
+})
+
+onMounted(() => {
+  isMounted.value = true
+  clicks.value = Number(localStorage.getItem('biscuits'))
+})
+
 const increase = () => {
+  if (!isMounted.value) {
+    return
+  }
+
   clicks.value++
   tooltips.value.push(clicks.value)
   setTimeout(() => {
     tooltips.value.shift()
   }, 1000)
+}
+
+const exclamations = [
+  'EPIC!',
+  'INSANE!',
+  'WHAT THE HELL!',
+  'GODMODE!',
+  'WHY...',
+  'HOLY SHIT!',
+  'MAD!',
+  'SICK!',
+  'DOPE!',
+  'OH MY GOD!',
+  'STREAK!',
+  'OVERPOWERED!',
+  'hi there',
+]
+
+const display = (tooltip) => {
+  return tooltip % 100 === 0 ? exclamations[tooltip % exclamations.length] : tooltip
 }
 </script>
 
