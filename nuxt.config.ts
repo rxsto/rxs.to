@@ -1,7 +1,7 @@
 import { defineNuxtConfig } from 'nuxt'
 
 const title = 'rxsto - Oskar Lang - full stack bizdevops engineer'
-const description = 'I\'m a self-employed full stack bizdevops engineer working on popular projects like the well-known Discord bots Hydra and Groovy. Currently I\'m bootstrapping a few more promising projects, so make sure to stay updated!'
+const description = 'I\'m a self-employed full stack bizdevops engineer working on popular projects like the well-known Discord bots Hydra and Groovy.'
 const twitterHandle = '@rxsto_official'
 
 export default defineNuxtConfig({
