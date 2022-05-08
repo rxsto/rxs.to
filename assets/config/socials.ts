@@ -1,6 +1,6 @@
 import SvgBrandDiscordVue from "~/components/svg/brand/SvgBrandDiscord.vue";
-import SvgBrandGithubVue from "~/components/svg/brand/SvgBrandGithub.vue";
-import SvgBrandLinkedinVue from "~/components/svg/brand/SvgBrandLinkedin.vue";
+import SvgBrandGitHubVue from "~~/components/svg/brand/SvgBrandGitHub.vue";
+import SvgBrandLinkedInVue from "~/components/svg/brand/SvgBrandLinkedIn.vue";
 import SvgBrandTwitterVue from "~/components/svg/brand/SvgBrandTwitter.vue";
 import SvgBrandYouTubeVue from "~/components/svg/brand/SvgBrandYouTube.vue";
 
@@ -15,13 +15,13 @@ export const socials: Array<Social> = [
     id: 'github',
     display: 'Github',
     url: 'https://github.com/rxsto',
-    component: SvgBrandGithubVue
+    component: SvgBrandGitHubVue
   },
   {
     id: 'linkedin',
     display: 'LinkedIn',
     url: 'https://linkedin.com/in/oskar-lang',
-    component: SvgBrandLinkedinVue
+    component: SvgBrandLinkedInVue
   },
   {
     id: 'youtube',
