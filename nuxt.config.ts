@@ -25,6 +25,7 @@ export default defineNuxtConfig({
       robots: 'index, follow',
       meta: [
         { name: 'description', content: description },
+        { name: 'theme-color', content: '#B1D292' },
         { name: 'og:type', content: 'website' },
         { name: 'og:site_name', content: 'rxsto' },
         { name: 'og:title', content: title },
