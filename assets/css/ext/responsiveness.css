@@ -16,6 +16,6 @@
   }
 
   .landing-profession {
-    font-size: clamp(2rem, 7vw, 10rem);
+    font-size: clamp(3rem, 7vw, 10rem);
   }
 }
