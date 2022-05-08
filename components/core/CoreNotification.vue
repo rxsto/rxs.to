@@ -1,8 +1,8 @@
 <template>
   <div class="bottom-0 right-0 z-50 p-4 lg:p-8 max-w-full">
-    <Transition name="slide-in" mode="out-in">
+    <Transition name="slide">
       <a v-if="latestVideo && !dismissedPopup" target="_blank" @click="open"
-        class="relative flex flex-col bg-neutral-800 text-white max-w-full lg:max-w-md overflow-hidden rounded-xl drop-shadow-xl hover:scale-105 cursor-pointer transition-all">
+        class="relative flex flex-col bg-neutral-800 text-white max-w-full lg:max-w-md overflow-hidden rounded-xl drop-shadow-xl lg:hover:scale-105 cursor-pointer transition-all">
         <div class="flex relative">
           <img :src="latestVideo.snippet.thumbnails.maxres.url" alt="Video Thumbnail">
           <div class="absolute flex items-center gap-4 right-0 bottom-0 p-4">
@@ -76,3 +76,21 @@ const dismiss = () => {
   dismissedPopup.value = true
 }
 </script>
+
+<style scoped>
+.slide-move,
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.5s ease;
+}
+
+.slide-enter-from {
+  opacity: 0;
+  transform: translateX(8rem);
+}
+
+.slide-leave-to {
+  opacity: 0;
+  transform: translateY(8rem);
+}
+</style>

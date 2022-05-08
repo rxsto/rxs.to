@@ -4,11 +4,11 @@
       <div
         class="flex flex-col gap-2 items-end flex-shrink-0 relative w-full max-w-screen-xl h-full lg:pt-32 2xl:pt-40 lg:pr-8 xl:pl-16">
         <h1
-          class="font-black uppercase absolute landing-name-cover lg:landing-name -top-12 xl:top-1/2 xl:-translate-y-1/2 left-1/2 -translate-x-1/2 text-neutral-800 dark:text-neutral-200 dark:text-opacity-25 text-opacity-10 whitespace-nowrap leading-none">
+          class="hidden lg:block font-black uppercase absolute landing-name-cover lg:landing-name -top-12 xl:top-1/2 xl:-translate-y-1/2 left-1/2 -translate-x-1/2 text-neutral-800 dark:text-neutral-200 dark:text-opacity-25 text-opacity-10 whitespace-nowrap leading-none">
           rxsto
         </h1>
         <h2
-          class="absolute opacity-50 m-4 lg:m-0 lg:relative lg:opacity-100 text-primary-500 font-bold landing-profession text-right uppercase z-20 drop-shadow-lg leading-none">
+          class="absolute opacity-50 m-6 lg:m-0 lg:relative lg:opacity-100 text-primary-500 font-bold landing-profession text-right uppercase z-20 drop-shadow-lg leading-none">
           full stack<br>bizdevops<br>engineer
         </h2>
         <NuxtLink :to="contactLink" target="_blank"
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div
-      class="flex z-30 gap-4 lg:gap-8 absolute bottom-0 left-0 pb-4 px-4 lg:p-8 w-full overflow-x-auto scrolling-container max-w-full">
+      class="flex z-30 gap-4 lg:gap-8 absolute bottom-0 left-0 p-4 lg:p-8 w-full overflow-x-auto scrolling-container max-w-full">
       <LandingCard v-for="project in projects" :project="project" />
     </div>
   </div>
