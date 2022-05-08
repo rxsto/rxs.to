@@ -40,7 +40,7 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
 import { useYouTubeStore } from '~/store/youtube'
-import useMisc from '~~/composables/useMisc';
+import useMisc from '~/composables/useMisc';
 
 const store = useYouTubeStore()
 const { latestVideo } = storeToRefs(store)
