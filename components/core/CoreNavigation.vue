@@ -7,7 +7,7 @@
           :style="`transform: rotate(${clicks * 360}deg);`" />
       </a>
       <div
-        class="absolute z-20 lg:top-1/2 lg:-translate-y-1/2 -left-1 lg:left-auto -bottom-12 lg:bottom-auto lg:-right-8 h-8">
+        class="absolute z-20 lg:top-1/2 lg:-translate-y-1/2 -bottom-12 lg:bottom-auto lg:-right-8 h-8">
         <TransitionGroup name="slide" tag="div">
           <p v-for="tooltip in tooltips" :key="tooltip"
             class="absolute text-xs drop-shadow flex items-center justify-center glassmorphism h-8 px-3 rounded-lg text-white whitespace-nowrap">
