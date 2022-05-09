@@ -1,9 +1,9 @@
 <template>
   <div class="flex gap-4 w-full justify-between p-4 lg:p-10 z-30">
-    <div class="relative flex p-1 lg:p-0 lg:pl-1">
-      <a class="cursor-pointer" @click="increase">
+    <div class="relative flex p-2 lg:p-0 lg:pl-1">
+      <a class="flex items-center justify-center cursor-pointer" @click="increase">
         <SvgLogo
-          class="h-8 lg:h-12 fill-white lg:fill-primary-500 drop-shadow-lg hover:drop-shadow-xl hover:scale-105 transition-all"
+          class="h-6 lg:h-12 fill-white lg:fill-primary-500 drop-shadow-lg hover:drop-shadow-xl hover:scale-105 transition-all"
           :style="`transform: rotate(${clicks * 360}deg);`" />
       </a>
       <div
