@@ -6,6 +6,22 @@
   box-shadow: 0 8px 32px 0 rgba(119, 221, 119, 0.25);
 }
 
+.glassmorphism-no-hover {
+  @apply transition-all;
+  @apply bg-white bg-opacity-10;
+  @apply border border-white border-opacity-10;
+  @apply backdrop-blur;
+  box-shadow: 0 8px 32px 0 rgba(119, 221, 119, 0.25);
+}
+
+.glassmorphism-no-hover-active {
+  @apply transition-all;
+  @apply bg-white bg-opacity-25;
+  @apply border border-white border-opacity-25;
+  @apply backdrop-blur;
+  box-shadow: 0 8px 32px 0 rgba(119, 221, 119, 0.25);
+}
+
 .glassmorphism:hover {
   @apply bg-opacity-25;
   @apply border-opacity-25;
