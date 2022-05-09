@@ -5,7 +5,7 @@ export const projects: Array<Project> = [
     id: 'hydra',
     url: 'https://hydra.bot',
     name: 'Hydra',
-    heading: 'The perfect and only Discord bot you\'ll ever need.',
+    heading: 'The only Discord bot you\'ll ever need.',
     description: "I bootstrapped Hydra's image by introducing a user-friendly web application with features like subscription management and powerful dashboards. I currently manage general development and steer the project into a new era of highly useful Discord features.",
     technologies: [
       chargebee,
