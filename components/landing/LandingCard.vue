@@ -7,18 +7,18 @@
     <div :class="`${full ? 'gap-6' : 'gap-2 lg:gap-4'}`" class="flex items-center">
       <img :src="`/img/projects/${project.id}.svg`" :class="`${full ? 'w-16 xl:w-24' : 'w-12'} transition-all`"
         class="p-1 drop-shadow-lg">
-      <p :class="`${full ? 'text-3xl xl:text-5xl' : 'text-lg xl:text-xl 2xl:text-2xl'}`"
-        class="font-bold text-neutral-600 dark:text-neutral-100 drop-shadow-lg">
+      <p :class="`${full ? 'text-3xl xl:text-5xl text-neutral-100' : 'text-lg xl:text-xl 2xl:text-2xl text-neutral-600 dark:text-neutral-100'}`"
+        class="font-bold drop-shadow-lg">
         {{ project.name }}
       </p>
     </div>
-    <p :class="`${full ? 'text-xl xl:text-3xl xl:mt-4' : 'text-lg xl:text-xl'}`"
-      class="text-neutral-600 dark:text-neutral-100 font-medium">
+    <p :class="`${full ? 'text-xl xl:text-3xl xl:mt-4 text-neutral-100' : 'text-lg xl:text-xl text-neutral-600 dark:text-neutral-100'}`"
+      class="font-medium">
       {{ project.heading }}
     </p>
     <Transition name="slide">
       <div v-if="full" class="flex flex-col items-start h-full text-white gap-4 xl:gap-6">
-        <p class="text-neutral-500 dark:text-neutral-200 xl:text-2xl max-w-screen-lg">
+        <p class="text-neutral-200 xl:text-2xl max-w-screen-lg">
           {{ project.description }}
         </p>
         <div class="flex gap-4 xl:gap-6 items-center flex-wrap">
@@ -28,7 +28,7 @@
         </div>
         <div class="flex-grow"></div>
         <NuxtLink :to="project.url" target="_blank"
-          class="uppercase glassmorphism hover:bg-primary-500 hover:scale-105 text-neutral-800 dark:text-neutral-50 hover:text-white font-bold lg:text-lg py-3 lg:py-4 px-6 lg:px-8 rounded-xl drop-shadow-lg hover:drop-shadow-xl z-20 transition-all">
+          class="uppercase glassmorphism hover:bg-primary-500 hover:scale-105 text-neutral-100 hover:text-white font-bold lg:text-lg py-3 lg:py-4 px-6 lg:px-8 rounded-xl drop-shadow-lg hover:drop-shadow-xl z-20 transition-all">
           visit project
         </NuxtLink>
       </div>
