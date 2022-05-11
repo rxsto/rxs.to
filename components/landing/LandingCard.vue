@@ -18,7 +18,7 @@
     </p>
     <Transition name="slide">
       <div v-if="full" class="flex flex-col items-start h-full text-white gap-4 xl:gap-6">
-        <p class="text-neutral-200 xl:text-2xl max-w-screen-lg">
+        <p class="text-neutral-500 dark:text-neutral-200 xl:text-2xl max-w-screen-lg">
           {{ project.description }}
         </p>
         <div class="flex gap-4 xl:gap-6 items-center flex-wrap">
