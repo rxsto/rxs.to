@@ -1,7 +1,8 @@
 <template>
   <div class="text-foreground h-screen">
+    <CoreSplash v-if="!splashFinished" @finish="splashFinished = true" />
     <CoreNavigationBar />
-    <div>
+    <div class="h-full">
       <slot />
     </div>
     <CoreMouseEffect />
@@ -12,9 +13,10 @@
 </template>
 
 <script lang="ts" setup>
+const splashFinished = ref(false)
 </script>
 
-<style scoped>
+<style>
 .noise {
   position: fixed;
   width: 600%;
@@ -76,5 +78,16 @@
   90% {
     transform: translate(-10%, 10%);
   }
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(.5rem);
+  transform: translateY(-4rem);
 }
 </style>

@@ -4,7 +4,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
-    'nuxt-icon'
+    'nuxt-icon',
+    '@hypernym/nuxt-anime'
   ],
 
   runtimeConfig: {
@@ -12,5 +13,9 @@ export default defineNuxtConfig({
     public: {
       lastFmApiInterval: Number(process.env.LAST_FM_API_INTERVAL)
     }
-  }
+  },
+
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' }
+  },
 })

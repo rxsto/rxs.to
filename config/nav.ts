@@ -4,12 +4,12 @@ const nav: NavElement[] = [
     url: '/'
   },
   {
-    display: 'About',
-    url: '/about'
-  },
-  {
     display: 'Work',
     url: '/work'
+  },
+  {
+    display: 'About',
+    url: '/about'
   },
   {
     display: 'Contact',

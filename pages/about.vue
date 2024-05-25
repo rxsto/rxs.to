@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col px-8">
+  <div class="flex flex-col px-8 pt-[112px]">
     <div class="relative mb-16">
       <img src="~/assets/img/avatar.jpg" class="w-72 select-none" draggable="false" />
       <DefaultTrackViewer class="-bottom-12 left-12" />
