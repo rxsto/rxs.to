@@ -19,7 +19,7 @@
     </div>
     <div class="flex p-8">
       <img src="~/assets/img/clients.svg"
-        class="md:max-w-[420px] lg:max-w-[512px] opacity-5 hover:opacity-25 transition duration-1000" />
+        class="md:max-w-[420px] lg:max-w-[512px] opacity-10 hover:opacity-25 transition duration-1000" />
     </div>
   </div>
 </template>
