@@ -1,5 +1,5 @@
 <template>
-  <div class="text-foreground h-screen">
+  <div class="text-foreground h-screen w-screen overflow-hidden">
     <CoreSplash v-if="!splashFinished" @finish="splashFinished = true" />
     <CoreNavigationBar />
     <div class="h-full">
