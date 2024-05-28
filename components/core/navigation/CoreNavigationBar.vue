@@ -1,12 +1,12 @@
 <template>
   <div class="flex absolute w-full">
-    <div class="flex p-8 gap-4 justify-between w-full">
+    <div class="flex p-8 gap-4 justify-between flex-grow overflow-hidden">
       <NuxtLink to="/" class="interactable">
         <CoreLogo class="fill-foreground h-12 w-12 fade-in" />
       </NuxtLink>
       <CoreNavigationBurger :active="active" @click="toggle" />
     </div>
-    <Transition name="fade-in-out" class="overflow-hidden">
+    <Transition name="fade-in-out">
       <CoreNavigationSplash v-if="active" @close="toggle" />
     </Transition>
   </div>
