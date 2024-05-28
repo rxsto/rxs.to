@@ -10,11 +10,11 @@
   },
   "devDependencies": {
     "@hypernym/nuxt-anime": "^2.1.1",
-    "@nuxt/devtools": "^1.3.1",
+    "@nuxt/devtools": "^1.3.2",
     "@nuxtjs/tailwindcss": "^6.12.0",
     "@types/node": "^20.12.12",
-    "@vueuse/core": "^10.9.0",
-    "@vueuse/nuxt": "^10.9.0",
+    "@vueuse/core": "^10.10.0",
+    "@vueuse/nuxt": "^10.10.0",
     "nuxt": "^3.11.2",
     "nuxt-icon": "^0.6.10"
   }
