@@ -53,7 +53,6 @@
         </div>
       </UiSidebarInset>
     </UiSidebarProvider>
-    <UiVueSonner />
   </div>
 </template>
 

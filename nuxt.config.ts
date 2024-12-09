@@ -12,7 +12,8 @@ export default defineNuxtConfig({
     "@vee-validate/nuxt",
     "@morev/vue-transitions/nuxt",
     "@samk-dev/nuxt-vcalendar",
-    "@nuxthub/core"
+    "@nuxthub/core",
+    "nuxt-auth-utils"
   ],
 
   tailwindcss: {
@@ -48,5 +49,9 @@ export default defineNuxtConfig({
     database: true,
     kv: true,
     remote: true
+  },
+
+  auth: {
+    webAuthn: true
   }
 })

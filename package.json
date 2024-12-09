@@ -7,36 +7,42 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "db:generate": "drizzle-kit generate",
+    "db:view": "drizzle-kit studio"
   },
   "dependencies": {
     "@morev/vue-transitions": "^3.0.5",
-    "@nuxt/fonts": "^0.10.2",
-    "@nuxt/icon": "^1.9.0",
+    "@nuxt/fonts": "^0.10.3",
+    "@nuxt/icon": "^1.9.1",
     "@nuxthub/core": "0.8.7",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "@samk-dev/nuxt-vcalendar": "^1.0.4",
+    "@simplewebauthn/browser": "^11.0.0",
+    "@simplewebauthn/server": "^11.0.0",
     "@tailwindcss/forms": "^0.5.9",
     "@vee-validate/nuxt": "^4.14.7",
     "@vee-validate/zod": "^4.14.7",
+    "@vueuse/core": "^12.0.0",
     "@vueuse/nuxt": "^12.0.0",
+    "drizzle-kit": "^0.29.1",
     "drizzle-orm": "^0.37.0",
+    "h3-zod": "^0.5.3",
     "nuxt": "^3.14.1592",
-    "radix-vue": "^1.9.10",
+    "nuxt-auth-utils": "0.5.5",
+    "radix-vue": "^1.9.11",
     "tailwind-variants": "^0.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "vue": "latest",
-    "vue-router": "latest",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0",
     "vue-sonner": "^1.3.0"
   },
   "packageManager": "pnpm@9.12.1+sha512.e5a7e52a4183a02d5931057f7a0dbff9d5e9ce3161e33fa68ae392125b79282a8a8a470a51dfc8a0ed86221442eb2fb57019b0990ed24fab519bf0e1bc5ccfc4",
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
-    "@samk-dev/nuxt-vcalendar": "^1.0.4",
-    "@vueuse/core": "^12.0.0",
-    "drizzle-kit": "^0.29.1",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
-    "wrangler": "^3.92.0"
+    "wrangler": "^3.93.0"
   }
 }
