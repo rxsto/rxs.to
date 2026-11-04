@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://rxs.to/sitemap.xml
