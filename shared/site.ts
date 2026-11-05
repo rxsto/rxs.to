@@ -7,7 +7,7 @@ export const site = {
 } as const;
 
 export const websiteNode = {
-  '@id': `${site.origin}/#website`, '@type': 'WebSite', inLanguage: 'en', name: site.name, url: `${site.origin}/`,
+  '@id': `${site.origin}/#website`, '@type': 'WebSite', inLanguage: 'en', name: site.name, url: site.origin,
 } as const;
 
 /** A schema.org graph for a <script type="application/ld+json">, safe to inline in HTML. */

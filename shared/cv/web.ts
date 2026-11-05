@@ -57,7 +57,7 @@ export function profilePageGraph(cv: Cv): object[] {
       encoding: cvVariants.map(v => ({ '@type': 'MediaObject', name: v.label, contentUrl: `${origin}${v.path}`, encodingFormat: v.mediaType })),
     },
     {
-      '@id': personId, '@type': 'Person', name: cv.name, url: `${origin}/`, email: cv.email, jobTitle: cv.label, description: cv.summary,
+      '@id': personId, '@type': 'Person', name: cv.name, url: origin, email: cv.email, jobTitle: cv.label, description: cv.summary,
       address: { '@type': 'PostalAddress', addressLocality: cv.location.city, addressCountry: cv.location.countryCode },
       sameAs: cv.profiles.map(p => p.url),
       knowsLanguage: cv.languages.map(l => ({ '@type': 'Language', name: l.language })),

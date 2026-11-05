@@ -34,7 +34,7 @@
 .cv h2 { margin-block-end: 8px; font-size: 14px; font-weight: 500; scroll-margin-block-start: 16px; }
 .cv article + article { margin-block-start: 16px; }
 .cv h3 { display: inline; margin-inline-end: 0.25em; font: inherit; }
-.cv .org { font-weight: 500; }
+.cv .org { font-weight: 600; }
 .cv .role { color: var(--text-toned); }
 .cv .date { font-size: 12px; color: var(--text-muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .cv article p { margin-block-start: 2px; color: var(--text-toned); }
