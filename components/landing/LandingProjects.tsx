@@ -11,9 +11,9 @@ const projects: Project[] = [
   },
   {
     title: 'Hydra',
-    description: 'A Discord music bot serving millions of users. I extended its features and scaled its infrastructure until music playback was discontinued.',
+    description: 'A Discord bot on 6.1M servers for leveling, welcome messages and reaction roles. I co-own it, built most of its web app and lead its 2026 rebuild.',
     url: 'https://hydra.bot',
-    state: 'discontinued',
+    state: 'active',
   },
   {
     title: 'Groovy',

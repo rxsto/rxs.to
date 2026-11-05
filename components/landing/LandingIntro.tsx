@@ -12,7 +12,10 @@ export function LandingIntro() {
         <p className="text-sm">
           Hey there! I&apos;m Oskar, a self-employed software engineer based in Kufstein, Austria. I build the whole stack — frontend, backend, infrastructure — mostly with Nuxt, Spring Boot and Kubernetes.
         </p>
-        <a className="connect-button corner-squircle" href="mailto:hi@rxs.to" rel="noopener noreferrer">Email me</a>
+        <div className="flex items-center gap-4">
+          <a className="connect-button corner-squircle" href="mailto:hi@rxs.to" rel="noopener noreferrer">Email me</a>
+          <a className="cv-link text-sm text-toned" href="/cv">Read my CV</a>
+        </div>
       </div>
     </div>
   );
