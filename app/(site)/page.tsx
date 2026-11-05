@@ -1,7 +1,7 @@
-import { LandingIntro } from '../components/landing/LandingIntro';
-import { LandingProjects } from '../components/landing/LandingProjects';
-import { LandingConnections } from '../components/landing/LandingConnections';
-import { jsonLd, pageMetadata, site, websiteNode } from '../shared/site';
+import { LandingIntro } from '../../components/landing/LandingIntro';
+import { LandingProjects } from '../../components/landing/LandingProjects';
+import { LandingConnections } from '../../components/landing/LandingConnections';
+import { jsonLd, pageMetadata, site, websiteNode } from '../../shared/site';
 
 const title = 'Oskar Lang — Software Engineer';
 const description = 'Self-employed software engineer in Kufstein, Austria, building full-stack software with Nuxt, Spring Boot and Kubernetes.';

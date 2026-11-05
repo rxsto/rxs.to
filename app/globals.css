@@ -157,3 +157,5 @@ body {
 }
 
 @keyframes weather-appear { from { opacity: 0; } to { opacity: 1; } }
+
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }

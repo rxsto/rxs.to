@@ -1,4 +1,4 @@
-import { cv, CvDocument, cvJsonLd, cvMetadata, cvSections, cvVariants } from '../../shared/cv';
+import { cv, CvDocument, cvJsonLd, cvMetadata, cvSections, cvVariants } from '../../../shared/cv';
 import './cv.css';
 
 export const metadata = cvMetadata;

@@ -1,0 +1,12 @@
+.mark { inline-size: 20px; block-size: 20px; border-radius: 50%; }
+.canvas { position: relative; display: grid; grid-template-rows: 1fr auto; block-size: 300px; padding: 24px 24px 20px; overflow: hidden; }
+.slide { display: grid; align-content: center; justify-items: start; gap: 4px; }
+.metric { font-family: var(--font-display); font-size: clamp(3.5rem, 9cqi, 5.5rem); font-weight: 500; letter-spacing: var(--tracking-display); line-height: 1; font-variant-numeric: tabular-nums; }
+.metricLabel { color: var(--text-secondary); font-size: var(--text-base); }
+.ruler { position: relative; block-size: 36px; margin-inline: 12px; }
+.line { position: absolute; inset-inline: 0; inset-block-start: 6px; block-size: 1px; background: var(--border); }
+.tick { position: absolute; inset-block-start: 2px; translate: -50% 0; display: grid; justify-items: center; gap: 8px; color: var(--text-muted); font-size: var(--text-xs); font-variant-numeric: tabular-nums; transition: color var(--duration-standard) var(--ease-standard); }
+.tick::before { content: ''; inline-size: 9px; block-size: 9px; border-radius: 50%; border: 1px solid var(--border-strong); background: var(--surface-raised); }
+.tick[data-reached] { color: var(--foreground); }
+.marker { position: absolute; inset-block-start: 1px; inline-size: 11px; block-size: 11px; translate: -50% 0; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 18%, transparent); }
+@container (max-width: 520px) { .canvas { block-size: 230px; padding: 16px 16px 12px; } }

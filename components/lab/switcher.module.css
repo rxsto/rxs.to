@@ -1,0 +1,17 @@
+.tray {
+  position: fixed; z-index: 50; inset-block-end: 16px; inset-inline-start: 50%; translate: -50% 0;
+  display: flex; align-items: center; gap: 2px; padding: 4px;
+  border: 1px solid var(--border); border-radius: var(--radius-pill);
+  background: color-mix(in oklab, var(--surface-raised) 86%, transparent);
+  backdrop-filter: blur(16px); box-shadow: var(--shadow-floating);
+  font-family: var(--font-body); font-size: var(--text-sm); font-weight: 500;
+}
+.link {
+  display: inline-flex; align-items: center; block-size: 38px; padding-inline: 14px;
+  border-radius: var(--radius-pill); color: var(--text-secondary);
+  transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
+}
+.link[aria-current] { background: var(--surface-muted); color: var(--foreground); }
+.rule { inline-size: 1px; block-size: 20px; margin-inline: 4px; background: var(--border); }
+.tray :global(button) { border-radius: var(--radius-pill); }
+@media (hover: hover) and (pointer: fine) { .link:hover { color: var(--foreground); } }

@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
-import { DefaultFooter } from '../components/default/DefaultFooter';
 import { site } from '../shared/site';
 import '@fontsource-variable/geist';
 import '@fontsource-variable/inter';
@@ -22,16 +21,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `(function(){var r=document.documentElement,m=matchMedia('(prefers-color-scheme: dark)'),p=null;try{p=localStorage.getItem('nuxt-color-mode')}catch{}if(p==='dark'||p==='light')r.classList.add(p);var a=function(){r.dataset.theme=p==='dark'||p==='light'?p:m.matches?'dark':'light'};a();m.addEventListener('change',a)})()` }} />
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var p=null;try{p=localStorage.getItem('nuxt-color-mode')}catch{}if(p==='dark'||p==='light'){var r=document.documentElement;r.dataset.theme=p;r.classList.add(p)}})()` }} />
       </head>
-      <body>
-        <div className="portfolio-container">
-          <div className="flex flex-col gap-16">
-            {children}
-            <DefaultFooter />
-          </div>
-        </div>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

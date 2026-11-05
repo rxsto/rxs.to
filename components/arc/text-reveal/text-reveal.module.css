@@ -1,0 +1,13 @@
+.reveal { max-width: 24ch; margin: 0; overflow: visible; color: var(--foreground); text-wrap: balance; }
+.line { display: block; }
+/* The clip hides the rise below the line through a feathered bottom edge, so a blurred word surfaces softly instead of being cut by a hard line.
+   Padding with matching negative margins leaves room for descenders and the blur without changing layout; the feather sits below the descenders, so resting words are never dimmed. */
+.clip { display: inline-block; vertical-align: top; padding: .1em .16em .24em; margin: -.1em -.16em -.24em; mask-image: linear-gradient(#000 calc(100% - .18em), transparent); }
+/* Three tracks: the rise settles longest, the fade finishes first, and the blur clears between them.
+   Backwards fill holds the hidden start through each word's delay, then lets go at the end, so resting words keep no transform or filter layer and render as crisp as plain text. */
+.word { display: inline-block; animation: rise .76s var(--ease-enter) var(--reveal-delay, 0s) backwards, fade .44s var(--ease-standard) var(--reveal-delay, 0s) backwards, focus .58s var(--ease-enter) var(--reveal-delay, 0s) backwards; }
+.srOnly { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; user-select: none; }
+@keyframes rise { from { transform: translateY(.62em); } }
+@keyframes fade { from { opacity: 0; } }
+@keyframes focus { from { filter: blur(var(--reveal-blur, 4px)); } }
+@media (prefers-reduced-motion: reduce) { .clip { mask-image: none; } .word { animation: fade var(--duration-fast) var(--ease-standard) backwards; } }
