@@ -8,7 +8,7 @@ import { cv } from '../shared/cv/content.ts';
 import { CvDocument } from '../shared/cv/CvDocument.tsx';
 import { toJsonResume, toMarkdown } from '../shared/cv/formats.ts';
 import { engagementSummary, isOngoing, periodEnds, type Cv, type Period } from '../shared/cv/model.ts';
-import { cvResponse, cvVariants } from '../shared/cv/web.ts';
+import { cvResponse, cvVariants, profilePageGraph } from '../shared/cv/web.ts';
 import { printSource, readPdfStamp } from '../tools/cv/print.ts';
 
 test('public/cv.pdf matches the CV source', async () => {
@@ -88,4 +88,15 @@ test('CV routes serve their format with canonical, cache and CORS headers', asyn
     assert.ok((await response.text()).length > 0);
   }
   assert.equal(JSON.parse(await cvResponse('json').text()).meta.canonical, 'https://rxs.to/cv.json');
+});
+
+test('CV JSON-LD describes a ProfilePage about the Person and never names an employer', () => {
+  const graph = profilePageGraph(cv) as Record<string, unknown>[];
+  const text = JSON.stringify(graph);
+  for (const key of ['worksFor', 'memberOf', 'employer']) assert.ok(!text.includes(`"${key}"`), `JSON-LD has ${key}`);
+  const page = graph.find(node => node['@type'] === 'ProfilePage');
+  const person = graph.find(node => node['@type'] === 'Person');
+  assert.deepEqual(page?.mainEntity, { '@id': 'https://rxs.to/#person' });
+  assert.deepEqual((page?.encoding as { contentUrl: string }[]).map(e => e.contentUrl), cvVariants.map(v => `https://rxs.to${v.path}`));
+  assert.deepEqual(person?.alumniOf, [{ '@type': 'EducationalOrganization', name: 'Gabelsberger-Gymnasium Mainburg' }]);
 });
