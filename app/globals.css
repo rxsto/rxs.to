@@ -7,7 +7,7 @@
   --text-xs--line-height: 1.33333;
 }
 
-:root {
+:root, :root[data-theme] {
   color-scheme: light dark;
   --text: light-dark(oklch(37.1% 0 none), oklch(92.2% 0 none));
   --text-muted: light-dark(oklch(55.6% 0 none), oklch(70.8% 0 none));
@@ -20,6 +20,16 @@
   --text-inverted: light-dark(oklch(100% 0 none), oklch(20.5% 0 none));
   --highlighted: light-dark(oklch(20.5% 0 none), oklch(100% 0 none));
   --success: light-dark(oklch(72.3% 0.219 149.579), oklch(79.2% 0.209 151.711));
+  --font-inter: system-ui;
+  --font-geist: system-ui;
+  --foreground: var(--text);
+  --text-secondary: var(--text-toned);
+  --surface: var(--background);
+  --surface-muted: var(--muted);
+  --border: var(--accented);
+  --accent: var(--inverted);
+  --accent-strong: var(--highlighted);
+  --accent-foreground: var(--text-inverted);
 }
 
 :root.light { color-scheme: light; }
@@ -133,9 +143,6 @@ body {
   background: var(--success);
 }
 
-a:focus-visible { outline: 2px solid var(--inverted); outline-offset: 2px; }
-.project-card:focus-visible { outline-color: transparent; }
-.project-card:focus-visible::before { opacity: 1; }
 .connections a:focus-visible, .cv-link:focus-visible { color: var(--highlighted); }
 .connect-button:active { background: color-mix(in oklab, var(--inverted) 90%, transparent); }
 
