@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { DefaultFooter } from '../components/default/DefaultFooter';
 import { site } from '../shared/site';
 import './globals.css';
+import '@/components/arc/foundation.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.origin),
