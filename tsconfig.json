@@ -11,5 +11,5 @@
     "allowImportingTsExtensions": true,
     "types": ["node", "vite/client", "@cloudflare/workers-types"]
   },
-  "include": ["app", "components", "server", "shared", "tests", "tools", "worker-env.d.ts", "vite.config.ts"]
+  "include": ["next-env.d.ts", "app", "components", "server", "shared", "tests", "tools", "worker-env.d.ts", "vite.config.ts"]
 }
