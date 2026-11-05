@@ -27,7 +27,7 @@ export function LandingProjects() {
   return (
     <div className="flex flex-col gap-2">
       <h2 className="ps-1 text-sm font-medium">My projects</h2>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-4">
         {projects.map(project => <DefaultProject key={project.title} {...project} />)}
       </div>
     </div>

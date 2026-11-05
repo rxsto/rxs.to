@@ -2,40 +2,24 @@
 @plugin "@toolwind/corner-shape";
 
 @theme {
-  --font-sans: system-ui, sans-serif;
+  --font-sans: var(--font-body);
   --text-sm--line-height: 1.42857;
   --text-xs--line-height: 1.33333;
 }
 
-:root, :root[data-theme] {
-  color-scheme: light dark;
-  --text: light-dark(oklch(37.1% 0 none), oklch(92.2% 0 none));
-  --text-muted: light-dark(oklch(55.6% 0 none), oklch(70.8% 0 none));
-  --text-toned: light-dark(oklch(43.9% 0 none), oklch(87% 0 none));
-  --background: light-dark(oklch(100% 0 none), oklch(20.5% 0 none));
-  --muted: light-dark(oklch(98.5% 0 none), oklch(26.9% 0 none));
-  --elevated: light-dark(oklch(97% 0 none), oklch(26.9% 0 none));
-  --accented: light-dark(oklch(87% 0 none), oklch(37.1% 0 none));
-  --inverted: light-dark(oklch(20.5% 0 none), oklch(100% 0 none));
-  --text-inverted: light-dark(oklch(100% 0 none), oklch(20.5% 0 none));
-  --highlighted: light-dark(oklch(20.5% 0 none), oklch(100% 0 none));
-  --success: light-dark(oklch(72.3% 0.219 149.579), oklch(79.2% 0.209 151.711));
-  --font-inter: system-ui;
-  --font-geist: system-ui;
-  --foreground: var(--text);
-  --text-secondary: var(--text-toned);
-  --surface: var(--background);
-  --surface-muted: var(--muted);
-  --border: var(--accented);
-  --accent: var(--inverted);
-  --accent-strong: var(--highlighted);
-  --accent-foreground: var(--text-inverted);
+:root {
+  --text: var(--foreground);
+  --text-toned: var(--text-secondary);
+  --muted: var(--surface);
+  --elevated: var(--surface-muted);
+  --accented: var(--border);
+  --inverted: var(--accent);
+  --text-inverted: var(--accent-foreground);
+  --highlighted: var(--foreground);
 }
 
-:root.light { color-scheme: light; }
-:root.dark { color-scheme: dark; }
-
 body {
+  letter-spacing: var(--tracking-body);
   color: var(--text);
   background: var(--background);
   -webkit-font-smoothing: antialiased;
@@ -60,27 +44,35 @@ body {
 .connect-button {
   display: inline-flex;
   align-items: center;
-  position: relative;
-  border-radius: 12px;
-  padding-inline: 12px;
-  padding-block: 6px;
-  font-size: 14px;
-  line-height: var(--text-sm--line-height);
-  font-weight: 600;
-  background: var(--inverted);
-  color: var(--text-inverted);
-  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  block-size: var(--control-height-sm);
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-control);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  background: var(--accent);
+  color: var(--accent-foreground);
+  transition: background-color var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard);
 }
+.connect-button:active { transform: scale(.97); }
 
-.connect-button::after {
-  content: '';
-  position: absolute;
-  inset: 1px;
-  border-radius: 12px;
-  corner-shape: squircle;
-  box-shadow: inset 0 1.5px oklch(100% 0 none / 15%);
-  pointer-events: none;
+.project-badge-row { margin-block-start: var(--space-2); }
+.project-visit {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  block-size: var(--control-height-sm);
+  padding-inline: var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-control);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--foreground);
+  position: relative;
+  z-index: 2;
 }
+.project-details { display: flex; flex-direction: column; gap: var(--space-2); font-size: var(--text-sm); color: var(--text-secondary); }
+.project-details-role { color: var(--foreground); font-weight: 500; }
+.project-details ul { padding-inline-start: 1em; list-style: '– '; }
 
 .project-card {
   display: block;
@@ -144,10 +136,10 @@ body {
 }
 
 .connections a:focus-visible, .cv-link:focus-visible { color: var(--highlighted); }
-.connect-button:active { background: color-mix(in oklab, var(--inverted) 90%, transparent); }
 
 @media (hover: hover) and (pointer: fine) {
-  .connect-button:hover { background: color-mix(in oklab, var(--inverted) 90%, transparent); }
+  .connect-button:hover { background: var(--accent-strong); }
+  .project-visit:hover { background: var(--surface-muted); }
   .connections a:hover, .cv-link:hover { color: var(--highlighted); }
 }
 

@@ -2,6 +2,8 @@ import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { DefaultFooter } from '../components/default/DefaultFooter';
 import { site } from '../shared/site';
+import '@fontsource-variable/geist';
+import '@fontsource-variable/inter';
 import '@/components/arc/foundation.css';
 import './globals.css';
 

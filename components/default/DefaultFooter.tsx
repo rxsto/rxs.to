@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import type { Weather } from '../../shared/types/weather';
 import { isWeather } from '../../shared/is-weather';
 import { weatherDescription } from '../../shared/weather-description';
+import { ThemeToggle } from './ThemeToggle';
 
 export function DefaultFooter() {
   const [weather, setWeather] = useState<Weather | null>(null);
@@ -20,7 +21,7 @@ export function DefaultFooter() {
   return (
     <footer className="flex flex-col gap-2 text-xs text-muted">
       {weather && <p className="weather-line">{weather.location}, {weather.temperature}° {weatherDescription(weather.description)}</p>}
-      <p>© Forever.</p>
+      <div className="flex items-center justify-between"><p>© Forever.</p><ThemeToggle /></div>
     </footer>
   );
 }
