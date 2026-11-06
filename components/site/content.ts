@@ -21,12 +21,13 @@ export const hero = {
   engagement: 'I take on contracts to build a product on my own, to lead a team’s engineering, or to add features to an app that already exists.',
 };
 
-export type Row = { title: string; detail: string; href?: string; mark: string };
+/** `logo` names a bot avatar in public/bots (…-84.webp and …-126.webp, for the 42px inside the tile border); without one the tile shows the letter in `mark`. */
+export type Row = { title: string; detail: string; href?: string; mark: string; logo?: 'hydra' | 'groovy' };
 
 /** Ownership lines: what kind of ownership, of what, and the figure with its period. */
 export const ownership: Row[] = [
-  { mark: 'G', title: 'Co-founded Groovy', detail: '16M+ servers and $1M+ revenue by 2021', href: '/story#2018' },
-  { mark: 'H', title: 'Co-own Hydra', detail: hydraServers, href: '/work/hydra' },
+  { mark: 'G', logo: 'groovy', title: 'Co-founded Groovy', detail: '16M+ servers and $1M+ revenue by 2021', href: '/story#2018' },
+  { mark: 'H', logo: 'hydra', title: 'Co-own Hydra', detail: hydraServers, href: '/work/hydra' },
   { mark: 'S', title: 'Project lead on the SoundCloud bot', detail: `667K servers as of ${asOf}`, href: '/work/soundcloud' },
   { mark: 'N', title: 'Built Hey, Netflix for Netflix', detail: '150K+ servers in its first month in 2022, Webby Honoree 2023', href: '/work/hey-netflix' },
 ];

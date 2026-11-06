@@ -24,7 +24,11 @@ export function Rows({ rows, label }: { rows: Row[]; label?: string }) {
     <ul className={styles.rows} aria-label={label}>
       {rows.map(row => {
         const body = <>
-          <span className={styles.tile} aria-hidden="true">{row.mark}</span>
+          <span className={styles.tile} aria-hidden="true">
+            {row.logo
+              ? <img className={styles.logo} src={`/bots/${row.logo}-84.webp`} srcSet={`/bots/${row.logo}-84.webp 84w, /bots/${row.logo}-126.webp 126w`} sizes="42px" alt="" width={42} height={42} decoding="async" />
+              : row.mark}
+          </span>
           <span className={styles.rowText}>
             <span className={styles.rowTitle}>{row.title}{row.href && isExternal(row.href) && <ArrowUpRight className={styles.external} size={14} aria-hidden="true" />}</span>
             <span className={styles.rowDetail}>{row.detail}</span>

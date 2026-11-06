@@ -105,6 +105,8 @@ a.row:active { background: var(--surface-muted); }
   font-size: var(--text-sm);
   font-weight: 500;
 }
+.tile { overflow: clip; }
+.logo { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
 .rowText { display: grid; line-height: 1.6; }
 .rowTitle { color: var(--foreground); }
 .rowDetail { color: var(--text-secondary); text-wrap: pretty; }
