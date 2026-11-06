@@ -27,6 +27,7 @@ export default function Page() {
 
       <div className={styles.chapters}>
         {chapters.map(chapter => {
+          const capture = 'capture' in chapter ? chapter.capture : undefined;
           const study = 'work' in chapter ? work.find(item => item.slug === chapter.work) : undefined;
           return (
             <section key={chapter.year} id={String(chapter.year)} className={styles.chapter} aria-labelledby={`chapter-${chapter.year}`}>
@@ -36,6 +37,14 @@ export default function Page() {
               </h2>
               <div className={styles.chapterBody}>
                 {chapter.body.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+                {capture && (
+                  <figure className={styles.figure}>
+                    <div className={styles.frame}>
+                      <img src={capture.src} srcSet={capture.srcSet} sizes="(min-width: 40rem) 36rem, 100vw" alt={capture.alt} width={1280} height={720} loading="lazy" decoding="async" />
+                    </div>
+                    <figcaption>{capture.caption}, <a className={styles.link} href={capture.href} target="_blank" rel="noopener noreferrer">via the Internet Archive</a></figcaption>
+                  </figure>
+                )}
                 {chapter.figures.length > 0 && <ul className={styles.figures}>{chapter.figures.map(figure => <li key={figure}>{figure}</li>)}</ul>}
                 {study && <p><a className={styles.link} href={`/work/${study.slug}`}>Read the {study.name} case study</a></p>}
               </div>

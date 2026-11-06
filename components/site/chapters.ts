@@ -1,5 +1,14 @@
 import { asOf, hydraServers } from './content';
 
+/** A dated Wayback Machine capture of groovy.bot, from when it was live. Files are in public/work. */
+const capture = (file: string, snapshot: string, date: string) => ({
+  src: `/work/${file}-1280.webp`,
+  srcSet: `/work/${file}-640.webp 640w, /work/${file}-1280.webp 1280w`,
+  alt: `The groovy.bot home page on ${date}`,
+  caption: `groovy.bot, ${date}`,
+  href: `https://web.archive.org/web/${snapshot}/https://groovy.bot/`,
+});
+
 /** /story chapters, one per year in the Since 2018 index. Facts from shared/cv/content.ts; every figure carries its period. */
 export const chapters = [
   {
@@ -10,6 +19,7 @@ export const chapters = [
       'I led its frontend and monetization, and I have been self-employed ever since.',
     ],
     figures: ['16M+ servers by 2021', '$1M+ revenue by 2021'],
+    capture: capture('groovy-2018-11-14', '20181114170958', '14 November 2018'),
   },
   {
     year: 2020,
@@ -29,6 +39,7 @@ export const chapters = [
       'The same year, YouTube forced Groovy offline.',
     ],
     figures: [`667K servers as of ${asOf}`],
+    capture: capture('groovy-2021-08-07', '20210807122905', '7 August 2021'),
     work: 'soundcloud',
   },
   {
