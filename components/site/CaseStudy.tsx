@@ -1,9 +1,10 @@
 import { Badge } from '@/components/arc/badge/badge';
-import { asOf, work, type Work } from './content';
+import { asOf, hydraImage, work, type Image, type Work } from './content';
 import { Back, ContactClose, DraftText, MissingImage } from './parts';
 import styles from './site.module.css';
 
-type Figure = { image?: { src: string; alt: string }; missing?: string; caption?: string };
+/** `approved` drops the "not yet approved" note: set it only for Oskar's own product. */
+type Figure = { image?: Image; approved?: boolean; missing?: string; caption?: string };
 type Study = {
   /** What Oskar owned, from the CV. The first-person account replaces the draft paragraph once he writes it. */
   owned: string[];
@@ -25,7 +26,7 @@ const studies: Record<Work['slug'], Study> = {
       ['With', 'Jochen Segner, who founded Hydra'],
     ],
     figures: [
-      { image: { src: '/work/hydra.jpg', alt: 'The hydra.bot landing page' } },
+      { image: hydraImage, approved: true },
       { missing: 'the 2026 rebuild, once Oskar approves a screenshot' },
     ],
   },
@@ -92,12 +93,12 @@ export function CaseStudy({ slug }: { slug: Work['slug'] }) {
           <figure key={index} className={styles.figure}>
             <div className={styles.frame}>
               {figure.image
-                ? <img src={figure.image.src} alt={figure.image.alt} width={1280} height={720} loading={index ? 'lazy' : undefined} decoding="async" />
+                ? <img src={figure.image.src} srcSet={figure.image.srcSet} sizes="(min-width: 40rem) 40rem, 100vw" alt={figure.image.alt} width={1280} height={720} loading={index ? 'lazy' : undefined} decoding="async" />
                 : <MissingImage>{figure.missing}</MissingImage>}
             </div>
             <figcaption>
               <span className={styles.draftLabel}>Placeholder caption</span>
-              {figure.image ? 'An earlier capture, not yet approved. ' : ''}One decision this shows, in a sentence.
+              {figure.image && !figure.approved ? 'An earlier capture, not yet approved. ' : ''}One decision this shows, in a sentence.
             </figcaption>
           </figure>
         ))}

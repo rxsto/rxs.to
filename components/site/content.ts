@@ -43,6 +43,9 @@ export const now = {
   human: 'Away from the keyboard I live in Kufstein and help run the Zeltlager, the largest yearly camp of BUNDjugend Bayern, as part of its camp leadership team.',
 };
 
+/** `srcSet` lists width variants of a 16:9 image; the img keeps its 1280 × 720 box so nothing shifts on load. */
+export type Image = { src: string; srcSet?: string; alt: string };
+
 export type Work = {
   slug: 'hydra' | 'hey-netflix' | 'soundcloud';
   name: string;
@@ -50,11 +53,17 @@ export type Work = {
   role: string;
   /** One line for the homepage card: the decision and the dated number. */
   caption: string;
-  image?: { src: string; alt: string };
+  image?: Image;
+};
+
+export const hydraImage: Image = {
+  src: '/work/hydra-1280.webp',
+  srcSet: '/work/hydra-640.webp 640w, /work/hydra-1280.webp 1280w',
+  alt: 'The hydra.bot leveling page, headed “You just leveled up!”',
 };
 
 export const work: Work[] = [
-  { slug: 'hydra', name: 'Hydra', period: '2020 to now', role: 'Co-owner and engineer', caption: `Leading frontend, infrastructure and the monorepo for the 2026 rebuild. ${hydraServers}.`, image: { src: '/work/hydra.jpg', alt: 'The hydra.bot landing page' } },
+  { slug: 'hydra', name: 'Hydra', period: '2020 to now', role: 'Co-owner and engineer', caption: `Leading frontend, infrastructure and the monorepo for the 2026 rebuild. ${hydraServers}.`, image: hydraImage },
   { slug: 'hey-netflix', name: 'Hey, Netflix', period: '2022 to 2023', role: 'Software engineer, built for Netflix', caption: '150K+ servers in its first month in 2022. Webby Honoree 2023.' },
   { slug: 'soundcloud', name: 'SoundCloud', period: '2021 to now', role: 'Engineer and project lead', caption: `Running production in SoundCloud’s own AWS organization with Terraform. 667K servers as of ${asOf}.`, image: { src: '/work/soundcloud.jpg', alt: 'The soundcloud.bot landing page' } },
 ];

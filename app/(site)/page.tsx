@@ -60,7 +60,7 @@ export default function Page() {
                 title={item.name}
                 description={item.caption}
                 media={item.image
-                  ? <img className={styles.media} src={item.image.src} alt={item.image.alt} width={1280} height={720} loading="lazy" decoding="async" />
+                  ? <img className={styles.media} src={item.image.src} srcSet={item.image.srcSet} sizes="(min-width: 40rem) 40rem, 100vw" alt={item.image.alt} width={1280} height={720} loading="lazy" decoding="async" />
                   : <MissingImage>an approved {item.name} image</MissingImage>}
               >
                 <p className={styles.cardMeta}>{item.role}, {item.period}</p>
