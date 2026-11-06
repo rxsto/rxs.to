@@ -11,6 +11,9 @@ const [asOfYear, asOfMonth] = cv.meta.asOf.split('-').map(Number);
 /** "November 2026", the month the CV's current figures were last checked. */
 export const asOf = new Date(Date.UTC(asOfYear!, asOfMonth! - 1)).toLocaleString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
 
+/** Discord's App Directory showed 6.2M servers for Hydra on 6 November 2026. Fixed to that month, not to the CV's date. */
+export const hydraServers = '6.2M servers as of November 2026';
+
 export const hero = {
   name: cv.name,
   identity: 'Software engineer in Kufstein, Austria',
@@ -23,7 +26,7 @@ export type Row = { title: string; detail: string; href?: string; mark: string }
 /** Ownership lines: what kind of ownership, of what, and the figure with its period. */
 export const ownership: Row[] = [
   { mark: 'G', title: 'Co-founded Groovy', detail: '16M+ servers and $1M+ revenue by 2021', href: '/story#2018' },
-  { mark: 'H', title: 'Co-own Hydra', detail: `6.1M servers as of ${asOf}`, href: '/work/hydra' },
+  { mark: 'H', title: 'Co-own Hydra', detail: hydraServers, href: '/work/hydra' },
   { mark: 'S', title: 'Project lead on the SoundCloud bot', detail: `667K servers as of ${asOf}`, href: '/work/soundcloud' },
   { mark: 'N', title: 'Built Hey, Netflix for Netflix', detail: '150K+ servers in its first month in 2022, Webby Honoree 2023', href: '/work/hey-netflix' },
 ];
@@ -50,7 +53,7 @@ export type Work = {
 };
 
 export const work: Work[] = [
-  { slug: 'hydra', name: 'Hydra', period: '2020 to now', role: 'Co-owner and engineer', caption: `Leading frontend, infrastructure and the monorepo for the 2026 rebuild. 6.1M servers as of ${asOf}.`, image: { src: '/work/hydra.jpg', alt: 'The hydra.bot landing page' } },
+  { slug: 'hydra', name: 'Hydra', period: '2020 to now', role: 'Co-owner and engineer', caption: `Leading frontend, infrastructure and the monorepo for the 2026 rebuild. ${hydraServers}.`, image: { src: '/work/hydra.jpg', alt: 'The hydra.bot landing page' } },
   { slug: 'hey-netflix', name: 'Hey, Netflix', period: '2022 to 2023', role: 'Software engineer, built for Netflix', caption: '150K+ servers in its first month in 2022. Webby Honoree 2023.' },
   { slug: 'soundcloud', name: 'SoundCloud', period: '2021 to now', role: 'Engineer and project lead', caption: `Running production in SoundCloud’s own AWS organization with Terraform. 667K servers as of ${asOf}.`, image: { src: '/work/soundcloud.jpg', alt: 'The soundcloud.bot landing page' } },
 ];

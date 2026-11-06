@@ -21,7 +21,7 @@ const studies: Record<Work['slug'], Study> = {
     facts: [
       ['Role', 'Co-owner and engineer'],
       ['Period', '2020 to now'],
-      ['Scale', `6.1M Discord servers as of ${asOf}`],
+      ['Scale', '6.2M Discord servers as of November 2026'],
       ['With', 'Jochen Segner, who founded Hydra'],
     ],
     figures: [

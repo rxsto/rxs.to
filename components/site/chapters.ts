@@ -1,4 +1,4 @@
-import { asOf } from './content';
+import { asOf, hydraServers } from './content';
 
 /** /story chapters, one per year in the Since 2018 index. Facts from shared/cv/content.ts; every figure carries its period. */
 export const chapters = [
@@ -18,7 +18,7 @@ export const chapters = [
       'I joined Jochen Segner, who founded Hydra, as co-owner. Hydra is a leveling, welcome and reaction-role bot.',
       'I built most of the hydra.bot web app, including premium subscriptions, in Vue and Nuxt, and I co-develop the Kotlin backend as its second-largest contributor.',
     ],
-    figures: [`6.1M servers as of ${asOf}`],
+    figures: [hydraServers],
     work: 'hydra',
   },
   {
