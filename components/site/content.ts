@@ -57,7 +57,7 @@ export const work: Work[] = [
 
 /** The Since 2018 index. Each row links to its /story chapter. */
 export const since = [
-  { year: 2018, title: 'Co-founded Groovy, whose original bot I wrote at 16' },
+  { year: 2018, title: 'Co-founded Groovy, a music bot I first wrote at 16' },
   { year: 2020, title: 'Became co-owner of Hydra' },
   { year: 2021, title: 'Started the official SoundCloud bot, and YouTube forced Groovy offline' },
   { year: 2022, title: 'Built Hey, Netflix for Netflix' },

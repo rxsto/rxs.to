@@ -21,7 +21,7 @@ function announce(year: number) {
 
 /**
  * The Since 2018 index. The five dated rows are plain links and are all you get without scripts or with reduced motion.
- * With both, a ruler sits above them: moving it steps back every row but the one under the needle, and each commit
+ * With both, a ruler sits above them: once moved, it steps back every row but the one under the needle, and each commit
  * (a key press, or the tape coming to rest) is announced once through a polite live region.
  */
 export function SinceRuler() {
@@ -30,7 +30,9 @@ export function SinceRuler() {
   const live = hydrated && !reduced;
   const [year, setYear] = useState<number>(last);
   const [message, setMessage] = useState('');
-  const active = live ? entryFor(year).year : undefined;
+  // Rows stay at full strength until the ruler is first moved, so a skim reads the whole list.
+  const [moved, setMoved] = useState(false);
+  const active = live && moved ? entryFor(year).year : undefined;
 
   return (
     <>
@@ -46,7 +48,7 @@ export function SinceRuler() {
             spacing={56}
             format={formatYear}
             value={year}
-            onValueChange={setYear}
+            onValueChange={next => { setYear(next); setMoved(true); }}
             onValueCommit={next => setMessage(announce(next))}
           />
         )}
@@ -64,7 +66,7 @@ export function SinceRuler() {
           </li>
         ))}
       </ol>
-      <p className={styles.srOnly} aria-live="polite">{message}</p>
+      <p className={styles.srOnly} aria-live="polite" data-ruler-announcer>{message}</p>
     </>
   );
 }

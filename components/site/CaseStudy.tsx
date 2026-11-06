@@ -80,7 +80,7 @@ export function CaseStudy({ slug }: { slug: Work['slug'] }) {
       <section className={styles.section} aria-labelledby="owned">
         <h2 id="owned" className={styles.heading}>What I owned</h2>
         <DraftText>Oskar’s first-person account of what he owned and decided goes here. Until then, the facts from his CV:</DraftText>
-        <ul className={styles.prose}>{study.owned.map(line => <li key={line}>{line}</li>)}</ul>
+        <ul className={styles.list}>{study.owned.map(line => <li key={line}>{line}</li>)}</ul>
         <dl className={styles.facts}>
           {study.facts.map(([term, value]) => <div key={term} style={{ display: 'contents' }}><dt>{term}</dt><dd>{value}</dd></div>)}
         </dl>

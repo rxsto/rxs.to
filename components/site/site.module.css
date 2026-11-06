@@ -113,6 +113,9 @@ a.row:active { background: var(--surface-muted); }
 /* Selected work: one wide media card per project with its caption (Samuel Kraft). */
 .cards { display: grid; gap: var(--space-6); margin: 0; padding: 0; list-style: none; }
 .cards :global(article) { border-radius: var(--radius-panel); }
+/* Captions run the card's full width, like Samuel Kraft's, instead of Arc's 34ch default. */
+.cards :global(article) p { max-inline-size: none; }
+.cards .missing { inline-size: 100%; border-radius: 0; border-inline: 0; border-block-start: 0; }
 .media { display: block; inline-size: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; }
 .cardMeta { margin: var(--space-1) 0 0; font-size: var(--text-sm); color: var(--text-muted); }
 .cardLink { display: inline-flex; margin-block-start: var(--space-3); font-size: var(--text-sm); font-weight: 500; color: var(--foreground); text-decoration: none; }
@@ -146,8 +149,11 @@ a.row:active { background: var(--surface-muted); }
 
 /* The ruler's slot is held only where it will appear, so the list does not jump when it hydrates. */
 .rulerSlot { display: none; }
-@media (scripting: enabled) and (prefers-reduced-motion: no-preference) { .rulerSlot { display: block; min-block-size: 8.5rem; } }
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) { .rulerSlot { display: block; min-block-size: 5.25rem; } }
 .ruler { --ruler-height: 3.75rem; }
+/* The highlighted row already names the year, so the ruler's large readout steps aside. It is aria-hidden in Arc, so nothing is lost to assistive tech. */
+.ruler > :nth-child(2) { display: none; }
+.ruler > :first-child { font-size: var(--text-xs); color: var(--text-muted); }
 
 .srOnly { position: absolute; inline-size: 1px; block-size: 1px; overflow: clip; clip-path: inset(50%); white-space: nowrap; }
 
@@ -186,8 +192,8 @@ a.row:active { background: var(--surface-muted); }
 .caseHead { display: grid; gap: var(--space-3); }
 .caseTitle { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); margin: 0; font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 400; line-height: 1.2; letter-spacing: var(--tracking-display); color: var(--foreground); }
 .caseRole { margin: 0; color: var(--text-secondary); }
-.prose { display: grid; gap: var(--space-4); }
-.prose > p { margin: 0; }
+.list { display: grid; gap: var(--space-2); margin: 0; padding-inline-start: 1.25em; list-style: disc; }
+.list ::marker { color: var(--text-muted); }
 .facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: var(--space-2) var(--space-6); margin: 0; font-size: var(--text-sm); line-height: 1.6; }
 .facts dt { color: var(--text-muted); }
 .facts dd { margin: 0; color: var(--foreground); }
