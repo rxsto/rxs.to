@@ -11,7 +11,7 @@ This research is the baseline for that next build pass. Be concrete and opiniona
 Oskar is a software engineer and entrepreneur in Kufstein, Austria, self-employed since 2018. Facts the site can use:
 
 - Co-founded Groovy, a Discord music bot. He wrote the original bot at 16. It reached 16M+ servers and $1M+ revenue before YouTube forced it offline in 2021.
-- Co-owns Hydra (hydra.bot), a Discord bot on 6.1M servers, since 2020. He leads its 2026 rebuild in Rust.
+- Co-owns Hydra (hydra.bot), a Discord bot on 6.1M servers, since 2020. He leads frontend, infrastructure and the monorepo for its 2026 rebuild in Rust, and co-develops the backend.
 - Engineer and project lead on the official SoundCloud Discord bot (667K servers) since 2021.
 - Built the "Hey, Netflix" Discord bot for Netflix (2022 to 2023). It reached 150K+ servers in its first month and was a Webby Honoree in 2023.
 - Current contract roles in 2026: Digital Office 24 (sole engineer of a customer platform), Finaure (tech lead, AI-first wealth management), Top.gg (frontend features, Electron app).
