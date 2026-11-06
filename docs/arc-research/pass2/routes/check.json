@@ -1,0 +1,530 @@
+[
+  {
+    "route": "/",
+    "width": 390,
+    "mode": "light",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/story",
+    "width": 390,
+    "mode": "light",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hydra",
+    "width": 390,
+    "mode": "light",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hey-netflix",
+    "width": 390,
+    "mode": "light",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/soundcloud",
+    "width": 390,
+    "mode": "light",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/cv",
+    "width": 390,
+    "mode": "light",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "mode": "light",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/story",
+    "width": 1440,
+    "mode": "light",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hydra",
+    "width": 1440,
+    "mode": "light",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hey-netflix",
+    "width": 1440,
+    "mode": "light",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/soundcloud",
+    "width": 1440,
+    "mode": "light",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/cv",
+    "width": 1440,
+    "mode": "light",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 390,
+    "mode": "dark",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/story",
+    "width": 390,
+    "mode": "dark",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hydra",
+    "width": 390,
+    "mode": "dark",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hey-netflix",
+    "width": 390,
+    "mode": "dark",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/soundcloud",
+    "width": 390,
+    "mode": "dark",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/cv",
+    "width": 390,
+    "mode": "dark",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "mode": "dark",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/story",
+    "width": 1440,
+    "mode": "dark",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hydra",
+    "width": 1440,
+    "mode": "dark",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hey-netflix",
+    "width": 1440,
+    "mode": "dark",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/soundcloud",
+    "width": 1440,
+    "mode": "dark",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/cv",
+    "width": 1440,
+    "mode": "dark",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 390,
+    "mode": "nojs",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/story",
+    "width": 390,
+    "mode": "nojs",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hydra",
+    "width": 390,
+    "mode": "nojs",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hey-netflix",
+    "width": 390,
+    "mode": "nojs",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/soundcloud",
+    "width": 390,
+    "mode": "nojs",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/cv",
+    "width": 390,
+    "mode": "nojs",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "mode": "nojs",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/story",
+    "width": 1440,
+    "mode": "nojs",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hydra",
+    "width": 1440,
+    "mode": "nojs",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hey-netflix",
+    "width": 1440,
+    "mode": "nojs",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/soundcloud",
+    "width": 1440,
+    "mode": "nojs",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/cv",
+    "width": 1440,
+    "mode": "nojs",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 390,
+    "mode": "reduced",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/story",
+    "width": 390,
+    "mode": "reduced",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hydra",
+    "width": 390,
+    "mode": "reduced",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hey-netflix",
+    "width": 390,
+    "mode": "reduced",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/soundcloud",
+    "width": 390,
+    "mode": "reduced",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/cv",
+    "width": 390,
+    "mode": "reduced",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "mode": "reduced",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/story",
+    "width": 1440,
+    "mode": "reduced",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hydra",
+    "width": 1440,
+    "mode": "reduced",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/hey-netflix",
+    "width": 1440,
+    "mode": "reduced",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/work/soundcloud",
+    "width": 1440,
+    "mode": "reduced",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  },
+  {
+    "route": "/cv",
+    "width": 1440,
+    "mode": "reduced",
+    "status": 200,
+    "overflow": {
+      "scroll": false,
+      "wide": []
+    },
+    "errors": []
+  }
+]

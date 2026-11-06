@@ -1,0 +1,928 @@
+{
+  "/ 1440 light": [
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Email me",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "button",
+      "role": null,
+      "text": "Copy email",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "CV",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "GCo-founded Groovy16M+ servers and $1M+ ",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "HCo-own Hydra6.1M servers as of November",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "SProject lead on the SoundCloud bot667K ",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "NBuilt Hey, Netflix for Netflix150K+ ser",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "TTop.ggFrontend features and a macOS app",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Read the case study: Hydra",
+      "visible": true,
+      "outline": "solid 2px rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Read the case study: Hey, Netflix",
+      "visible": true,
+      "outline": "solid 2px rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Read the case study: SoundCloud",
+      "visible": true,
+      "outline": "solid 2px rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "div",
+      "role": "slider",
+      "text": "201820192020202120222023202420252026",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2018Co-founded Groovy, a music bot I fir",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2020Became co-owner of Hydra",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2021Started the official SoundCloud bot,",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2022Built Hey, Netflix for Netflix",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2026Hydra’s rebuild and three new contra",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    }
+  ],
+  "/story 1440 light": [
+    {
+      "tag": "a",
+      "role": null,
+      "text": "← Oskar Lang",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2018",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2020",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2021",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2022",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2026",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Read the Hydra case study",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Read the SoundCloud case study",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Read the Hey, Netflix case study",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Email me",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "button",
+      "role": null,
+      "text": "Copy email",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "CV",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "GitHub",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "LinkedIn",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Discord",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "X",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "CV",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "button",
+      "role": null,
+      "text": "Switch to dark mode",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    }
+  ],
+  "/work/hydra 1440 light": [
+    {
+      "tag": "a",
+      "role": null,
+      "text": "← Oskar Lang",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Hey, Netflix",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Email me",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "button",
+      "role": null,
+      "text": "Copy email",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "CV",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "GitHub",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "LinkedIn",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Discord",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "X",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "CV",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "button",
+      "role": null,
+      "text": "Switch to dark mode",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    }
+  ],
+  "/cv 1440 light": [
+    {
+      "tag": "a",
+      "role": null,
+      "text": "← rxs.to",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "PDF",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "JSON Resume",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Markdown",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Profile",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Experience",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Education",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Volunteering",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Skills",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "hi@rxs.to",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "rxs.to",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "github.com/rxsto",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "linkedin.com/in/oskar-lang",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "GitHub",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "LinkedIn",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Discord",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "X",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "CV",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    },
+    {
+      "tag": "button",
+      "role": null,
+      "text": "Switch to dark mode",
+      "visible": true,
+      "outline": "solid 2px oklab(0.239999 -0.00000238419 0.00000561774 / 0.72)"
+    }
+  ],
+  "/ 390 dark": [
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Email me",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "button",
+      "role": null,
+      "text": "Copy email",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "CV",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "GCo-founded Groovy16M+ servers and $1M+ ",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "HCo-own Hydra6.1M servers as of November",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "SProject lead on the SoundCloud bot667K ",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "NBuilt Hey, Netflix for Netflix150K+ ser",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "TTop.ggFrontend features and a macOS app",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Read the case study: Hydra",
+      "visible": true,
+      "outline": "solid 2px rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Read the case study: Hey, Netflix",
+      "visible": true,
+      "outline": "solid 2px rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Read the case study: SoundCloud",
+      "visible": true,
+      "outline": "solid 2px rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "div",
+      "role": "slider",
+      "text": "201820192020202120222023202420252026",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2018Co-founded Groovy, a music bot I fir",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2020Became co-owner of Hydra",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2021Started the official SoundCloud bot,",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2022Built Hey, Netflix for Netflix",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2026Hydra’s rebuild and three new contra",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    }
+  ],
+  "/story 390 dark": [
+    {
+      "tag": "a",
+      "role": null,
+      "text": "← Oskar Lang",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2018",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2020",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2021",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2022",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "2026",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Read the Hydra case study",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Read the SoundCloud case study",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Read the Hey, Netflix case study",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Email me",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "button",
+      "role": null,
+      "text": "Copy email",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "CV",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "GitHub",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "LinkedIn",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Discord",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "X",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "CV",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "button",
+      "role": null,
+      "text": "Switch to light mode",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    }
+  ],
+  "/work/hydra 390 dark": [
+    {
+      "tag": "a",
+      "role": null,
+      "text": "← Oskar Lang",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Hey, Netflix",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Email me",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "button",
+      "role": null,
+      "text": "Copy email",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "CV",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "GitHub",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "LinkedIn",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Discord",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "X",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "CV",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "button",
+      "role": null,
+      "text": "Switch to light mode",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    }
+  ],
+  "/cv 390 dark": [
+    {
+      "tag": "a",
+      "role": null,
+      "text": "← rxs.to",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "PDF",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "JSON Resume",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Markdown",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Profile",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Experience",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Education",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Volunteering",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Skills",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "hi@rxs.to",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "rxs.to",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "github.com/rxsto",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "linkedin.com/in/oskar-lang",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "GitHub",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "LinkedIn",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "Discord",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "X",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "a",
+      "role": null,
+      "text": "CV",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    },
+    {
+      "tag": "button",
+      "role": null,
+      "text": "Switch to light mode",
+      "visible": true,
+      "outline": "solid 2px oklab(0.909998 -0.00000911951 0.0000213385 / 0.72)"
+    }
+  ]
+}

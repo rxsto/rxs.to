@@ -1,0 +1,145 @@
+{
+  "verticalSwipe": {
+    "before": {
+      "value": "2026",
+      "valuetext": "2026",
+      "active": null,
+      "scrollY": 2540,
+      "live": [],
+      "values": 0
+    },
+    "after": {
+      "value": "2026",
+      "valuetext": "2026",
+      "active": null,
+      "scrollY": 2832,
+      "live": [],
+      "values": 0
+    },
+    "pageScrolled": 292,
+    "valueChanged": false
+  },
+  "horizontalDrag": {
+    "before": {
+      "value": "2026",
+      "valuetext": "2026",
+      "active": null,
+      "scrollY": 2832,
+      "live": [],
+      "values": 0
+    },
+    "after": {
+      "value": "2023",
+      "valuetext": "2023",
+      "active": "2022Built Hey, Netflix for Netflix",
+      "scrollY": 2832,
+      "live": [
+        "2023: no entry. Latest before it, 2022: Built Hey, Netflix for Netflix"
+      ],
+      "values": 3
+    },
+    "pageScrolled": 0,
+    "commits": 1
+  },
+  "tap": {
+    "before": "2023",
+    "after": "2025",
+    "active": "2022Built Hey, Netflix for Netflix",
+    "live": [
+      "2025: no entry. Latest before it, 2022: Built Hey, Netflix for Netflix"
+    ]
+  },
+  "keyboard": {
+    "steps": [
+      {
+        "key": "ArrowLeft",
+        "value": "2025",
+        "valuetext": "2025",
+        "active": "2022Built Hey, Netflix for Netflix",
+        "message": "2025: no entry. Latest before it, 2022: Built Hey, Netflix for Netflix"
+      },
+      {
+        "key": "ArrowLeft",
+        "value": "2024",
+        "valuetext": "2024",
+        "active": "2022Built Hey, Netflix for Netflix",
+        "message": "2024: no entry. Latest before it, 2022: Built Hey, Netflix for Netflix"
+      },
+      {
+        "key": "ArrowLeft",
+        "value": "2023",
+        "valuetext": "2023",
+        "active": "2022Built Hey, Netflix for Netflix",
+        "message": "2023: no entry. Latest before it, 2022: Built Hey, Netflix for Netflix"
+      },
+      {
+        "key": "ArrowLeft",
+        "value": "2022",
+        "valuetext": "2022",
+        "active": "2022Built Hey, Netflix for Netflix",
+        "message": "2022: Built Hey, Netflix for Netflix"
+      },
+      {
+        "key": "ArrowLeft",
+        "value": "2021",
+        "valuetext": "2021",
+        "active": "2021Started the official SoundCloud bot, and YouTube forced Groovy offline",
+        "message": "2021: Started the official SoundCloud bot, and YouTube forced Groovy offline"
+      },
+      {
+        "key": "Home",
+        "value": "2018",
+        "valuetext": "2018",
+        "active": "2018Co-founded Groovy, a music bot I first wrote at 16",
+        "message": "2018: Co-founded Groovy, a music bot I first wrote at 16"
+      },
+      {
+        "key": "End",
+        "value": "2026",
+        "valuetext": "2026",
+        "active": "2026Hydra’s rebuild and three new contractsNew",
+        "message": "2026: Hydra’s rebuild and three new contracts"
+      },
+      {
+        "key": "ArrowLeft",
+        "value": "2025",
+        "valuetext": "2025",
+        "active": "2022Built Hey, Netflix for Netflix",
+        "message": "2025: no entry. Latest before it, 2022: Built Hey, Netflix for Netflix"
+      }
+    ],
+    "liveMessages": 8,
+    "keyPresses": 8
+  },
+  "flick": {
+    "endValue": "2018",
+    "liveMessages": [
+      "2018: Co-founded Groovy, a music bot I first wrote at 16"
+    ],
+    "valuenowChanges": 8
+  },
+  "reduced": {
+    "slider": false,
+    "rows": [
+      "2018Co-founded Groovy, a music bot I first wrote at 16",
+      "2020Became co-owner of Hydra",
+      "2021Started the official SoundCloud bot, and YouTube forced Groovy offline",
+      "2022Built Hey, Netflix for Netflix",
+      "2026Hydra’s rebuild and three new contractsNew"
+    ],
+    "highlighted": false,
+    "slotHeight": 16
+  },
+  "nojs": {
+    "slider": false,
+    "rows": [
+      "2018Co-founded Groovy, a music bot I first wrote at 16",
+      "2020Became co-owner of Hydra",
+      "2021Started the official SoundCloud bot, and YouTube forced Groovy offline",
+      "2022Built Hey, Netflix for Netflix",
+      "2026Hydra’s rebuild and three new contractsNew"
+    ],
+    "highlighted": false,
+    "slotHeight": 16
+  }
+}
