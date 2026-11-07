@@ -3,7 +3,7 @@ import { getWeather, WeatherError } from '../../../server/weather';
 
 export async function GET(request: Request) {
   try {
-    return Response.json(await getWeather(env));
+    return Response.json(await getWeather(env), { headers: { 'cache-control': 'public, max-age=300', 'x-content-type-options': 'nosniff' } });
   } catch (error) {
     if (!(error instanceof WeatherError)) throw error;
     return Response.json({
@@ -15,18 +15,18 @@ export async function GET(request: Request) {
     }, {
       status: 502,
       statusText: error.message,
-      headers: {
-        'x-content-type-options': 'nosniff',
-        'x-frame-options': 'DENY',
-        'referrer-policy': 'no-referrer',
-        'content-security-policy': "script-src 'none'; frame-ancestors 'none';",
-      },
+
     });
   }
 }
 
-export const POST = GET;
-export const PUT = GET;
-export const PATCH = GET;
-export const DELETE = GET;
-export const OPTIONS = GET;
+export async function HEAD(request: Request) {
+  const response = await GET(request);
+  return new Response(null, { status: response.status, headers: response.headers });
+}
+function methodNotAllowed() { return new Response(null, { status: 405, headers: { Allow: 'GET, HEAD' } }); }
+export const POST = methodNotAllowed;
+export const PUT = methodNotAllowed;
+export const PATCH = methodNotAllowed;
+export const DELETE = methodNotAllowed;
+export const OPTIONS = methodNotAllowed;
