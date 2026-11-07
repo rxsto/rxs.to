@@ -1,7 +1,7 @@
 import { ArrowLeft } from 'lucide-react';
 import { CopyButton } from '@/components/arc/copy-button/copy-button';
 import { projects, type Project } from './projects';
-import { email } from './content';
+import { EmailButton } from './parts';
 import { ProjectHero } from './ProjectHero';
 import styles from './site.module.css';
 
@@ -26,7 +26,7 @@ export function CaseStudy({ item }: { item: Project }) {
       <div className={styles.frame}><img src={figure.src} srcSet={figure.srcSet} sizes="(min-width: 40rem) 40rem, 100vw" alt={figure.alt} width={figure.width} height={figure.height} decoding="async" /></div>
       <figcaption>{figure.caption}</figcaption>
     </figure>)}
-    <p className={styles.articleProse}><a className={styles.link} href={`mailto:${email}`}>Email me</a> about your project.</p>
+    <div className={styles.section}><p>Have a project in mind?</p><div className={styles.actions}><EmailButton /></div></div>
     <nav className={styles.next} aria-label="Project navigation"><a className={styles.link} href="/#work">All work</a><a className={styles.link} href={`/${next.slug}`}>Next: {next.name} →</a></nav>
   </article>;
 }

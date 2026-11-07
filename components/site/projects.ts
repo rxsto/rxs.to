@@ -9,6 +9,7 @@ export type Project = {
   period: string;
   role: string;
   caption: string;
+  shareImage?: string;
   mark: { src: string };
   body: { paragraphs: string[]; facts: { term: string; value: string }[]; links: { label: string; url: string }[]; figures: Image[] };
 };
@@ -19,8 +20,9 @@ export const hydraImage: Image = {
 };
 export const projects: Project[] = [
   {
+    shareImage: '/work/hydra-share.jpg',
     slug: 'hydra', name: 'Hydra', period: '2020 to now', role: 'Co-owner and engineer',
-    caption: `Co-owner · ${figures.hydraServers} servers`,
+    caption: `Leveling bot · ${figures.hydraServers} servers`,
     description: `I co-own Hydra, a leveling and community bot serving ${figures.hydraServers} Discord servers.`,
     mark: { src: '/marks/hydra.png' },
     body: {
@@ -34,7 +36,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'hey-netflix', name: 'Hey, Netflix', period: '2022 to 2023', role: 'Software engineer',
-    caption: 'Built for Netflix · Webby Honoree',
+    caption: 'Movie-night bot for Netflix · Webby Honoree',
     description: 'I built Hey, Netflix with Jochen Segner for Netflix, a Webby Honoree in 2023.',
     mark: { src: '/marks/netflix.svg' },
     body: {
@@ -43,8 +45,9 @@ export const projects: Project[] = [
     },
   },
   {
+    shareImage: '/work/soundcloud-share.jpg',
     slug: 'soundcloud', name: 'SoundCloud', period: '2021 to now', role: 'Engineer and project lead',
-    caption: `Project lead · ${figures.soundcloudServers} servers`,
+    caption: `Official SoundCloud Discord bot · ${figures.soundcloudServers} servers`,
     description: `I lead the official SoundCloud bot project, on ${figures.soundcloudServers} servers.`,
     mark: { src: '/marks/soundcloud.svg' },
     body: {

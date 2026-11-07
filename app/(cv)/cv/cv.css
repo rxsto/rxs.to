@@ -1,23 +1,14 @@
 .cv-page { display: flex; flex-direction: column; gap: 2rem; }
 
-.cv-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  font-size: 14px;
-  line-height: 16px;
-}
-
-.cv-sections a { color: var(--text-muted); }
-.cv-downloads { display: flex; flex-wrap: wrap; gap: 6px; }
+.cv-topbar { gap: .5rem; }
+.cv-downloads { display: flex; gap: 4px; font-size: 13px; line-height: 16px; }
 
 .cv-downloads a {
   display: inline-flex;
   align-items: center;
   block-size: 2rem;
-  padding-inline: var(--space-3);
+  padding-inline: .25rem;
+  white-space: nowrap;
   border: 0;
   background: var(--surface-muted);
   text-decoration: none;
@@ -26,7 +17,6 @@
   color: var(--foreground);
 }
 
-.cv-sections { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 14px; line-height: 16px; }
 
 .cv { font-size: 1rem; line-height: 1.75; color: var(--text-secondary); }
 .cv h1 { font-size: 16px; line-height: 24px; font-weight: 500; color: var(--foreground); }
@@ -46,23 +36,26 @@
 .cv .skills p + p { margin-block-start: 4px; }
 .cv .skills b { font-weight: 500; color: var(--text); }
 
-.cv-toolbar a:focus-visible, .cv-sections a:focus-visible, .cv a:focus-visible { color: var(--highlighted); }
+.cv-downloads a:focus-visible, .cv a:focus-visible { color: var(--highlighted); }
 .cv-downloads a:active { background: var(--surface-muted); }
 
 @media (hover: hover) and (pointer: fine) {
-  .cv-sections a:hover, .cv .contact a:hover { color: var(--highlighted); }
+  .cv .contact a:hover { color: var(--highlighted); }
   .cv-downloads a:hover { background: color-mix(in oklch, var(--surface-muted), var(--foreground) 8%); }
 }
 
 @media print {
-  body:has(.cv-page) footer, .cv-toolbar, .cv-sections { display: none; }
+  body:has(.cv-page) footer { display: none; }
 }
 
 .cv b, .cv strong { font-weight: 500; }
 @media print { .cv { font-size: 10pt; line-height: 1.5; } .cv-page { gap: 0; } }
 
-.cv-sections a, .cv .contact a { display: inline-flex; align-items: center; min-block-size: 1.5rem; }
+.cv .contact a { display: inline-flex; align-items: center; min-block-size: 1.5rem; }
 @media print {
   .cv-topbar { display: none; }
   .cv main { margin-block-start: 1.5rem; }
 }
+
+.cv .contact a { color: var(--foreground); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
+.cv .contact a:active { color: var(--highlighted); }

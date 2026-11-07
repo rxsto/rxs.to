@@ -46,7 +46,7 @@
 .tile[data-project='hey-netflix'] .brandMark { inline-size: 1.3rem; }
 .rowText { display: grid; line-height: 1.75; }
 .rowTitle { color: var(--foreground); font-weight: 500; }
-.rowDetail { color: var(--text-secondary); }
+.rowDetail { color: var(--text-secondary); text-wrap: pretty; }
 .ledger { margin: 0; padding: 0; list-style: none; }
 .ledgerRow { display: grid; grid-template-columns: 3rem minmax(0, 1fr); align-items: baseline; gap: 1rem; padding-block: .5rem; }
 .ledgerYear { color: var(--text-muted); }
@@ -55,7 +55,7 @@
 .footerLinks { display: flex; gap: 1rem; margin: 0; padding: 0; list-style: none; }
 .footerLinks a { text-decoration: none; color: inherit; }
 .localDetails { display: flex; flex-wrap: wrap; gap: .5rem 1rem; min-block-size: 1.7em; margin: 0; padding: 0; list-style: none; }
-.localDetails li { display: inline-flex; align-items: center; gap: .4em; block-size: 1.7em; white-space: nowrap; }
+.localDetails li, .weatherGroup > span { display: inline-flex; align-items: center; gap: .4em; block-size: 1.7em; white-space: nowrap; }
 .localDetails svg { inline-size: 1.15em; block-size: 1.15em; flex: none; }
 .localDetails .weatherSlot[data-condition="pending"] { min-inline-size: 8rem; }
 .articleNav { display: flex; align-items: center; justify-content: space-between; }
@@ -87,7 +87,7 @@
 .caseHead > a { justify-self: start; font-size: .875rem; }
 .byline { color: var(--text-muted); font-size: .875rem; text-decoration: none; }
 .archiveLink, .footerLinks a { display: inline-flex; align-items: center; min-block-size: 1.5rem; }
-.themeToggle { inline-size: 2rem; block-size: 2rem; border: 0; }
+.themeToggle { border: 0; }
 .toLight { display: none; }
 :global([data-theme='dark']) .toDark { display: none; }
 :global([data-theme='dark']) .toLight { display: block; }
@@ -104,7 +104,8 @@
 .facts dt { color: var(--text-muted); }
 .facts dd { margin: 0; }
 
-.rowDetail > span { white-space: nowrap; }
 
 .rowArrow { color: var(--text-muted); inline-size: 1em; block-size: 1em; }
 .facts a, .articleProse a, .next a, .section > p > a { display: inline-flex; align-items: center; min-block-size: 1.5rem; }
+
+.localDetails .weatherGroup { gap: 1rem; block-size: auto; }

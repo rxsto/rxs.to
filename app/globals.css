@@ -51,7 +51,7 @@ body {
   --accent-foreground: oklch(29% .04 285);
   --pastel-mint: oklch(94% .025 175);
   --pastel-rose: oklch(95% .025 15);
-  --pastel-peach: oklch(99% .015 65);
+  --pastel-peach: oklch(95% .03 65);
 }
 :root[data-theme="dark"] {
   --focus-outline: oklch(78% .08 285);

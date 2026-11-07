@@ -19,10 +19,10 @@ test('the sitemap includes each project and names the home page as the bare orig
 test('figure cards use a large image and figureless cards use the avatar summary', () => {
   for (const project of projects) {
     const figure = project.body.figures[0];
-    const metadata = pageMetadata({ path: `/${project.slug}`, title: project.name, description: project.description, image: figure?.src, largeImage: Boolean(figure) });
+    const metadata = pageMetadata({ path: `/${project.slug}`, title: project.name, description: project.description, image: project.shareImage, largeImage: Boolean(figure) });
     assert.ok(metadata.twitter && 'card' in metadata.twitter);
     assert.equal(metadata.twitter.card, figure ? 'summary_large_image' : 'summary');
-    assert.deepEqual(metadata.twitter?.images, [figure?.src ?? '/avatar.png']);
+    assert.deepEqual(metadata.twitter?.images, [project.shareImage ?? '/avatar.png']);
   }
 });
 
@@ -36,9 +36,9 @@ test('the project registry has distinct routes and complete project content', ()
 
 test('work rows explain products with short credentials, with sentence metadata', () => {
   assert.deepEqual(projects.map(item => item.caption), [
-    'Co-owner · 6.1M servers',
-    'Built for Netflix · Webby Honoree',
-    'Project lead · 667K servers',
+    'Leveling bot · 6.1M servers',
+    'Movie-night bot for Netflix · Webby Honoree',
+    'Official SoundCloud Discord bot · 667K servers',
   ]);
   for (const item of projects) {
     assert.match(item.description, /^I .+\.$/);
@@ -56,12 +56,12 @@ test('project figures follow changes in the CV source', () => {
   assert.ok(projects[2]?.body.paragraphs.join(' ').includes(figures.soundcloudServers));
   assert.ok(projects[1]?.body.paragraphs.join(' ').includes(figures.netflixServers));
   assert.ok(projects[1]?.body.paragraphs.join(' ').includes(figures.netflixSessions));
-  assert.ok(since[1].title.includes(figures.groovyServers));
-  assert.ok(since[1].title.includes(figures.groovyRevenue));
+  assert.ok(since[0].title.includes(figures.groovyServers));
+  assert.ok(since[0].title.includes(figures.groovyRevenue));
 });
 test('timeline is newest first, does not repeat the hero or project rows', () => {
-  assert.deepEqual(since.map(row => row.year), [2022, 2018]);
-  assert.match(since[0].title, /youth summer camp/);
+  assert.deepEqual(since.map(row => row.year), [2018]);
+  for (const row of since) assert.doesNotMatch(row.title, /summer camp/);
   assert.equal(since.filter(row => /Groovy/.test(row.title)).length, 1);
   for (const row of since) assert.doesNotMatch(row.title, /Hydra|SoundCloud|Netflix/);
 });
