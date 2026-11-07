@@ -40,6 +40,15 @@ try {
       for (const link of await page.locator('footer a, [class*="facts"] a, [class*="articleProse"] a').all()) assert.ok((await link.boundingBox()).height >= 24);
       if (path === '/') {
         assert.equal(await page.getByText('Open to new projects', { exact: true }).count(), 1);
+        const status = page.locator('[data-availability]');
+        assert.equal(await status.getAttribute('role'), null);
+        assert.equal(await status.evaluate(node => getComputedStyle(node).backgroundColor), 'rgba(0, 0, 0, 0)');
+        const statusBox = await status.boundingBox();
+        const emailBox = await page.getByRole('link', { name: 'Email me', exact: true }).boundingBox();
+        if (width === 1280) assert.ok(Math.abs(statusBox.y + statusBox.height / 2 - emailBox.y - emailBox.height / 2) < 1);
+        else assert.ok(statusBox.y >= emailBox.y + emailBox.height);
+        assert.equal(await page.getByRole('heading', { name: 'Previously' }).count(), 0);
+        for (const name of ['GitHub', 'Twitter', 'LinkedIn']) assert.equal(await page.locator('header').getByRole('link', { name, exact: true }).locator('svg path').count(), 1);
         assert.equal(await page.locator('[class*="rows"] > li').count(), 4);
         assert.equal(await page.locator('[class*="rows"] > li').first().getAttribute('id'), 'card-digital-office-24');
         await page.locator('[class*="rows"]').screenshot({ path: `${directory}/tiles-2x-${width}-${colorScheme}.png` });
@@ -74,6 +83,7 @@ try {
           const luminance = rgb => rgb.map(v => v / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4).reduce((sum, v, i) => sum + v * [.2126, .7152, .0722][i], 0);
           context.fillStyle = getComputedStyle(tile).backgroundColor;
           context.fillRect(0, 0, 1, 1);
+          if (tile.dataset.project === 'digital-office-24') { context.fillStyle = 'white'; context.fillRect(0, 0, 1, 1); }
           const surface = luminance([...context.getImageData(0, 0, 1, 1).data].slice(0, 3));
           context.clearRect(0, 0, 512, 512);
           context.drawImage(tile.querySelector('img'), 0, 0, 512, 512);
@@ -93,11 +103,11 @@ try {
         for (const mark of marks) assert.ok(mark.fractionAt3 >= .25, `${mark.project}: mark contrast ${JSON.stringify(mark)}`);
         results.push({ colorScheme, marks });
         const tabOrder = [];
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 6; i++) {
           await page.keyboard.press('Tab');
           tabOrder.push(await page.evaluate(() => ({ label: document.activeElement.getAttribute('aria-label') ?? document.activeElement.textContent, focus: document.activeElement.matches(':focus-visible') })));
         }
-        assert.deepEqual(tabOrder.map(item => item.label), ['GitHub', 'Twitter', 'Email me', 'Copy email', 'CV']);
+        assert.deepEqual(tabOrder.map(item => item.label), ['GitHub', 'Twitter', 'LinkedIn', 'Email me', 'Copy email', 'CV']);
         assert.ok(tabOrder.every(item => item.focus));
         if (colorScheme === 'light') await page.screenshot({ path: `${directory}/focus-${width}-light.png`, fullPage: true });
         for (const slug of ['digital-office-24', 'hydra', 'hey-netflix', 'soundcloud']) assert.equal(await page.locator(`#card-${slug} a`).getAttribute('href'), `/${slug}`);
@@ -117,6 +127,11 @@ try {
         await page.waitForFunction(() => document.activeElement === document.querySelector('#card-hydra a'));
       }
       if (path === '/cv') {
+        for (const entry of await page.locator('.cv article').all()) {
+          const heading = await entry.locator('h3').boundingBox();
+          const date = await entry.locator('.date').boundingBox();
+          assert.ok(date.y < heading.y + 10, 'CV date stays beside its heading');
+        }
         assert.deepEqual(await page.locator('.cv-page > :is(.cv-topbar, .cv)').evaluateAll(nodes => nodes.map(node => node.classList.contains('cv-topbar') ? 'cv-topbar' : 'cv')), ['cv-topbar', 'cv']);
         assert.equal(await page.locator('.cv-topbar img').count(), 0);
         const topbar = await page.locator('.cv-topbar').evaluate(node => {
@@ -133,6 +148,12 @@ try {
         assert.ok(Math.abs(gap - 16) < 1, `404 paragraph gap: ${gap}`);
       }
       if (['/digital-office-24', '/hydra', '/hey-netflix', '/soundcloud'].includes(path)) {
+        assert.equal(await page.getByRole('link', { name: 'All work', exact: true }).count(), 0);
+        if (['/hydra', '/soundcloud'].includes(path)) {
+          const figure = await page.locator('figure').boundingBox();
+          const facts = await page.locator('dl').boundingBox();
+          assert.ok(figure.y + figure.height <= facts.y, 'Figure precedes facts');
+        }
         const buttons = await page.locator('[aria-label="Article actions"] :is(a[aria-label], button)').evaluateAll(nodes => nodes.map(node => {
           const box = node.getBoundingClientRect(), style = getComputedStyle(node);
           return { width: box.width, height: box.height, radius: style.borderRadius, background: style.backgroundColor };

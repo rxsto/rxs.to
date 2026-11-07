@@ -12,11 +12,11 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { Availability } from '../components/site/Availability.tsx';
 import { availability } from '../components/site/content.ts';
 
-test('the sitemap includes each project and names the home page as the bare origin', async () => {
+test('the sitemap includes each project and matches the home canonical URL', async () => {
   const response = GET();
   assert.equal(response.headers.get('content-type'), 'application/xml');
   const locs = [...(await response.text()).matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
-  assert.deepEqual(locs, [site.origin, ...projects.map(item => `${site.origin}/${item.slug}`), `${site.origin}/cv`]);
+  assert.deepEqual(locs, [`${site.origin}/`, ...projects.map(item => `${site.origin}/${item.slug}`), `${site.origin}/cv`]);
   assert.equal(websiteNode.url, site.origin);
 });
 
@@ -70,9 +70,10 @@ test('client work comes first and derives its contribution and stack from the CV
   const source = cv.experience.find(entry => entry.org === 'Digital Office 24')!;
   assert.equal(project.slug, 'digital-office-24');
   assert.equal(project.name, source.org);
-  assert.equal(project.role, 'Contract software engineer');
+  assert.equal(project.role, 'Software engineer (contract)');
   assert.equal(project.period, 'February 2026 to now');
-  assert.ok(project.body.paragraphs[0]?.includes(source.summary.slice('Built'.length).split('Also did')[0]!));
+  assert.doesNotMatch(project.body.paragraphs.join(' '), /Bun|Hono|Next\.js/);
+  for (const fact of ['alone', 'HubSpot CRM', 'demo booking', 'customer area', 'billing', 'GDPR and consent']) assert.ok(project.body.paragraphs.join(' ').includes(fact));
   assert.ok(project.body.paragraphs[0]?.includes('GDPR and consent work'));
   assert.deepEqual(project.body.facts, [{ term: 'Stack', value: 'Bun, Hono, Next.js' }]);
   assert.deepEqual(project.body.figures, []);
