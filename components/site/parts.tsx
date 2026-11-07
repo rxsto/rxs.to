@@ -1,14 +1,8 @@
-import type { ReactNode } from 'react';
 import { CopyButton } from '@/components/arc/copy-button/copy-button';
 import { email } from './content';
 import { LocalTime } from './LocalTime';
 import { ThemeToggle } from './ThemeToggle';
 import styles from './site.module.css';
-
-/** A paragraph of copy that Oskar has not written or approved yet. */
-export function DraftText({ children, label = 'Placeholder copy' }: { children: ReactNode; label?: string }) {
-  return <p className={styles.draft}><span className={styles.draftLabel}>{label}</span>{children}</p>;
-}
 
 export function Actions() {
   return (

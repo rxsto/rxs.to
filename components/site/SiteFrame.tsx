@@ -11,9 +11,8 @@ export function SiteFrame({ children, view = 'home' }: { children: ReactNode; vi
       {children}
       {view === 'home' && <>
         <section className={styles.section} aria-labelledby="since">
-          <h2 id="since" className={styles.heading}>Since 2018</h2>
-          <ol className={styles.ledger}>{since.map(row => <li key={row.year} id={String(row.year)} className={styles.ledgerRow}><span className={styles.ledgerYear}>{row.year}</span><span>{row.title}{'archive' in row && <> <a className={styles.archiveLink} href={row.archive} target="_blank" rel="noopener noreferrer" aria-label={`${row.year} archived site`}>Archive ↗</a></>}</span></li>)}</ol>
-          <p>Away from work, I help lead a youth summer camp.</p>
+          <h2 id="since" className={styles.heading}>Along the way</h2>
+          <ol className={styles.ledger}>{since.map(row => <li key={row.year} id={String(row.year)} className={styles.ledgerRow}><span className={styles.ledgerYear}>{row.year}</span><span>{'href' in row ? <a className={styles.link} href={row.href}>{row.title}</a> : row.title}{'archive' in row && <> <a className={styles.archiveLink} href={row.archive} target="_blank" rel="noopener noreferrer" aria-label={`${row.year} archived site`}>Archive ↗</a></>}</span></li>)}</ol>
         </section>
       </>}
     </main>

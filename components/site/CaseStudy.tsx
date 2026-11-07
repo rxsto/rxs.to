@@ -16,15 +16,16 @@ export function CaseStudy({ item }: { item: Project }) {
     </nav>
     <header className={styles.caseHead}>
       <div className={styles.caseIdentity}><ProjectHero project={item} /><h1 id="project-title" className={styles.caseTitle}>{item.name}</h1></div>
-      <p>{study.owned[0]}. {item.slug === 'hey-netflix' ? 'It reached ' : 'It serves '}{study.facts.find(fact => fact.term === 'Scale')?.value}.{item.slug === 'hey-netflix' && ' It was a Webby Honoree in 2023.'}</p>
-      {item.url && <a className={styles.link} href={item.url} target="_blank" rel="noopener noreferrer">{item.url.replace('https://', '')} ↗</a>}
+      {study.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
     </header>
-    {study.figures.map((figure, index) => figure.image && <figure key={index} className={styles.figure}>
-      <div className={styles.frame}><img src={figure.image.src} srcSet={figure.image.srcSet} sizes="(min-width: 40rem) 40rem, 100vw" alt={figure.image.alt} width={figure.image.width} height={figure.image.height} decoding="async" /></div>
-      <figcaption>{figure.image.caption}</figcaption>
+    <dl className={styles.facts}>
+      {[{ term: 'Role', value: item.role }, { term: 'Period', value: item.period }, ...study.facts].map(fact => <div key={fact.term}><dt>{fact.term}</dt><dd>{fact.value}</dd></div>)}
+      {study.links.length > 0 && <div><dt>Links</dt><dd>{study.links.map(link => <a key={link.url} className={styles.link} href={link.url} target="_blank" rel="noopener noreferrer">{link.label} ↗</a>)}</dd></div>}
+    </dl>
+    {study.figures.map(figure => <figure key={figure.src} className={styles.figure}>
+      <div className={styles.frame}><img src={figure.src} srcSet={figure.srcSet} sizes="(min-width: 40rem) 40rem, 100vw" alt={figure.alt} width={figure.width} height={figure.height} decoding="async" /></div>
+      <figcaption>{figure.caption}</figcaption>
     </figure>)}
-    <p className={styles.articleProse}>{study.owned.slice(1).map(line => `${line}.`).join(' ')}</p>
-    <p className={styles.draft}>{item.slug === 'soundcloud' ? 'I’ll share more detail and updated screenshots soon.' : 'I’ll share more detail and screenshots soon.'}</p>
     <p className={styles.articleProse}><a className={styles.link} href={`mailto:${email}`}>Email me</a> about your project.</p>
     <nav className={styles.next} aria-label="Project navigation"><a className={styles.link} href="/#work">All work</a><a className={styles.link} href={`/${next.slug}`}>Next: {next.name} →</a></nav>
   </article>;
