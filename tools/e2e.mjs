@@ -16,7 +16,7 @@ try {
     page.on('pageerror', error => errors.push(error.message));
     await page.route('**/api/weather', route => route.fulfill({ status: 502, body: '{}' }));
     await page.clock.install({ time: new Date('2026-11-07T12:00:00Z') });
-    for (const path of ['/', '/hydra', '/hey-netflix', '/soundcloud', '/cv', '/nope']) {
+    for (const path of ['/', '/digital-office-24', '/hydra', '/hey-netflix', '/soundcloud', '/cv', '/nope']) {
       const response = await page.goto(`${origin}${path}`);
       assert.equal(response.status(), path === '/nope' ? 404 : 200);
       assert.ok(!(await response.text()).includes('Weather unavailable'), `${path}: loading HTML must not claim failure`);
@@ -39,6 +39,9 @@ try {
       assert.deepEqual(await page.locator('footer [aria-label="Elsewhere"] a').allTextContents(), ['GitHub', 'LinkedIn']);
       for (const link of await page.locator('footer a, [class*="facts"] a, [class*="articleProse"] a').all()) assert.ok((await link.boundingBox()).height >= 24);
       if (path === '/') {
+        assert.equal(await page.getByText('Open to new projects', { exact: true }).count(), 1);
+        assert.equal(await page.locator('[class*="rows"] > li').count(), 4);
+        assert.equal(await page.locator('[class*="rows"] > li').first().getAttribute('id'), 'card-digital-office-24');
         await page.locator('[class*="rows"]').screenshot({ path: `${directory}/tiles-2x-${width}-${colorScheme}.png` });
         assert.equal((await page.title()).match(/Oskar Lang/g)?.length, 1);
         for (const link of await page.locator('a').filter({ hasText: /Archive ↗|^LinkedIn$|^Discord$/ }).all()) {
@@ -77,6 +80,8 @@ try {
           const pixels = context.getImageData(0, 0, 512, 512).data;
           let opaque = 0, visible = 0, maximum = 0;
           for (let i = 0; i < pixels.length; i += 4) if (pixels[i + 3] >= 250) {
+            // The official Digital Office icon includes a white field, which is background, not ink.
+            if (tile.dataset.project === 'digital-office-24' && pixels[i] > 245 && pixels[i + 1] > 245 && pixels[i + 2] > 245) continue;
             opaque++;
             const ink = luminance([...pixels.slice(i, i + 3)]);
             const ratio = (Math.max(ink, surface) + .05) / (Math.min(ink, surface) + .05);
@@ -95,7 +100,7 @@ try {
         assert.deepEqual(tabOrder.map(item => item.label), ['GitHub', 'Twitter', 'Email me', 'Copy email', 'CV']);
         assert.ok(tabOrder.every(item => item.focus));
         if (colorScheme === 'light') await page.screenshot({ path: `${directory}/focus-${width}-light.png`, fullPage: true });
-        for (const slug of ['hydra', 'hey-netflix', 'soundcloud']) assert.equal(await page.locator(`#card-${slug} a`).getAttribute('href'), `/${slug}`);
+        for (const slug of ['digital-office-24', 'hydra', 'hey-netflix', 'soundcloud']) assert.equal(await page.locator(`#card-${slug} a`).getAttribute('href'), `/${slug}`);
         await page.locator('h1').click();
         await page.locator('[class*="actions"]').screenshot({ path: `${directory}/buttons-2x-${width}-${colorScheme}.png` });
         await page.getByRole('button', { name: 'Copy email', exact: true }).click();
@@ -127,7 +132,7 @@ try {
         const gap = await page.locator('h1').evaluate(element => element.nextElementSibling.getBoundingClientRect().top - element.getBoundingClientRect().bottom);
         assert.ok(Math.abs(gap - 16) < 1, `404 paragraph gap: ${gap}`);
       }
-      if (['/hydra', '/hey-netflix', '/soundcloud'].includes(path)) {
+      if (['/digital-office-24', '/hydra', '/hey-netflix', '/soundcloud'].includes(path)) {
         const buttons = await page.locator('[aria-label="Article actions"] :is(a[aria-label], button)').evaluateAll(nodes => nodes.map(node => {
           const box = node.getBoundingClientRect(), style = getComputedStyle(node);
           return { width: box.width, height: box.height, radius: style.borderRadius, background: style.backgroundColor };
@@ -195,7 +200,7 @@ try {
   await context.close();
   const noJs = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 900 } });
   const direct = await noJs.newPage();
-  for (const path of ['/', '/hydra', '/hey-netflix', '/soundcloud', '/cv']) {
+  for (const path of ['/', '/digital-office-24', '/hydra', '/hey-netflix', '/soundcloud', '/cv']) {
     assert.equal((await direct.goto(`${origin}${path}`)).status(), 200);
     assert.equal(await direct.locator('h1').count(), 1);
     assert.equal(await direct.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);

@@ -16,7 +16,7 @@ const agents = [
   ['iMessage', 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'],
 ];
 const records = [];
-for (const path of ['/', '/hydra', '/hey-netflix', '/soundcloud', '/cv', '/nope']) {
+for (const path of ['/', '/digital-office-24', '/hydra', '/hey-netflix', '/soundcloud', '/cv', '/nope']) {
   for (const [name, agent] of agents) {
     const html = execFileSync('curl', ['--silent', '--show-error', '-A', agent, `${origin}${path}`], { encoding: 'utf8' });
     const head = html.split('</head>')[0];
@@ -41,6 +41,11 @@ for (const path of ['/', '/hydra', '/hey-netflix', '/soundcloud', '/cv', '/nope'
     assert.ok(head.includes('property="og:site_name" content="Oskar Lang"'));
     assert.ok(head.includes(`name="twitter:card" content="${['/hydra', '/soundcloud'].includes(path) ? 'summary_large_image' : 'summary'}"`), `${path} card`);
     if (path === '/cv') assert.ok(head.includes('<title>CV | Oskar Lang</title>'));
+    if (path === '/digital-office-24') {
+      assert.ok(head.includes('<title>Digital Office 24 | Oskar Lang</title>'));
+      assert.ok(head.includes('rel="canonical" href="https://rxs.to/digital-office-24"'));
+      assert.ok(head.includes('I built Digital Office 24'));
+    }
     records.push(`${path} ${name}: one title, description, og:title and twitter:title, all in head${path === '/nope' ? '; robots consistently noindex' : ''}`);
   }
 }

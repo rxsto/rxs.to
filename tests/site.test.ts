@@ -7,6 +7,10 @@ import { since } from '../components/site/content.ts';
 import { projects } from '../components/site/projects.ts';
 import { GET } from '../app/sitemap.xml/route.ts';
 import { pageMetadata } from '../shared/site.ts';
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { Availability } from '../components/site/Availability.tsx';
+import { availability } from '../components/site/content.ts';
 
 test('the sitemap includes each project and names the home page as the bare origin', async () => {
   const response = GET();
@@ -36,6 +40,7 @@ test('the project registry has distinct routes and complete project content', ()
 
 test('work rows explain products with short credentials, with sentence metadata', () => {
   assert.deepEqual(projects.map(item => item.caption), [
+    'Customer platform, built solo',
     'Leveling bot · 6.1M servers',
     'Movie-night bot for Netflix · Webby Honoree',
     'Official SoundCloud Discord bot · 667K servers',
@@ -52,12 +57,39 @@ test('work rows explain products with short credentials, with sentence metadata'
 test('project figures follow changes in the CV source', () => {
   const changed = { experience: cv.experience.map(entry => ({ ...entry, summary: entry.summary.replace('6.1M', '7.3M').replace('667K', '800K').replace('150K+', '200K+').replace('250K+', '300K+').replace('16M+', '20M+'), highlights: 'highlights' in entry ? entry.highlights.map(line => line.replace('$1M', '$2M')) : [] })) };
   assert.deepEqual(projectFigures(changed), { hydraServers: '7.3M', soundcloudServers: '800K', netflixServers: '200K+', netflixSessions: '300K+', groovyServers: '20M+', groovyRevenue: '$2M+' });
-  assert.ok(projects[0]?.caption.includes(figures.hydraServers));
-  assert.ok(projects[2]?.body.paragraphs.join(' ').includes(figures.soundcloudServers));
-  assert.ok(projects[1]?.body.paragraphs.join(' ').includes(figures.netflixServers));
-  assert.ok(projects[1]?.body.paragraphs.join(' ').includes(figures.netflixSessions));
+  assert.ok(projects.find(item => item.slug === 'hydra')?.caption.includes(figures.hydraServers));
+  assert.ok(projects.find(item => item.slug === 'soundcloud')?.body.paragraphs.join(' ').includes(figures.soundcloudServers));
+  assert.ok(projects.find(item => item.slug === 'hey-netflix')?.body.paragraphs.join(' ').includes(figures.netflixServers));
+  assert.ok(projects.find(item => item.slug === 'hey-netflix')?.body.paragraphs.join(' ').includes(figures.netflixSessions));
   assert.ok(since[0].title.includes(figures.groovyServers));
   assert.ok(since[0].title.includes(figures.groovyRevenue));
+});
+
+test('client work comes first and derives its contribution and stack from the CV', () => {
+  const project = projects[0]!;
+  const source = cv.experience.find(entry => entry.org === 'Digital Office 24')!;
+  assert.equal(project.slug, 'digital-office-24');
+  assert.equal(project.name, source.org);
+  assert.equal(project.role, 'Contract software engineer');
+  assert.equal(project.period, 'February 2026 to now');
+  assert.ok(project.body.paragraphs[0]?.includes(source.summary.slice('Built'.length).split('Also did')[0]!));
+  assert.ok(project.body.paragraphs[0]?.includes('GDPR and consent work'));
+  assert.deepEqual(project.body.facts, [{ term: 'Stack', value: 'Bun, Hono, Next.js' }]);
+  assert.deepEqual(project.body.figures, []);
+  assert.deepEqual(project.body.links, []);
+});
+
+test('availability renders its configured text once and hides when switched off', () => {
+  const markup = renderToStaticMarkup(createElement(Availability));
+  assert.equal(markup.split(availability.text).length - 1, 1);
+  assert.match(markup, /aria-hidden="true"/);
+  const enabled = availability.enabled;
+  try {
+    availability.enabled = false;
+    assert.equal(renderToStaticMarkup(createElement(Availability)), '');
+  } finally {
+    availability.enabled = enabled;
+  }
 });
 test('timeline is newest first, does not repeat the hero or project rows', () => {
   assert.deepEqual(since.map(row => row.year), [2018]);
