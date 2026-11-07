@@ -1,4 +1,4 @@
-.cv-page { display: flex; flex-direction: column; gap: 24px; }
+.cv-page { display: flex; flex-direction: column; gap: 2rem; }
 
 .cv-toolbar {
   display: flex;
@@ -18,7 +18,9 @@
   align-items: center;
   block-size: 2rem;
   padding-inline: var(--space-3);
-  border: 1px solid var(--border-strong);
+  border: 0;
+  background: var(--surface-muted);
+  text-decoration: none;
   border-radius: var(--radius-control);
   font-weight: 500;
   color: var(--foreground);
@@ -26,13 +28,13 @@
 
 .cv-sections { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; line-height: 16px; }
 
-.cv { font-size: var(--text-sm); line-height: 1.6; color: var(--text-secondary); }
-.cv h1 { font-size: 16px; line-height: 24px; font-weight: 500; }
+.cv { font-size: 1rem; line-height: 1.75; color: var(--text-secondary); }
+.cv h1 { font-size: 16px; line-height: 24px; font-weight: 500; color: var(--foreground); }
 .cv .contact { margin-block-start: 2px; font-size: 12px; line-height: 16px; color: var(--text-muted); }
 .cv .sep { padding-inline: 0.15em; }
-.cv main { display: flex; flex-direction: column; gap: 32px; margin-block-start: 32px; }
-.cv h2 { color: var(--foreground); margin-block-end: var(--space-3); font-size: var(--text-sm); font-weight: 500; scroll-margin-block-start: 16px; }
-.cv article + article { margin-block-start: 16px; }
+.cv main { display: flex; flex-direction: column; gap: 2.5rem; margin-block-start: 2.5rem; }
+.cv h2 { color: var(--foreground); margin-block-end: var(--space-3); font-size: 1rem; font-weight: 500; scroll-margin-block-start: 16px; }
+.cv article + article { margin-block-start: 1.5rem; }
 .cv h3 { display: inline; margin-inline-end: 0.25em; font: inherit; }
 .cv .org { font-weight: 500; }
 .cv .role { color: var(--text-toned); }
@@ -49,9 +51,12 @@
 
 @media (hover: hover) and (pointer: fine) {
   .cv-sections a:hover, .cv .contact a:hover { color: var(--highlighted); }
-  .cv-downloads a:hover { background: var(--surface-muted); }
+  .cv-downloads a:hover { background: color-mix(in oklch, var(--surface-muted), var(--foreground) 8%); }
 }
 
 @media print {
   body:has(.cv-page) footer, .cv-toolbar, .cv-sections { display: none; }
 }
+
+.cv b, .cv strong { font-weight: 500; }
+@media print { .cv { font-size: 10pt; line-height: 1.5; } .cv-page { gap: 0; } }

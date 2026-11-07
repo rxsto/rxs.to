@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: Props) {
   const { project } = await params;
   const item = projects.find(item => item.slug === project);
   if (!item) notFound();
-  return pageMetadata({ path: `/${item.slug}`, title: item.name, description: item.caption });
+  return pageMetadata({ path: `/${item.slug}`, title: item.name, description: item.description });
 }
 export default async function Page({ params }: Props) {
   const { project } = await params;

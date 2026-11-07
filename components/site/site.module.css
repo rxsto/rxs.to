@@ -1,6 +1,7 @@
 .page {
   --section-gap: clamp(3.5rem, 3rem + 2vw, 5rem);
   display: grid;
+  align-content: start;
   grid-template-columns: minmax(1.5rem, 1fr) min(100% - 3rem, 40rem) minmax(1.5rem, 1fr);
   row-gap: var(--section-gap);
   min-block-size: 100svh;
@@ -10,7 +11,7 @@
   line-height: 1.75;
 }
 .page > * { grid-column: 2; min-inline-size: 0; }
-.page > header:has(+ :global(.cv-page)) { margin-block-end: calc(1.5rem - var(--section-gap)); }
+.page > :is(header, a):has(+ :global(.cv-page)) { margin-block-end: calc(2rem - var(--section-gap)); }
 .main { display: grid; row-gap: var(--section-gap); }
 .section, .hero { display: grid; gap: 1rem; }
 .section > :where(p, ul, ol), .hero > p, .caseHead > p { margin: 0; }
@@ -56,9 +57,8 @@
 .footerRow { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .footerLinks { display: flex; gap: 1rem; margin: 0; padding: 0; list-style: none; }
 .footerLinks a { text-decoration: none; color: inherit; }
-.localDetails { display: flex; flex-wrap: wrap; gap: .5rem 1rem; min-block-size: 3.4em; margin: 0; padding: 0; list-style: none; }
+.localDetails { display: flex; flex-wrap: wrap; gap: .5rem 1rem; min-block-size: 1.7em; margin: 0; padding: 0; list-style: none; }
 .localDetails li { display: inline-flex; align-items: center; gap: .4em; block-size: 1.7em; white-space: nowrap; }
-.localDetails li:first-child { flex-basis: 100%; }
 .localDetails svg { inline-size: 1.15em; block-size: 1.15em; flex: none; }
 .localDetails .weatherSlot { min-inline-size: 8rem; }
 .articleNav { display: flex; align-items: center; justify-content: space-between; }
@@ -66,7 +66,7 @@
 .roundButton svg { inline-size: 1.1rem; block-size: 1.1rem; }
 .roundButton:active, .roundButton:active:not(:disabled) { transform: none; background: var(--border); }
 .caseHead { display: grid; gap: 1rem; }
-.caseHead .tile { margin-block-end: .5rem; }
+
 .caseTitle { font-size: 1rem; }
 .figure { display: grid; gap: 1rem; margin: 0; }
 .frame { padding: .4rem; border: 1px solid var(--border); outline: 1px solid var(--border-subtle); outline-offset: 3px; border-radius: 1rem; background: var(--surface); overflow: clip; }
@@ -80,7 +80,27 @@
 @media (hover: hover) and (pointer: fine) {
   .inlineLink:hover, .footerLinks a:hover, .link:hover, .archiveLink:hover { color: var(--foreground); text-decoration: underline; }
   .button:hover, .splitButton .copyEmail:hover:not(:disabled) { background: var(--accent-strong); color: var(--accent-foreground); }
-  .secondaryButton:hover, .row:hover, .roundButton:hover:not(:disabled) { background: var(--surface-muted); }
+  .row:hover { background: var(--surface-muted); }
+  .secondaryButton:hover, .roundButton:hover:not(:disabled) { background: color-mix(in oklch, var(--surface-muted), var(--foreground) 8%); color: var(--foreground); }
 }
 @media (scripting: none) { .noScriptHide { display: none !important; } .splitButton > .button { border-radius: .75rem; } }
-@media print { .page:has(:global(.cv-page)) { display: block; min-block-size: 0; padding: 0; } .page:has(:global(.cv-page)) > header { display: none; } }
+@media print { .page:has(:global(.cv-page)) { display: block; min-block-size: 0; padding: 0; } .page:has(:global(.cv-page)) > :is(header, a) { display: none; } }
+
+.portrait { display: block; flex: none; inline-size: 2rem; block-size: 2rem; border-radius: 50%; overflow: clip; }
+.portrait img { display: block; inline-size: 100%; block-size: 100%; transform: scale(2); transform-origin: 48% 43%; }
+.article { display: grid; gap: 2.25rem; }
+.articleProse { margin: 0; }
+.caseIdentity { display: flex; align-items: center; gap: 1.25rem; }
+.caseHead > a { justify-self: start; font-size: .875rem; }
+.byline { color: var(--text-muted); font-size: .875rem; text-decoration: none; }
+.archiveLink, .footerLinks a { display: inline-flex; align-items: center; min-block-size: 1.5rem; }
+.themeToggle { inline-size: 2rem; block-size: 2rem; border: 0; }
+.moonIcon { display: none; }
+:global([data-theme='dark']) .sunIcon { display: none; }
+:global([data-theme='dark']) .moonIcon { display: block; }
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme])) .sunIcon { display: none; }
+  :global(:root:not([data-theme])) .moonIcon { display: block; }
+}
+.byline:active { color: var(--foreground); }
+@media (hover: hover) and (pointer: fine) { .byline:hover { color: var(--foreground); } }

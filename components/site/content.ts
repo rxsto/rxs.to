@@ -15,9 +15,9 @@ export const hero = { name: cv.name };
 
 /** The Since 2018 index. Plain dated rows. */
 export const since = [
-  { year: 2018, title: 'Co-founded Groovy at 16', detail: 'With Nik Ammerlaan. I wrote the original bot in Python and then Java, and led frontend and monetization.', archive: 'https://web.archive.org/web/20181114170958/https://groovy.bot/' },
+  { year: 2018, title: 'Co-founded Groovy at 16; 16M+ servers by 2021', detail: 'With Nik Ammerlaan. I wrote the original bot in Python and then Java, and led frontend and monetization.', archive: 'https://web.archive.org/web/20181114170958/https://groovy.bot/' },
   { year: 2020, title: 'Became co-owner of Hydra' },
   { year: 2021, title: 'Started SoundCloud’s bot; Groovy went offline', detail: 'Groovy had reached 16M+ servers and $1M+ revenue by 2021.', archive: 'https://web.archive.org/web/20210807122905/https://groovy.bot/' },
   { year: 2022, title: 'Built Hey, Netflix for Netflix' },
-  { year: 2026, title: 'Hydra’s rebuild and new collaborations', isNew: true },
+  { year: 2026, title: 'Leading Hydra’s rebuild, building Digital Office 24’s customer platform, and working with Top.gg and Finaure', isNew: true },
 ] as const;
