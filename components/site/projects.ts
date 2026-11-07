@@ -1,9 +1,13 @@
 import { asOf } from './content';
 import { figures } from './figures';
+import { cv } from '../../shared/cv';
+
+const digitalOffice = cv.experience.find(entry => entry.org === 'Digital Office 24');
+if (!digitalOffice) throw new Error('Digital Office 24 is missing from the CV');
 
 export type Image = { src: string; srcSet?: string; alt: string; width: number; height: number; caption: string };
 export type Project = {
-  slug: 'hydra' | 'hey-netflix' | 'soundcloud';
+  slug: 'digital-office-24' | 'hydra' | 'hey-netflix' | 'soundcloud';
   name: string;
   description: string;
   period: string;
@@ -19,6 +23,19 @@ export const hydraImage: Image = {
   alt: 'The hydra.bot leveling page, headed “You just leveled up!”',
 };
 export const projects: Project[] = [
+  {
+    slug: 'digital-office-24', name: digitalOffice.org,
+    period: `${'start' in digitalOffice.period ? new Date(`${digitalOffice.period.start}-01T00:00:00Z`).toLocaleString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }) : ''} to now`,
+    role: `Contract ${digitalOffice.title.toLowerCase()}`,
+    caption: 'Customer platform, built solo',
+    description: 'I built Digital Office 24’s production customer platform alone, from HubSpot CRM integration to billing.',
+    mark: { src: '/marks/digital-office-24.png' },
+    body: {
+      paragraphs: [`I ${digitalOffice.summary.charAt(0).toLowerCase()}${digitalOffice.summary.slice(1).replace('Also did', 'I also did')}`],
+      facts: [{ term: 'Stack', value: digitalOffice.summary.match(/\(([^)]+)\)/)?.[1] ?? '' }],
+      links: [], figures: [],
+    },
+  },
   {
     shareImage: '/work/hydra-share.jpg',
     slug: 'hydra', name: 'Hydra', period: '2020 to now', role: 'Co-owner and engineer',
