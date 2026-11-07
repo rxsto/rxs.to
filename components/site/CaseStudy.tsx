@@ -18,15 +18,15 @@ export function CaseStudy({ item }: { item: Project }) {
       <div className={styles.caseIdentity}><ProjectHero project={item} /><h1 id="project-title" className={styles.caseTitle}>{item.name}</h1></div>
       {study.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
     </header>
-    <dl className={styles.facts}>
-      {[{ term: 'Role', value: item.role }, { term: 'Period', value: item.period }, ...study.facts].map(fact => <div key={fact.term}><dt>{fact.term}</dt><dd>{fact.value}</dd></div>)}
-      {study.links.length > 0 && <div><dt>Links</dt><dd>{study.links.map(link => <a key={link.url} className={styles.link} href={link.url} target="_blank" rel="noopener noreferrer">{link.label} ↗</a>)}</dd></div>}
-    </dl>
     {study.figures.map(figure => <figure key={figure.src} className={styles.figure}>
       <div className={styles.frame}><img src={figure.src} srcSet={figure.srcSet} sizes="(min-width: 40rem) 40rem, 100vw" alt={figure.alt} width={figure.width} height={figure.height} decoding="async" /></div>
       <figcaption>{figure.caption}</figcaption>
     </figure>)}
+    <dl className={styles.facts}>
+      {[{ term: 'Role', value: item.role }, { term: 'Period', value: item.period }, ...study.facts].map(fact => <div key={fact.term}><dt>{fact.term}</dt><dd>{fact.value}</dd></div>)}
+      {study.links.length > 0 && <div><dt>Links</dt><dd>{study.links.map(link => <a key={link.url} className={styles.link} href={link.url} target="_blank" rel="noopener noreferrer">{link.label} ↗</a>)}</dd></div>}
+    </dl>
     <div className={styles.section}><p>Have a project in mind?</p><div className={styles.actions}><EmailButton /></div></div>
-    <nav className={styles.next} aria-label="Project navigation"><a className={styles.link} href="/#work">All work</a><a className={styles.link} href={`/${next.slug}`}>Next: {next.name} →</a></nav>
+    <nav className={styles.next} aria-label="Project navigation"><a className={styles.link} href={`/${next.slug}`}>Next: {next.name} →</a></nav>
   </article>;
 }
