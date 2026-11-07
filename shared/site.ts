@@ -28,11 +28,17 @@ export function pageMetadata({ path, title, description, types, image = site.ima
   /** <link rel="alternate">: media type to path. */
   types?: Record<string, string>;
 }): Metadata {
+  const home = path === '/';
+  const pageUrl = home ? `${site.origin}/` : path;
+  const shareImage = home ? new URL(image, site.origin).href : image;
   return {
+    // vinext strips the root slash when resolving against metadataBase.
+    // The home page uses absolute URLs so canonical and og:url retain it.
+    ...(home && { metadataBase: null }),
     title: { absolute: title.includes('Oskar Lang') ? title : `${title} | Oskar Lang` },
     description,
-    twitter: { card: largeImage ? 'summary_large_image' : 'summary', title, description, images: [image] },
-    alternates: { canonical: path, ...(types && { types }) },
-    openGraph: { type: 'website', title, description, url: path === '/' ? `${site.origin}/` : path, siteName: site.name, images: [image] },
+    twitter: { card: largeImage ? 'summary_large_image' : 'summary', title, description, images: [shareImage] },
+    alternates: { canonical: pageUrl, ...(types && { types }) },
+    openGraph: { type: 'website', title, description, url: pageUrl, siteName: site.name, images: [shareImage] },
   };
 }
