@@ -32,8 +32,8 @@ for (const path of ['/', '/digital-office-24', '/hydra', '/hey-netflix', '/sound
       assert.ok(robots.every(value => value.split(/,\s*/).includes('noindex')), `404 robots disagree: ${robots}`);
     }
     const projectImages = { '/hydra': '/work/hydra-share.jpg', '/soundcloud': '/work/soundcloud-share.jpg', '/hey-netflix': '/avatar.png' };
-    const eagerPortrait = /<img[^>]+src="\/portrait.png"[^>]+loading="eager"/.test(html);
-    const portraitPreloads = [...head.matchAll(/<link[^>]*rel="preload"[^>]*href="\/portrait.png"[^>]*>/g)];
+    const eagerPortrait = /<img[^>]+src="\/avatar.png"[^>]+loading="eager"/.test(html);
+    const portraitPreloads = [...head.matchAll(/<link[^>]*rel="preload"[^>]*href="\/avatar.png"[^>]*>/g)];
     assert.equal(portraitPreloads.length, eagerPortrait ? 1 : 0, `${path} portrait preload follows rendered portrait`);
     const expectedImage = projectImages[path] ?? '/avatar.png';
     if (path === '/') assert.ok(head.includes('property="og:url" content="https://rxs.to/"'));

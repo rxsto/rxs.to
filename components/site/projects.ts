@@ -27,11 +27,11 @@ export const projects: Project[] = [
     slug: 'digital-office-24', name: digitalOffice.org,
     period: `${'start' in digitalOffice.period ? new Date(`${digitalOffice.period.start}-01T00:00:00Z`).toLocaleString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }) : ''} to now`,
     role: `${digitalOffice.title} (contract)`,
-    caption: 'Customer platform, built solo',
+    caption: 'A home for the working day.',
     description: 'I built Digital Office 24’s production customer platform alone, from HubSpot CRM integration to billing.',
     mark: { src: '/marks/digital-office-24.png' },
     body: {
-      paragraphs: ['I built and run Digital Office 24’s production customer platform alone. It connects HubSpot CRM with demo booking, the customer area and billing. I also handled its GDPR and consent work.'],
+      paragraphs: ['I built and run Digital Office 24’s production customer platform alone, from HubSpot CRM integration to billing.', 'The platform brings demo booking and the customer area together. I also handled its GDPR and consent work.'],
       facts: [{ term: 'Stack', value: digitalOffice.summary.match(/\(([^)]+)\)/)?.[1] ?? '' }],
       links: [], figures: [],
     },
@@ -39,12 +39,12 @@ export const projects: Project[] = [
   {
     shareImage: '/work/hydra-share.jpg',
     slug: 'hydra', name: 'Hydra', period: '2020 to now', role: 'Co-owner and engineer',
-    caption: `Leveling bot · ${figures.hydraServers} servers`,
+    caption: 'A home for Discord communities.',
     description: `I co-own Hydra, a leveling and community bot serving ${figures.hydraServers} Discord servers.`,
     mark: { src: '/marks/hydra.png' },
     body: {
       paragraphs: [
-        `I built most of the hydra.bot web app, including premium subscriptions, and co-develop the Kotlin backend as its second-largest contributor. For the 2026 rebuild, I lead the frontend, infrastructure and monorepo.`,
+        `I built most of the hydra.bot web app in Vue and Nuxt, including premium subscriptions, and co-develop the Kotlin backend as its second-largest contributor. For the 2026 rebuild in Rust on Kubernetes, I lead the frontend, infrastructure and monorepo.`,
         `Founded by Jochen Segner, Hydra is a leveling, welcome and reaction-role bot serving ${figures.hydraServers} Discord servers as of ${asOf}.`,
       ],
       facts: [{ term: 'Stack', value: 'Vue, Nuxt, Kotlin; 2026 rebuild in Rust on Kubernetes' }],
@@ -53,23 +53,23 @@ export const projects: Project[] = [
   },
   {
     slug: 'hey-netflix', name: 'Hey, Netflix', period: '2022 to 2023', role: 'Software engineer (contract)',
-    caption: 'Movie-night bot for Netflix · Webby Honoree',
+    caption: 'Movie nights, made for Discord.',
     description: 'I built Hey, Netflix with Jochen Segner for Netflix, a Webby Honoree in 2023.',
     mark: { src: '/marks/netflix.svg' },
     body: {
-      paragraphs: [`I built Hey, Netflix, a movie-night Discord bot, with Jochen Segner for Netflix, credited to HydraBot. It reached ${figures.netflixServers} servers and ${figures.netflixSessions} sessions in its first month. The project was a Webby Honoree in 2023.`],
+      paragraphs: [`I built Hey, Netflix, a movie-night Discord bot, with Jochen Segner for Netflix, credited to HydraBot. It reached ${figures.netflixServers} servers and ${figures.netflixSessions} sessions in its first month. It was billed as the fastest-growing branded app on Discord and was a Webby Honoree in 2023.`],
       facts: [], links: [{ label: 'Webby Honoree 2023', url: 'https://winners.webbyawards.com/2023/advertising-media-pr/individual/game-or-application/251137/hey-netflix-discord-bot' }], figures: [],
     },
   },
   {
     shareImage: '/work/soundcloud-share.jpg',
     slug: 'soundcloud', name: 'SoundCloud', period: '2021 to now', role: 'Engineer and project lead (contract)',
-    caption: `Official SoundCloud Discord bot · ${figures.soundcloudServers} servers`,
+    caption: 'Official SoundCloud bot.',
     description: `I lead the official SoundCloud bot project, on ${figures.soundcloudServers} servers.`,
     mark: { src: '/marks/soundcloud.svg' },
     body: {
       paragraphs: [
-        `I lead the web frontend, co-develop the Kotlin backend and managed the 2022 launch. I set up and run production in the SoundCloud AWS organization with Terraform.`,
+        `I manage the project with SoundCloud, including the 2022 launch and the move to OAuth 2.1. I lead the TypeScript and Nuxt web frontend and co-develop the Kotlin backend. I set up and run production in the SoundCloud AWS organization with Terraform.`,
         `Built and run with Jochen Segner, the official SoundCloud Discord bot serves ${figures.soundcloudServers} servers as of ${asOf}.`,
       ],
       facts: [{ term: 'Stack', value: 'TypeScript and Nuxt frontend; Kotlin backend; Terraform on AWS' }],

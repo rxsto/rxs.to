@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { ReturnFocus } from '../../components/site/ReturnFocus';
 import { SiteFrame } from '../../components/site/SiteFrame';
@@ -6,7 +7,7 @@ import { ProjectHero } from '../../components/site/ProjectHero';
 import styles from '../../components/site/site.module.css';
 import { jsonLd, pageMetadata, site, websiteNode } from '../../shared/site';
 const title = 'Oskar Lang, software engineer';
-const description = 'I build web products for clients like Digital Office 24, Top.gg and Finaure, alongside my own products.';
+const description = 'I build web products and Discord bots. Based in Kufstein, Austria.';
 const url = site.origin;
 
 export const metadata = pageMetadata({ path: '/', title, description });
@@ -23,7 +24,7 @@ const schema = jsonLd([
 export default function Page() {
   return <SiteFrame><ReturnFocus /><section id="work" tabIndex={-1} className={styles.section} aria-labelledby="work-title">
     <h2 id="work-title" className={styles.heading}>Selected work</h2>
-    <ul className={styles.rows}>{projects.map(item => <li key={item.slug} id={`card-${item.slug}`}><a className={styles.row} href={`/${item.slug}`} aria-labelledby={`card-title-${item.slug}`} aria-describedby={`card-description-${item.slug}`}><ProjectHero project={item} /><span className={styles.rowText}><span className={styles.rowTitle} id={`card-title-${item.slug}`}>{item.name}</span><span className={styles.rowDetail} id={`card-description-${item.slug}`}>{item.caption}</span></span><ArrowRight className={styles.rowArrow} aria-hidden="true" /></a></li>)}</ul>
+    <ul className={styles.rows}>{projects.map(item => <li key={item.slug} id={`card-${item.slug}`}><Link prefetch className={styles.row} href={`/${item.slug}`} aria-labelledby={`card-title-${item.slug}`} aria-describedby={`card-description-${item.slug}`}><ProjectHero project={item} /><span className={styles.rowText}><span className={styles.rowTitle} id={`card-title-${item.slug}`}>{item.name}</span><span className={styles.rowDetail} id={`card-description-${item.slug}`}>{item.caption}</span></span><ArrowRight className={styles.rowArrow} aria-hidden="true" /></Link></li>)}</ul>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schema }} />
   </section></SiteFrame>;
 }

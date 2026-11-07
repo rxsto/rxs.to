@@ -1,10 +1,11 @@
 'use client';
 
 import { Moon, Sun } from 'lucide-react';
+import button from '@/components/arc/button/button.module.css';
 import styles from './site.module.css';
 
 export function ThemeToggle() {
-  return <button type="button" className={`${styles.roundButton} ${styles.themeToggle}`} onClick={() => {
+  return <button type="button" className={`${button.button} ${button.ghost} ${button.md} ${styles.themeToggle}`} onClick={() => {
     const root = document.documentElement;
     const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
     const next = dark ? 'light' : 'dark';

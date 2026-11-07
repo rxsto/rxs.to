@@ -55,7 +55,7 @@
 
 .cv .contact a { display: inline-flex; align-items: center; min-block-size: 1.5rem; }
 @media print {
-  .cv-topbar { display: none; }
+  .cv-page .cv-topbar { display: none; }
   .cv main { margin-block-start: 1.5rem; }
 }
 

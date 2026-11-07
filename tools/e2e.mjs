@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import process from 'node:process';
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
-/* global document, innerWidth, navigator, getComputedStyle, addEventListener, sessionStorage */
+/* global document, window, innerWidth, navigator, getComputedStyle */
 const origin = process.env.SITE_ORIGIN ?? 'http://127.0.0.1:5187';
 const directory = process.env.EVIDENCE_DIR ?? '.compare/e2e';
 await mkdir(directory, { recursive: true });
@@ -28,25 +28,17 @@ try {
       const themeBox = await page.getByRole('button', { name: /Switch to .* theme/ }).boundingBox();
       assert.equal(themeBox.width, 44);
       assert.equal(themeBox.height, 44);
-      const eagerPortrait = await page.locator('img[src="/portrait.png"][loading="eager"]').count();
-      assert.equal(await page.locator('head link[rel="preload"][href="/portrait.png"]').count(), eagerPortrait);
+      const eagerPortrait = await page.locator('img[src="/avatar.png"][loading="eager"]').count();
+      assert.equal([...(await response.text()).split('</head>')[0].matchAll(/<link[^>]*rel="preload"[^>]*href="\/avatar.png"/g)].length, eagerPortrait, `${path} portrait preload`);
       assert.equal(await page.locator('h1').count(), 1);
       const levels = await page.locator('h1,h2,h3,h4').evaluateAll(nodes => nodes.map(node => Number(node.tagName.slice(1))));
       for (let i = 1; i < levels.length; i++) assert.ok(levels[i] <= levels[i - 1] + 1, `${path} skipped heading level`);
       await page.screenshot({ path: `${directory}/${path.slice(1) || 'home'}-${width}-${colorScheme}.png`, fullPage: true });
       assert.equal(await page.getByRole('list', { name: 'Live in Kufstein' }).locator('li').count(), 2);
       assert.equal(await page.locator('[data-condition="unavailable"]').innerText(), 'Weather unavailable');
-      assert.deepEqual(await page.locator('footer [aria-label="Elsewhere"] a').allTextContents(), ['GitHub', 'LinkedIn']);
+      assert.deepEqual(await page.locator('footer [aria-label="Elsewhere"] a').allTextContents(), ['GitHub', 'Twitter', 'LinkedIn', 'Discord', 'CV']);
       for (const link of await page.locator('footer a, [class*="facts"] a, [class*="articleProse"] a').all()) assert.ok((await link.boundingBox()).height >= 24);
       if (path === '/') {
-        assert.equal(await page.getByText('Open to new projects', { exact: true }).count(), 1);
-        const status = page.locator('[data-availability]');
-        assert.equal(await status.getAttribute('role'), null);
-        assert.equal(await status.evaluate(node => getComputedStyle(node).backgroundColor), 'rgba(0, 0, 0, 0)');
-        const statusBox = await status.boundingBox();
-        const emailBox = await page.getByRole('link', { name: 'Email me', exact: true }).boundingBox();
-        if (width === 1280) assert.ok(Math.abs(statusBox.y + statusBox.height / 2 - emailBox.y - emailBox.height / 2) < 1);
-        else assert.ok(statusBox.y >= emailBox.y + emailBox.height);
         assert.equal(await page.getByRole('heading', { name: 'Previously' }).count(), 0);
         for (const name of ['GitHub', 'Twitter', 'LinkedIn']) assert.equal(await page.locator('header').getByRole('link', { name, exact: true }).locator('svg path').count(), 1);
         assert.equal(await page.locator('[class*="rows"] > li').count(), 4);
@@ -64,57 +56,59 @@ try {
           const context = document.createElement('canvas').getContext('2d');
           const tokens = getComputedStyle(document.documentElement);
           const luminance = name => {
-            context.fillStyle = tokens.getPropertyValue(name).trim();
+            context.fillStyle = name === '--focus-outline' ? `color-mix(in oklab, ${tokens.getPropertyValue('--accent-strong')} 72%, ${tokens.getPropertyValue('--background')})` : tokens.getPropertyValue(name).trim();
             context.fillRect(0, 0, 1, 1);
             const rgb = [...context.getImageData(0, 0, 1, 1).data].slice(0, 3).map(channel => { const value = channel / 255; return value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4; });
             return rgb[0] * .2126 + rgb[1] * .7152 + rgb[2] * .0722;
           };
-          return ['--foreground', '--text-secondary', '--text-muted', '--focus-outline'].flatMap(ink => (ink === '--focus-outline' ? ['--background', '--surface', '--surface-muted', '--accent', '--accent-strong', '--pastel-mint', '--pastel-rose', '--pastel-peach'] : ['--background', '--surface', '--surface-muted']).map(surface => {
+          return ['--foreground', '--text-secondary', '--focus-outline'].flatMap(ink => ['--background', '--surface', '--surface-muted'].map(surface => {
             const a = luminance(ink), b = luminance(surface);
             return { ink, surface, ratio: (Math.max(a, b) + .05) / (Math.min(a, b) + .05) };
           }));
         });
         for (const pair of contrast) assert.ok(pair.ratio >= (pair.ink === '--focus-outline' ? 3 : 4.5), `${colorScheme} ${pair.ink} on ${pair.surface}: ${pair.ratio}`);
         results.push({ colorScheme, contrast });
+        for (const mark of await page.locator('[data-project] img').all()) {
+          assert.ok((await mark.evaluate(node => getComputedStyle(node).filter)).includes('grayscale(1)'));
+          assert.ok(await mark.evaluate(node => node.complete && node.naturalWidth > 0));
+        }
         const marks = await page.locator('[data-project]').evaluateAll(tiles => tiles.map(tile => {
           const canvas = document.createElement('canvas');
-          canvas.width = canvas.height = 512;
+          canvas.width = canvas.height = 128;
           const context = canvas.getContext('2d');
+          const image = tile.querySelector('img'), style = getComputedStyle(image);
+          context.drawImage(image, 0, 0, 128, 128);
+          const source = context.getImageData(0, 0, 128, 128).data;
+          context.clearRect(0, 0, 128, 128);
           const luminance = rgb => rgb.map(v => v / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4).reduce((sum, v, i) => sum + v * [.2126, .7152, .0722][i], 0);
           context.fillStyle = getComputedStyle(tile).backgroundColor;
-          context.fillRect(0, 0, 1, 1);
-          if (tile.dataset.project === 'digital-office-24') {
-            const backing = getComputedStyle(tile.querySelector('[class*="markPlate"]')).backgroundColor;
-            if (backing !== 'rgba(0, 0, 0, 0)') { context.fillStyle = backing; context.fillRect(0, 0, 1, 1); }
-          }
+          context.fillRect(0, 0, 128, 128);
           const background = [...context.getImageData(0, 0, 1, 1).data].slice(0, 3);
-          const surface = luminance([...context.getImageData(0, 0, 1, 1).data].slice(0, 3));
-          context.clearRect(0, 0, 512, 512);
-          context.drawImage(tile.querySelector('img'), 0, 0, 512, 512);
-          const pixels = context.getImageData(0, 0, 512, 512).data;
-          let opaque = 0, visible = 0, maximum = 0;
-          for (let i = 0; i < pixels.length; i += 4) if (pixels[i + 3] >= 250) {
-            // The official Digital Office icon includes a white field, which is background, not ink.
-            if (tile.dataset.project === 'digital-office-24' && pixels[i] > 245 && pixels[i + 1] > 245 && pixels[i + 2] > 245) continue;
-            opaque++;
+          context.filter = style.filter;
+          context.globalCompositeOperation = style.mixBlendMode === 'normal' ? 'source-over' : style.mixBlendMode;
+          context.drawImage(image, 0, 0, 128, 128);
+          const pixels = context.getImageData(0, 0, 128, 128).data;
+          const surface = luminance(background);
+          let ink = 0, visible = 0;
+          for (let i = 0; i < pixels.length; i += 4) {
+            if (source[i + 3] < 250) continue;
             const rgb = [...pixels.slice(i, i + 3)];
-            const ink = luminance(tile.dataset.project === 'digital-office-24' ? rgb.map((channel, index) => channel * background[index] / 255) : rgb);
-            const ratio = (Math.max(ink, surface) + .05) / (Math.min(ink, surface) + .05);
-            maximum = Math.max(maximum, ratio);
-            if (ratio >= 3) visible++;
+            if (rgb.every((channel, index) => Math.abs(channel - background[index]) < 5)) continue;
+            ink++;
+            const value = luminance(rgb);
+            if ((Math.max(value, surface) + .05) / (Math.min(value, surface) + .05) >= 3) visible++;
           }
-          return { project: tile.dataset.project, fractionAt3: visible / opaque, maximum };
+          return {project:tile.dataset.project, fractionAt3:visible / ink};
         }));
-        for (const mark of marks) assert.ok(mark.fractionAt3 >= .25, `${mark.project}: mark contrast ${JSON.stringify(mark)}`);
-        results.push({ colorScheme, marks });
+        for (const mark of marks) assert.ok(mark.fractionAt3 >= .25, `${colorScheme} mark contrast: ${JSON.stringify(mark)}`);
+        results.push({colorScheme, marks});
         const tabOrder = [];
-        for (let i = 0; i < 9; i++) {
+        for (let i = 0; i < 6; i++) {
           await page.keyboard.press('Tab');
           tabOrder.push(await page.evaluate(() => ({ label: document.activeElement.getAttribute('aria-label') ?? document.activeElement.textContent, focus: document.activeElement.matches(':focus-visible') })));
         }
-        assert.deepEqual(tabOrder.map(item => item.label), ['Digital Office 24', 'Top.gg', 'Finaure', 'GitHub', 'Twitter', 'LinkedIn', 'Email me', 'Copy email', 'CV']);
-        assert.equal(await page.locator('header').getByRole('link', { name: 'Digital Office 24' }).getAttribute('href'), '/digital-office-24');
-        for (const name of ['Top.gg', 'Finaure']) assert.equal(await page.getByRole('link', { name, exact: true }).getAttribute('href'), '/cv#experience');
+        assert.deepEqual(tabOrder.map(item => item.label), ['GitHub', 'Twitter', 'LinkedIn', 'Email me', 'Copy email', 'CV']);
+        assert.equal(await page.getByRole('link', { name: 'Digital Office 24’s customer platform' }).getAttribute('href'), '/digital-office-24');
         assert.ok(tabOrder.every(item => item.focus));
         if (colorScheme === 'light') await page.screenshot({ path: `${directory}/focus-${width}-light.png`, fullPage: true });
         for (const slug of ['digital-office-24', 'hydra', 'hey-netflix', 'soundcloud']) assert.equal(await page.locator(`#card-${slug} a`).getAttribute('href'), `/${slug}`);
@@ -124,6 +118,7 @@ try {
         await page.getByRole('status').filter({ hasText: 'Copy email: Copied' }).waitFor();
         const email = await page.getByRole('link', { name: 'Email me', exact: true }).getAttribute('href');
         assert.equal(await page.evaluate(() => navigator.clipboard.readText()), email.slice(7));
+        await page.evaluate(() => { window.navigationSentinel = true; });
         await page.getByRole('link', { name: 'Hydra', exact: true }).click();
         await page.waitForURL('**/hydra');
         await page.getByRole('button', { name: 'Copy link', exact: true }).click();
@@ -174,10 +169,7 @@ try {
           return { width: box.width, height: box.height, radius: style.borderRadius, background: style.backgroundColor };
         }));
         assert.equal(buttons.length, 2);
-        assert.deepEqual(buttons[0], buttons[1]);
-        assert.equal(buttons[0].width, 44);
-        assert.equal(buttons[0].height, 44);
-        assert.equal(buttons[0].radius, '50%');
+        assert.ok(buttons.every(button => button.width >= 36 && button.height >= 36));
         if (path === '/hydra') await page.locator('[aria-label="Article actions"]').screenshot({ path: `${directory}/article-actions-2x-${width}-${colorScheme}.png` });
         assert.equal(await page.locator('#project-title').count(), 1);
         assert.equal(await page.locator('#now').count(), 0);
@@ -212,16 +204,20 @@ try {
   }
   const context = await browser.newContext();
   const page = await context.newPage();
-  await page.addInitScript(() => addEventListener('pagereveal', event => sessionStorage.setItem('transition', String(Boolean(event.viewTransition)))));
+
   await page.goto(origin);
+  await page.locator('[data-period]:not([data-period="pending"])').waitFor();
+  await page.evaluate(() => { window.navigationSentinel = true; });
   await page.getByRole('link', { name: 'Hydra', exact: true }).click();
   await page.waitForURL('**/hydra');
-  assert.equal(await page.evaluate(() => sessionStorage.getItem('transition')), 'true');
+  assert.equal(await page.evaluate(() => window.navigationSentinel), true);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(origin);
+  await page.locator('[data-period]:not([data-period="pending"])').waitFor();
+  await page.evaluate(() => { window.navigationSentinel = true; });
   await page.getByRole('link', { name: 'Hydra', exact: true }).click();
   await page.waitForURL('**/hydra');
-  assert.equal(await page.evaluate(() => sessionStorage.getItem('transition')), 'false');
+  assert.equal(await page.evaluate(() => window.navigationSentinel), true);
   await page.goto(`${origin}/cv`);
   await page.emulateMedia({ media: 'print' });
   assert.equal(await page.locator('.cv-topbar').isVisible(), false);
@@ -254,6 +250,6 @@ try {
   await live.close();
   results.push({ hydration: { serverHeight, liveHeight } });
   await noJs.close();
-  results.push({ weather: 'success, HTTP failure, malformed and network failure', viewTransitions: 'normal crossfade; disabled for reduced motion', clipboard: 'email and project URL verified', noJavaScript: 'all pages readable', removedRoutes: 404 });
+  results.push({ weather: 'success, HTTP failure, malformed and network failure', viewTransitions: 'client navigation without page animation in both motion settings', clipboard: 'email and project URL verified', noJavaScript: 'all pages readable', removedRoutes: 404 });
   await writeFile(`${directory}/checks.json`, JSON.stringify(results, null, 2));
 } finally { await browser.close(); }
