@@ -61,7 +61,7 @@
 .articleNav { display: flex; align-items: center; justify-content: space-between; }
 .articleNav .roundButton, .roundButton { display: inline-flex; align-items: center; justify-content: center; inline-size: 2.75rem; block-size: 2.75rem; border: 1px solid var(--border); border-radius: 50%; background: var(--surface-muted); color: var(--foreground); text-decoration: none; transition: none; }
 .roundButton svg { inline-size: 1.1rem; block-size: 1.1rem; }
-.roundButton:active, .roundButton:active:not(:disabled) { transform: none; background: var(--border); }
+.roundButton:active, .roundButton:active:not(:disabled), .articleNav .roundButton:active:not(:disabled) { transform: none; background: var(--border); }
 .caseHead { display: grid; gap: 1rem; }
 
 .caseTitle { font-size: 1rem; }
@@ -74,7 +74,7 @@
   .inlineLink:hover, .footerLinks a:hover, .link:hover, .archiveLink:hover { color: var(--foreground); text-decoration: underline; }
   .button:hover, .splitButton .copyEmail:hover:not(:disabled) { background: var(--accent-strong); color: var(--accent-foreground); }
   .row:hover { background: var(--surface-muted); }
-  .secondaryButton:hover, .roundButton:hover:not(:disabled) { background: color-mix(in oklch, var(--surface-muted), var(--foreground) 8%); color: var(--foreground); }
+  .secondaryButton:hover, .roundButton:hover:not(:disabled), .articleNav .roundButton:hover:not(:disabled) { background: color-mix(in oklch, var(--surface-muted), var(--foreground) 8%); color: var(--foreground); }
 }
 @media (scripting: none) { .noScriptHide { display: none !important; } .splitButton > .button { border-radius: .75rem; } }
 @media print { .page:has(:global(.cv-page)) { display: block; min-block-size: 0; padding: 0; } .page:has(:global(.cv-page)) > :is(header, a) { display: none; } }
