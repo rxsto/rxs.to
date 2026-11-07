@@ -1,4 +1,4 @@
-import { cv, CvDocument, cvJsonLd, cvMetadata, cvSections, cvVariants } from '../../shared/cv';
+import { cv, CvDocument, cvJsonLd, cvMetadata, cvSections, cvVariants } from '../../../shared/cv';
 import './cv.css';
 
 export const metadata = cvMetadata;
@@ -7,7 +7,6 @@ export default function Page() {
   return (
     <div className="cv-page">
       <div className="cv-toolbar">
-        <a href="/" className="cv-back">← rxs.to</a>
         <ul className="cv-downloads" aria-label="Download the CV">
           {cvVariants.map(v => (
             <li key={v.path}>

@@ -47,6 +47,8 @@ pnpm compare
 
 Set `BASELINE_URL` and `TARGET_URL` to use other ports. The comparison checks desktop and phone layouts, light and dark themes, keyboard focus, reduced motion, metadata, structured data, link targets, browser errors, and overflow.
 
+Against a built Worker on port 5187, run `pnpm e2e`, `pnpm check:headers`, and `pnpm check:metadata`; set `SITE_ORIGIN` for another origin and `EVIDENCE_DIR` to override the ignored `.compare/` output folders. On rs01, wrap browser checks with `flock /home/dev/.browser-test.lock nice -n 10 pnpm e2e`; this is an operator convention for that shared host, not a repository requirement.
+
 ## Deploy the new Worker
 
 Use the Cloudflare account containing `w2` and KV namespace `0e441d7fec3e4b848dbf6937e263f450`. The new Worker is `rxs-to`. Its configuration enables `workers_dev` and declares no routes or custom domains.

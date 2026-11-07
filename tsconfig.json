@@ -8,6 +8,7 @@
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
+    "paths": { "@/*": ["./*"] },
     "allowImportingTsExtensions": true,
     "types": ["node", "vite/client", "@cloudflare/workers-types"]
   },
