@@ -36,3 +36,18 @@ test('contact sentence compares displayed time, including different zones with e
   assert.equal(contactTime(now, 'Europe/Berlin'), null);
   assert.equal(contactTime(Date.parse('2026-07-07T16:12:00Z'), 'UTC'), "It's 16:12 for you, 18:12 in Kufstein.");
 });
+
+import { dayPeriod, weatherCondition } from '../shared/local-icons.ts';
+test('Kufstein day periods follow solar boundaries and local hour', () => {
+  const { sunrise, sunset } = kufsteinSolarTimes('2026-06-21');
+  for (const [instant, expected] of [
+    [sunrise - 46 * 60_000, 'night'], [sunrise - 20 * 60_000, 'dawn'],
+    [sunrise + 10 * 60_000, 'morning'], [Date.parse('2026-06-21T10:00:00Z'), 'noon'],
+    [Date.parse('2026-06-21T13:00:00Z'), 'afternoon'], [sunset - 10 * 60_000, 'sunset'],
+    [sunset + 46 * 60_000, 'night'],
+  ] as const) assert.equal(dayPeriod(instant), expected);
+});
+test('weather icon conditions distinguish codes even when names match', () => {
+  for (const [code, expected] of [[200, 'thunderstorm'], [301, 'drizzle'], [500, 'rain'], [601, 'snow'], [741, 'fog'], [800, 'clear'], [801, 'few-clouds'], [804, 'clouds']] as const) assert.equal(weatherCondition(code, 'Clouds'), expected);
+  assert.equal(weatherCondition(undefined, 'Rain'), 'rain');
+});

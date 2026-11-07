@@ -1,11 +1,13 @@
 'use client';
 
+import { Moon, Sunrise, Sunset, Sun, SunMedium, SunDim, CloudSun, CloudMoon, Cloud, CloudDrizzle, CloudRain, CloudLightning, Snowflake, CloudFog } from 'lucide-react';
+import { dayPeriod, weatherCondition } from '../../shared/local-icons';
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import type { Weather } from '../../shared/types/weather';
 import { isWeather } from '../../shared/is-weather';
 import { weatherDescription } from '../../shared/weather-description';
 
-import { contactTime, nextSolarEvent, viennaClock } from '../../shared/local-details';
+import { nextSolarEvent, viennaClock } from '../../shared/local-details';
 import styles from './site.module.css';
 
 /** Ticks on the minute. */
@@ -16,7 +18,7 @@ function subscribe(onChange: () => void) {
   return () => window.clearTimeout(timer);
 }
 
-/** Benji's footer line: the time in Kufstein. The server and a page without scripts get the plain place and zone. */
+/** Stable slots reserve the live details before hydration and while weather loads. */
 export function LocalTime() {
   const time = useSyncExternalStore(subscribe, () => Math.floor(Date.now() / 60_000), () => null);
   const [weather, setWeather] = useState<Weather | null>(null);
@@ -29,16 +31,15 @@ export function LocalTime() {
     return () => controller.abort();
   }, []);
   const solar = time !== null ? nextSolarEvent(time * 60_000) : null;
-  const details: { id: string; text: string }[] = [
-    { id: 'time', text: time !== null ? `${viennaClock.format(time * 60_000)} in Kufstein, Austria` : 'Kufstein, Austria (CET)' },
-    ...(weather ? [{ id: 'weather', text: `${weather.temperature}°C, ${weatherDescription(weather.description)}` }] : []),
-    ...(solar ? [{ id: 'solar', text: solar }] : []),
-  ];
-  return <ul aria-label="Live in Kufstein" style={{ display: 'flex', flexWrap: 'wrap', gap: '0 .75em', listStyle: 'none', margin: 0, padding: 0 }}>{details.map(detail => <li key={detail.id}>{detail.text}</li>)}</ul>;
-}
-
-export function ContactTime() {
-  const minute = useSyncExternalStore(subscribe, () => Math.floor(Date.now() / 60_000), () => null);
-  const sentence = minute === null ? 'Local time in Kufstein.' : contactTime(minute * 60_000, Intl.DateTimeFormat().resolvedOptions().timeZone);
-  return <p data-contact-time className={styles.contactTime} style={{ visibility: sentence === null ? 'hidden' : 'visible' }}>{sentence ?? 'Local time in Kufstein.'}</p>;
+  const period = time === null ? null : dayPeriod(time * 60_000);
+  const TimeIcon = period === null ? SunDim : { night: Moon, dawn: Sunrise, morning: SunDim, noon: Sun, afternoon: SunMedium, sunset: Sunset }[period];
+  const night = period === 'night' || period === 'dawn';
+  const condition = weather ? weatherCondition(weather.conditionCode, weather.description) : null;
+  const WeatherIcon = condition === null ? Cloud : { clear: night ? Moon : Sun, 'few-clouds': night ? CloudMoon : CloudSun, clouds: Cloud, drizzle: CloudDrizzle, rain: CloudRain, thunderstorm: CloudLightning, snow: Snowflake, fog: CloudFog }[condition];
+  const SolarIcon = solar?.startsWith('sunrise') ? Sunrise : Sunset;
+  return <ul aria-label="Live in Kufstein" className={styles.localDetails}>
+    <li data-period={period ?? 'pending'}><TimeIcon aria-hidden="true" /><span>{time !== null ? `${viennaClock.format(time * 60_000)} in Kufstein, Austria` : 'Kufstein, Austria (CET)'}</span></li>
+    <li className={styles.weatherSlot} data-condition={condition ?? 'unavailable'}>{weather ? <><WeatherIcon aria-hidden="true" /><span>{weather.temperature}°C, {weatherDescription(weather.description)}</span></> : <span>Weather unavailable</span>}</li>
+    <li style={{ visibility: solar ? 'visible' : 'hidden' }}><SolarIcon aria-hidden="true" /><span>{solar ?? 'sunrise 00:00'}</span></li>
+  </ul>;
 }

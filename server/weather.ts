@@ -41,6 +41,8 @@ export async function getWeather(env: WeatherEnvironment): Promise<Weather> {
     description: response.weather[0].main,
     temperature: Math.round(response.main.temp),
   };
+  const code = response.weather[0].id;
+  if (typeof code === 'number' && Number.isInteger(code) && code >= 200 && code <= 804) state.conditionCode = code;
   await env.KV.put('weather', JSON.stringify(state), { expirationTtl: 3600 }).catch(() => {});
   return state;
 }

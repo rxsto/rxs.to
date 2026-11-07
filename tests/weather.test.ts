@@ -94,3 +94,12 @@ test('footer preserves all eight condition labels and lowercases unknown ones', 
   const labels = { Clear: 'clear', Clouds: 'cloudy', Drizzle: 'drizzling', Fog: 'foggy', Mist: 'misty', Rain: 'raining', Snow: 'snowing', Thunderstorm: 'stormy', Haze: 'haze' };
   for (const [condition, label] of Object.entries(labels)) assert.equal(weatherDescription(condition), label);
 });
+
+test('OpenWeather condition codes survive upstream parsing and caching', async () => {
+  const kv = cache();
+  mock.method(globalThis, 'fetch', async () => Response.json({ ...upstream, weather: [{ main: 'Clouds', id: 801 }] }));
+  const result = await getWeather({ KV: kv });
+  assert.equal(result.conditionCode, 801);
+  assert.equal(JSON.parse(kv.writes[0]!.value).conditionCode, 801);
+  assert.deepEqual(await getWeather({ KV: cache(result) }), result);
+});
