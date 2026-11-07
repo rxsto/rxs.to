@@ -61,3 +61,8 @@
 
 .cv .contact a { color: var(--foreground); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
 .cv .contact a:active { color: var(--highlighted); }
+
+@media screen and (width < 40rem) {
+  .cv article { grid-template-columns: minmax(0, 1fr); }
+  .cv .date { grid-column: 1; }
+}

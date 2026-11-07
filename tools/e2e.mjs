@@ -83,7 +83,11 @@ try {
           const luminance = rgb => rgb.map(v => v / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4).reduce((sum, v, i) => sum + v * [.2126, .7152, .0722][i], 0);
           context.fillStyle = getComputedStyle(tile).backgroundColor;
           context.fillRect(0, 0, 1, 1);
-          if (tile.dataset.project === 'digital-office-24') { context.fillStyle = 'white'; context.fillRect(0, 0, 1, 1); }
+          if (tile.dataset.project === 'digital-office-24') {
+            const backing = getComputedStyle(tile.querySelector('[class*="markPlate"]')).backgroundColor;
+            if (backing !== 'rgba(0, 0, 0, 0)') { context.fillStyle = backing; context.fillRect(0, 0, 1, 1); }
+          }
+          const background = [...context.getImageData(0, 0, 1, 1).data].slice(0, 3);
           const surface = luminance([...context.getImageData(0, 0, 1, 1).data].slice(0, 3));
           context.clearRect(0, 0, 512, 512);
           context.drawImage(tile.querySelector('img'), 0, 0, 512, 512);
@@ -93,7 +97,8 @@ try {
             // The official Digital Office icon includes a white field, which is background, not ink.
             if (tile.dataset.project === 'digital-office-24' && pixels[i] > 245 && pixels[i + 1] > 245 && pixels[i + 2] > 245) continue;
             opaque++;
-            const ink = luminance([...pixels.slice(i, i + 3)]);
+            const rgb = [...pixels.slice(i, i + 3)];
+            const ink = luminance(tile.dataset.project === 'digital-office-24' ? rgb.map((channel, index) => channel * background[index] / 255) : rgb);
             const ratio = (Math.max(ink, surface) + .05) / (Math.min(ink, surface) + .05);
             maximum = Math.max(maximum, ratio);
             if (ratio >= 3) visible++;
@@ -103,11 +108,13 @@ try {
         for (const mark of marks) assert.ok(mark.fractionAt3 >= .25, `${mark.project}: mark contrast ${JSON.stringify(mark)}`);
         results.push({ colorScheme, marks });
         const tabOrder = [];
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 9; i++) {
           await page.keyboard.press('Tab');
           tabOrder.push(await page.evaluate(() => ({ label: document.activeElement.getAttribute('aria-label') ?? document.activeElement.textContent, focus: document.activeElement.matches(':focus-visible') })));
         }
-        assert.deepEqual(tabOrder.map(item => item.label), ['GitHub', 'Twitter', 'LinkedIn', 'Email me', 'Copy email', 'CV']);
+        assert.deepEqual(tabOrder.map(item => item.label), ['Digital Office 24', 'Top.gg', 'Finaure', 'GitHub', 'Twitter', 'LinkedIn', 'Email me', 'Copy email', 'CV']);
+        assert.equal(await page.locator('header').getByRole('link', { name: 'Digital Office 24' }).getAttribute('href'), '/digital-office-24');
+        for (const name of ['Top.gg', 'Finaure']) assert.equal(await page.getByRole('link', { name, exact: true }).getAttribute('href'), '/cv#experience');
         assert.ok(tabOrder.every(item => item.focus));
         if (colorScheme === 'light') await page.screenshot({ path: `${directory}/focus-${width}-light.png`, fullPage: true });
         for (const slug of ['digital-office-24', 'hydra', 'hey-netflix', 'soundcloud']) assert.equal(await page.locator(`#card-${slug} a`).getAttribute('href'), `/${slug}`);
@@ -130,7 +137,10 @@ try {
         for (const entry of await page.locator('.cv article').all()) {
           const heading = await entry.locator('h3').boundingBox();
           const date = await entry.locator('.date').boundingBox();
-          assert.ok(date.y < heading.y + 10, 'CV date stays beside its heading');
+          if (width < 640) {
+            assert.ok(date.y >= heading.y + heading.height, 'CV date follows the complete heading');
+            assert.ok(Math.abs(date.x - heading.x) < 1, 'CV date aligns with its heading');
+          } else assert.ok(date.y < heading.y + 10, 'Desktop CV date stays beside its heading');
         }
         assert.deepEqual(await page.locator('.cv-page > :is(.cv-topbar, .cv)').evaluateAll(nodes => nodes.map(node => node.classList.contains('cv-topbar') ? 'cv-topbar' : 'cv')), ['cv-topbar', 'cv']);
         assert.equal(await page.locator('.cv-topbar img').count(), 0);
@@ -144,10 +154,15 @@ try {
         for (const link of await page.locator('.cv .contact a').all()) assert.ok((await link.boundingBox()).height >= 24);
       }
       if (path === '/nope') {
+        const footer = await page.locator('footer').boundingBox();
+        assert.ok(Math.abs(footer.y + footer.height - 852) < 1, '404 footer ends at viewport bottom padding');
         const gap = await page.locator('h1').evaluate(element => element.nextElementSibling.getBoundingClientRect().top - element.getBoundingClientRect().bottom);
         assert.ok(Math.abs(gap - 16) < 1, `404 paragraph gap: ${gap}`);
       }
       if (['/digital-office-24', '/hydra', '/hey-netflix', '/soundcloud'].includes(path)) {
+        const next = await page.locator('[aria-label="Project navigation"]').boundingBox();
+        const email = await page.getByRole('link', { name: 'Email me', exact: true }).boundingBox();
+        assert.ok(Math.abs(next.x - email.x) < 1, 'Next navigation aligns with the contact action');
         assert.equal(await page.getByRole('link', { name: 'All work', exact: true }).count(), 0);
         if (['/hydra', '/soundcloud'].includes(path)) {
           const figure = await page.locator('figure').boundingBox();

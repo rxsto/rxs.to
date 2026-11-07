@@ -1,7 +1,8 @@
 .page {
   --section-gap: clamp(3.5rem, 3rem + 2vw, 5rem);
   display: grid;
-  align-content: start;
+  min-block-size: 100svh;
+  grid-template-rows: 1fr auto;
   grid-template-columns: minmax(1.5rem, 1fr) min(100% - 3rem, 40rem) minmax(1.5rem, 1fr);
   row-gap: var(--section-gap);
   padding-block: clamp(4rem, 2rem + 7vw, 8rem) 3rem;
@@ -11,7 +12,7 @@
 }
 .page > * { grid-column: 2; min-inline-size: 0; }
 .page > :is(header, a):has(+ :global(.cv-page)) { margin-block-end: calc(2rem - var(--section-gap)); }
-.main { display: grid; row-gap: var(--section-gap); }
+.main { display: grid; align-content: start; row-gap: var(--section-gap); }
 .section, .hero { display: grid; gap: 1rem; }
 .section > :where(p, ul, ol), .hero > p, .caseHead > p { margin: 0; }
 .heading, .name, .caseTitle { margin: 0; font: inherit; font-weight: 500; color: var(--foreground); }
@@ -20,7 +21,7 @@
 .inlineLink { display: inline-flex; align-items: baseline; gap: .3em; color: var(--foreground); font-weight: 500; text-decoration: none; white-space: nowrap; }
 .inlineLink svg { inline-size: 1em; block-size: 1em; align-self: center; }
 .link, .archiveLink { color: var(--foreground); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
-.archiveLink { font-size: .75rem; color: var(--text-muted); white-space: nowrap; }
+.archiveLink { font-size: inherit; color: var(--text-muted); }
 .localDetails { font-variant-numeric: tabular-nums; }
 .actions { justify-self: start; display: flex; align-items: center; gap: .75rem; margin-block-start: .5rem; }
 .heroActions { flex-wrap: wrap; }
@@ -44,8 +45,8 @@
 .tile[data-project='hey-netflix'] { background: var(--pastel-rose); }
 .tile[data-project='soundcloud'] { background: var(--pastel-peach); }
 .tile[data-project='digital-office-24'] { background: var(--pastel-blue); }
-.markPlate { position: relative; inline-size: 2.25rem; block-size: 1.875rem; border-radius: .375rem; overflow: clip; background: oklch(100% 0 none); }
-.markPlate .brandMark { position: absolute; inset-inline-start: 50%; inset-block-start: 50%; translate: -50% -50%; max-inline-size: none; inline-size: 3.875rem; block-size: 3.875rem; }
+.markPlate { position: relative; inline-size: 2.25rem; block-size: 1.875rem; border-radius: .375rem; overflow: clip; background: var(--mark-backing); }
+.markPlate .brandMark { position: absolute; inset-inline-start: 50%; inset-block-start: 50%; translate: -50% -50%; max-inline-size: none; inline-size: 3.875rem; block-size: 3.875rem; mix-blend-mode: multiply; }
 .brandMark { inline-size: 1.75rem; block-size: 1.75rem; object-fit: contain; }
 .tile[data-project='hydra'] .brandMark { inline-size: 2.25rem; block-size: 2.25rem; }
 .tile[data-project='hey-netflix'] .brandMark { inline-size: 2.5rem; }
@@ -54,7 +55,6 @@
 .rowDetail { color: var(--text-secondary); text-wrap: pretty; }
 .previous { font-size: .875rem; color: var(--text-muted); }
 .previous p { margin: 0; }
-.archiveEnding { white-space: nowrap; }
 .footer { display: grid; gap: 1rem; align-self: end; padding-block-start: 1.5rem; border-block-start: 1px solid var(--border); font-size: .8125rem; line-height: 1.7; color: var(--text-muted); }
 .footerRow { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .footerLinks { display: flex; gap: 1rem; margin: 0; padding: 0; list-style: none; }
@@ -74,7 +74,7 @@
 .frame { padding: .4rem; border: 1px solid var(--border); outline: 1px solid var(--border-subtle); outline-offset: 3px; border-radius: 1rem; background: var(--surface); overflow: clip; }
 .frame > img { display: block; inline-size: 100%; block-size: auto; border-radius: .6rem; border: 1px solid var(--border); }
 .figure figcaption { font-size: .8125rem; color: var(--text-muted); }
-.next { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 1rem; font-size: .875rem; }
+.next { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .875rem; }
 @media (hover: hover) and (pointer: fine) {
   .inlineLink:hover, .footerLinks a:hover, .link:hover, .archiveLink:hover { color: var(--foreground); text-decoration: underline; }
   .button:hover, .splitButton .copyEmail:hover:not(:disabled) { background: var(--accent-strong); color: var(--accent-foreground); }
@@ -91,7 +91,8 @@
 .caseIdentity { display: flex; align-items: center; gap: 1.25rem; }
 .caseHead > a { justify-self: start; font-size: .875rem; }
 .byline { color: var(--text-muted); font-size: .875rem; text-decoration: none; }
-.archiveLink, .footerLinks a { display: inline-flex; align-items: center; min-block-size: 1.5rem; }
+.archiveLink { padding-block: .25rem; }
+.footerLinks a { display: inline-flex; align-items: center; min-block-size: 1.5rem; }
 .themeToggle { border: 0; }
 .toLight { display: none; }
 :global([data-theme='dark']) .toDark { display: none; }

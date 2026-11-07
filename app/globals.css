@@ -50,6 +50,7 @@ body {
   --accent-strong: oklch(86% .04 285);
   --accent-foreground: oklch(29% .04 285);
   --pastel-blue: oklch(94% .025 235);
+  --mark-backing: transparent;
   --status-dot: oklch(48% .08 175);
   --pastel-mint: oklch(94% .025 175);
   --pastel-rose: oklch(95% .025 15);
@@ -70,6 +71,7 @@ body {
   --accent-strong: oklch(41% .04 285);
   --accent-foreground: oklch(92% .025 285);
   --pastel-blue: oklch(28% .03 235);
+  --mark-backing: oklch(80% .025 235);
   --status-dot: oklch(75% .08 175);
   --pastel-mint: oklch(28% .03 175);
   --pastel-rose: oklch(28% .03 15);
@@ -90,6 +92,7 @@ body {
   --accent-strong: oklch(41% .04 285);
   --accent-foreground: oklch(92% .025 285);
   --pastel-blue: oklch(28% .03 235);
+  --mark-backing: oklch(80% .025 235);
   --status-dot: oklch(75% .08 175);
   --pastel-mint: oklch(28% .03 175);
   --pastel-rose: oklch(28% .03 15);
