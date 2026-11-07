@@ -1,4 +1,7 @@
 import assert from 'node:assert/strict';
+import { Buffer } from 'node:buffer';
+/* global fetch */
+import { assertShareImage } from './share-image.mjs';
 import { execFileSync } from 'node:child_process';
 import { mkdir, writeFile } from 'node:fs/promises';
 import process from 'node:process';
@@ -28,7 +31,10 @@ for (const path of ['/', '/hydra', '/hey-netflix', '/soundcloud', '/cv', '/nope'
       assert.ok(robots.length > 0);
       assert.ok(robots.every(value => value.split(/,\s*/).includes('noindex')), `404 robots disagree: ${robots}`);
     }
-    const projectImages = { '/hydra': '/work/hydra-1280.webp', '/soundcloud': '/work/soundcloud-1280.webp', '/hey-netflix': '/avatar.png' };
+    const projectImages = { '/hydra': '/work/hydra-share.jpg', '/soundcloud': '/work/soundcloud-share.jpg', '/hey-netflix': '/avatar.png' };
+    const eagerPortrait = /<img[^>]+src="\/portrait.png"[^>]+loading="eager"/.test(html);
+    const portraitPreloads = [...head.matchAll(/<link[^>]*rel="preload"[^>]*href="\/portrait.png"[^>]*>/g)];
+    assert.equal(portraitPreloads.length, eagerPortrait ? 1 : 0, `${path} portrait preload follows rendered portrait`);
     const expectedImage = projectImages[path] ?? '/avatar.png';
     if (path === '/') assert.ok(head.includes('property="og:url" content="https://rxs.to/"'));
     assert.ok(head.includes(`property="og:image" content="https://rxs.to${expectedImage}"`), `${path} share image`);
@@ -37,6 +43,13 @@ for (const path of ['/', '/hydra', '/hey-netflix', '/soundcloud', '/cv', '/nope'
     if (path === '/cv') assert.ok(head.includes('<title>CV | Oskar Lang</title>'));
     records.push(`${path} ${name}: one title, description, og:title and twitter:title, all in head${path === '/nope' ? '; robots consistently noindex' : ''}`);
   }
+}
+for (const path of ['/work/hydra-share.jpg', '/work/soundcloud-share.jpg']) {
+  const response = await fetch(`${origin}${path}`);
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get('content-type'), 'image/jpeg');
+  assertShareImage(Buffer.from(await response.arrayBuffer()));
+  records.push(`${path}: served image/jpeg, 1200×630`);
 }
 await mkdir(directory, { recursive: true });
 await writeFile(`${directory}/metadata.txt`, `${records.join('\n')}\n`);

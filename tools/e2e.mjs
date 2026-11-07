@@ -9,7 +9,7 @@ await mkdir(directory, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const results = [];
 try {
-  for (const width of [1280, 390]) for (const colorScheme of ['light', 'dark']) {
+  for (const width of [1280, 390, 320]) for (const colorScheme of ['light', 'dark']) {
     const context = await browser.newContext({ viewport: { width, height: 900 }, colorScheme, timezoneId: 'Europe/Vienna', deviceScaleFactor: 2, permissions: ['clipboard-read', 'clipboard-write'] });
     const page = await context.newPage();
     const errors = [];
@@ -25,13 +25,18 @@ try {
       for (const image of await page.locator('img').all()) await image.evaluate(element => element.decode());
       assert.ok((await page.locator('body').evaluate(element => getComputedStyle(element).fontFamily)).includes('Inter'));
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${path} overflow`);
+      const themeBox = await page.getByRole('button', { name: /Switch to .* theme/ }).boundingBox();
+      assert.equal(themeBox.width, 44);
+      assert.equal(themeBox.height, 44);
+      const eagerPortrait = await page.locator('img[src="/portrait.png"][loading="eager"]').count();
+      assert.equal(await page.locator('head link[rel="preload"][href="/portrait.png"]').count(), eagerPortrait);
       assert.equal(await page.locator('h1').count(), 1);
       const levels = await page.locator('h1,h2,h3,h4').evaluateAll(nodes => nodes.map(node => Number(node.tagName.slice(1))));
       for (let i = 1; i < levels.length; i++) assert.ok(levels[i] <= levels[i - 1] + 1, `${path} skipped heading level`);
       await page.screenshot({ path: `${directory}/${path.slice(1) || 'home'}-${width}-${colorScheme}.png`, fullPage: true });
-      assert.equal(await page.getByRole('list', { name: 'Live in Kufstein' }).locator('li').count(), 3);
+      assert.equal(await page.getByRole('list', { name: 'Live in Kufstein' }).locator('li').count(), 2);
       assert.equal(await page.locator('[data-condition="unavailable"]').innerText(), 'Weather unavailable');
-      assert.deepEqual(await page.locator('footer [aria-label="Elsewhere"] a').allTextContents(), ['GitHub', 'Twitter', 'LinkedIn', 'Discord']);
+      assert.deepEqual(await page.locator('footer [aria-label="Elsewhere"] a').allTextContents(), ['GitHub', 'LinkedIn']);
       for (const link of await page.locator('footer a, [class*="facts"] a, [class*="articleProse"] a').all()) assert.ok((await link.boundingBox()).height >= 24);
       if (path === '/') {
         await page.locator('[class*="rows"]').screenshot({ path: `${directory}/tiles-2x-${width}-${colorScheme}.png` });
@@ -107,10 +112,16 @@ try {
         await page.waitForFunction(() => document.activeElement === document.querySelector('#card-hydra a'));
       }
       if (path === '/cv') {
-        assert.deepEqual(await page.locator('.cv-page > :is(.cv-toolbar, .cv-sections, .cv)').evaluateAll(nodes => nodes.map(node => node.className)), ['cv-toolbar', 'cv-sections', 'cv']);
+        assert.deepEqual(await page.locator('.cv-page > :is(.cv-topbar, .cv)').evaluateAll(nodes => nodes.map(node => node.classList.contains('cv-topbar') ? 'cv-topbar' : 'cv')), ['cv-topbar', 'cv']);
         assert.equal(await page.locator('.cv-topbar img').count(), 0);
+        const topbar = await page.locator('.cv-topbar').evaluate(node => {
+          const back = node.querySelector('a').getBoundingClientRect();
+          const downloads = node.querySelector('ul').getBoundingClientRect();
+          return Math.abs((back.top + back.bottom) / 2 - (downloads.top + downloads.bottom) / 2);
+        });
+        assert.ok(topbar < 1, 'CV downloads share the back-button row');
         assert.equal(await page.getByText('Oskar Lang', { exact: true }).count(), 1);
-        for (const link of await page.locator('.cv-sections a, .cv .contact a').all()) assert.ok((await link.boundingBox()).height >= 24);
+        for (const link of await page.locator('.cv .contact a').all()) assert.ok((await link.boundingBox()).height >= 24);
       }
       if (path === '/nope') {
         const gap = await page.locator('h1').evaluate(element => element.nextElementSibling.getBoundingClientRect().top - element.getBoundingClientRect().bottom);
@@ -142,6 +153,8 @@ try {
       await page.locator('[data-condition]:not([data-condition="unavailable"]):not([data-condition="pending"])').waitFor();
       await page.locator('footer').screenshot({ path: `${directory}/weather-${period}-${width}-${colorScheme}.png` });
       assert.equal(await page.locator('[data-period] svg').count(), 1);
+      const grouped = await page.locator('[class*="weatherGroup"] > span').evaluateAll(nodes => nodes.map(node => node.getBoundingClientRect().top));
+      assert.ok(Math.abs(grouped[0] - grouped[1]) < 1, 'Weather and solar event wrap together');
     }
     await page.goto(origin);
     await page.getByRole('button', { name: `Switch to ${colorScheme === 'light' ? 'dark' : 'light'} theme` }).click();
@@ -170,7 +183,7 @@ try {
   assert.equal(await page.evaluate(() => sessionStorage.getItem('transition')), 'false');
   await page.goto(`${origin}/cv`);
   await page.emulateMedia({ media: 'print' });
-  assert.equal(await page.locator('.cv-toolbar').isVisible(), false);
+  assert.equal(await page.locator('.cv-topbar').isVisible(), false);
   assert.equal(await page.getByRole('link', { name: 'Back home' }).isVisible(), false);
   await page.pdf({ path: `${directory}/cv-print.pdf`, format: 'A4' });
   await page.emulateMedia({ media: 'screen' });

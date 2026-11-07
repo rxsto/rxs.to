@@ -9,7 +9,7 @@ const origin = process.env.SITE_ORIGIN ?? 'http://127.0.0.1:5187';
 const browser = await chromium.launch();
 const results = [];
 try {
- for (const width of [1280,390]) for (const path of ['/','/hydra']) {
+ for (const width of [1280,390,320]) for (const path of ['/','/hydra']) {
   const context = await browser.newContext({viewport:{width,height:900}});
   const page = await context.newPage();
   await page.addInitScript(() => {
