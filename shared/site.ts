@@ -27,7 +27,7 @@ export function pageMetadata({ path, title, description, types }: {
   types?: Record<string, string>;
 }): Metadata {
   return {
-    title: { absolute: `${title} | ${site.name}` },
+    title: { absolute: title.includes('Oskar Lang') ? title : `${title} | Oskar Lang` },
     description,
     alternates: { canonical: path, ...(types && { types }) },
     openGraph: { type: 'website', title, description, url: path, siteName: site.name, images: [site.image] },

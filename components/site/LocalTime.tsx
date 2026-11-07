@@ -21,13 +21,14 @@ function subscribe(onChange: () => void) {
 /** Stable slots reserve the live details before hydration and while weather loads. */
 export function LocalTime() {
   const time = useSyncExternalStore(subscribe, () => Math.floor(Date.now() / 60_000), () => null);
+  const [failed, setFailed] = useState(false);
   const [weather, setWeather] = useState<Weather | null>(null);
   useEffect(() => {
     const controller = new AbortController();
     fetch('/api/weather', { signal: controller.signal })
       .then(response => response.ok ? response.json() : null)
-      .then((value: unknown) => { if (isWeather(value)) setWeather(value); })
-      .catch(() => {});
+      .then((value: unknown) => { if (isWeather(value)) setWeather(value); else setFailed(true); })
+      .catch(() => { if (!controller.signal.aborted) setFailed(true); });
     return () => controller.abort();
   }, []);
   const solar = time !== null ? nextSolarEvent(time * 60_000) : null;
@@ -39,7 +40,7 @@ export function LocalTime() {
   const SolarIcon = solar?.startsWith('sunrise') ? Sunrise : Sunset;
   return <ul aria-label="Live in Kufstein" className={styles.localDetails}>
     <li data-period={period ?? 'pending'}><TimeIcon aria-hidden="true" /><span>{time !== null ? `${viennaClock.format(time * 60_000)} in Kufstein, Austria` : 'Kufstein, Austria (CET)'}</span></li>
-    <li className={styles.weatherSlot} data-condition={condition ?? 'unavailable'}>{weather ? <><WeatherIcon aria-hidden="true" /><span>{weather.temperature}°C, {weatherDescription(weather.description)}</span></> : <span>Weather unavailable</span>}</li>
+    <li className={styles.weatherSlot} data-condition={condition ?? (failed ? 'unavailable' : 'pending')}>{weather ? <><WeatherIcon aria-hidden="true" /><span>{weather.temperature}°C, {weatherDescription(weather.description)}</span></> : failed ? <span>Weather unavailable</span> : null}</li>
     <li style={{ visibility: solar ? 'visible' : 'hidden' }}><SolarIcon aria-hidden="true" /><span>{solar ?? 'sunrise 00:00'}</span></li>
   </ul>;
 }

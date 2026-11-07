@@ -20,3 +20,18 @@ test('the project registry has distinct routes and complete project content', ()
     assert.ok(item.role && item.period && item.caption);
   }
 });
+
+test('work rows identify ownership and dated evidence, with sentence metadata', () => {
+  assert.deepEqual(projects.map(item => item.caption), [
+    'Co-owner · 6.2M Discord servers (Nov 2026)',
+    'Built for Netflix · Webby Honoree 2023',
+    'Project lead · 667K servers (Nov 2026)',
+  ]);
+  for (const item of projects) {
+    assert.match(item.description, /^I .+\.$/);
+    for (const figure of item.body.figures) if (figure.image) {
+      assert.ok(figure.image.width > 0 && figure.image.height > 0);
+      assert.notEqual(figure.image.alt, figure.image.caption);
+    }
+  }
+});

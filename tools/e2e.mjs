@@ -16,8 +16,10 @@ try {
     page.on('pageerror', error => errors.push(error.message));
     await page.route('**/api/weather', route => route.fulfill({ status: 502, body: '{}' }));
     await page.clock.install({ time: new Date('2026-11-07T12:00:00Z') });
-    for (const path of ['/', '/hydra', '/hey-netflix', '/soundcloud', '/cv']) {
-      assert.equal((await page.goto(`${origin}${path}`)).status(), 200);
+    for (const path of ['/', '/hydra', '/hey-netflix', '/soundcloud', '/cv', '/nope']) {
+      const response = await page.goto(`${origin}${path}`);
+      assert.equal(response.status(), path === '/nope' ? 404 : 200);
+      assert.ok(!(await response.text()).includes('Weather unavailable'), `${path}: loading HTML must not claim failure`);
       await page.locator('[data-period="noon"]').waitFor();
       await page.evaluate(() => document.fonts.ready);
       for (const image of await page.locator('img').all()) await image.evaluate(element => element.decode());
@@ -30,6 +32,14 @@ try {
       assert.equal(await page.getByRole('list', { name: 'Live in Kufstein' }).locator('li').count(), 3);
       assert.equal(await page.locator('[data-condition="unavailable"]').innerText(), 'Weather unavailable');
       if (path === '/') {
+        assert.equal((await page.title()).match(/Oskar Lang/g)?.length, 1);
+        for (const link of await page.locator('a').filter({ hasText: /Archive ↗|^LinkedIn$|^Discord$/ }).all()) {
+          assert.ok((await link.boundingBox()).height >= 24);
+        }
+        if (width === 1280) {
+          const tops = await page.locator('[aria-label="Live in Kufstein"] li').evaluateAll(nodes => nodes.map(node => node.getBoundingClientRect().top));
+          assert.ok(Math.max(...tops) - Math.min(...tops) < 1, 'Desktop local details share one row');
+        }
         const contrast = await page.evaluate(() => {
           const context = document.createElement('canvas').getContext('2d');
           const tokens = getComputedStyle(document.documentElement);
@@ -47,11 +57,11 @@ try {
         for (const pair of contrast) assert.ok(pair.ratio >= 4.5, `${colorScheme} ${pair.ink} on ${pair.surface}: ${pair.ratio}`);
         results.push({ colorScheme, contrast });
         const tabOrder = [];
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 5; i++) {
           await page.keyboard.press('Tab');
           tabOrder.push(await page.evaluate(() => ({ label: document.activeElement.getAttribute('aria-label') ?? document.activeElement.textContent, focus: document.activeElement.matches(':focus-visible') })));
         }
-        assert.deepEqual(tabOrder.map(item => item.label), ['GitHub', 'Twitter', 'CV', 'email', 'Email me', 'Copy email', 'CV']);
+        assert.deepEqual(tabOrder.map(item => item.label), ['GitHub', 'Twitter', 'Email me', 'Copy email', 'CV']);
         assert.ok(tabOrder.every(item => item.focus));
         for (const slug of ['hydra', 'hey-netflix', 'soundcloud']) assert.equal(await page.locator(`#card-${slug} a`).getAttribute('href'), `/${slug}`);
         await page.locator('h1').click();
@@ -67,13 +77,19 @@ try {
         assert.equal(await page.evaluate(() => navigator.clipboard.readText()), 'https://rxs.to/hydra');
         await page.getByRole('link', { name: 'Back to all work' }).click();
         await page.waitForURL('**/#card-hydra');
+        await page.waitForFunction(() => document.activeElement === document.querySelector('#card-hydra a'));
+      }
+      if (path === '/cv') assert.equal(await page.getByText('Oskar Lang', { exact: true }).count(), 1);
+      if (path === '/nope') {
+        const gap = await page.locator('h1').evaluate(element => element.nextElementSibling.getBoundingClientRect().top - element.getBoundingClientRect().bottom);
+        assert.ok(Math.abs(gap - 16) < 1, `404 paragraph gap: ${gap}`);
       }
       if (['/hydra', '/hey-netflix', '/soundcloud'].includes(path)) {
         assert.equal(await page.locator('#project-title').count(), 1);
         assert.equal(await page.locator('#now').count(), 0);
         assert.ok((await page.title()).includes(await page.locator('#project-title').innerText()));
       }
-      results.push({ path, width, colorScheme, status: 200, overflow: false });
+      results.push({ path, width, colorScheme, status: response.status(), overflow: false });
     }
     for (const [time, code, description, period] of [['2026-11-07T12:00:00Z', 800, 'Clear', 'noon'], ['2026-11-07T20:00:00Z', 500, 'Rain', 'night']]) {
       await page.unroute('**/api/weather');
@@ -81,7 +97,7 @@ try {
       await page.clock.setFixedTime(new Date(time));
       await page.goto(origin);
       await page.locator(`[data-period="${period}"]`).waitFor();
-      await page.locator('[data-condition]:not([data-condition="unavailable"])').waitFor();
+      await page.locator('[data-condition]:not([data-condition="unavailable"]):not([data-condition="pending"])').waitFor();
       await page.locator('footer').screenshot({ path: `${directory}/weather-${period}-${width}-${colorScheme}.png` });
       assert.equal(await page.locator('[data-period] svg').count(), 1);
     }
@@ -93,7 +109,7 @@ try {
       await page.route('**/api/weather', route => failure === 'network' ? route.abort() : route.fulfill({ json: { temperature: 'invalid' } }));
       await page.goto(origin);
       await page.locator('[data-period="night"]').waitFor();
-      assert.equal(await page.locator('[data-condition]').getAttribute('data-condition'), 'unavailable');
+      await page.locator('[data-condition="unavailable"]').waitFor();
     }
     assert.deepEqual(errors, []);
     await context.close();
@@ -113,6 +129,7 @@ try {
   await page.goto(`${origin}/cv`);
   await page.emulateMedia({ media: 'print' });
   assert.equal(await page.locator('.cv-toolbar').isVisible(), false);
+  assert.equal(await page.getByRole('link', { name: '← Home' }).isVisible(), false);
   await page.pdf({ path: `${directory}/cv-print.pdf`, format: 'A4' });
   await page.emulateMedia({ media: 'screen' });
   for (const path of ['/nope', '/story', '/work/hydra']) {
