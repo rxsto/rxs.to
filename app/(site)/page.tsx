@@ -22,7 +22,7 @@ const schema = jsonLd([
 export default function Page() {
   return <SiteFrame><ReturnFocus /><section id="work" tabIndex={-1} className={styles.section} aria-labelledby="work-title">
     <h2 id="work-title" className={styles.heading}>Selected work</h2>
-    <ul className={styles.rows}>{projects.map(item => <li key={item.slug} id={`card-${item.slug}`}><a className={styles.row} href={`/${item.slug}`} aria-labelledby={`card-title-${item.slug}`} aria-describedby={`card-description-${item.slug}`}><ProjectHero project={item} /><span className={styles.rowText}><span className={styles.rowTitle} id={`card-title-${item.slug}`}>{item.name}</span><span className={styles.rowDetail} id={`card-description-${item.slug}`}>{item.caption}</span></span></a></li>)}</ul>
+    <ul className={styles.rows}>{projects.map(item => <li key={item.slug} id={`card-${item.slug}`}><a className={styles.row} href={`/${item.slug}`} aria-labelledby={`card-title-${item.slug}`} aria-describedby={`card-description-${item.slug}`}><ProjectHero project={item} /><span className={styles.rowText}><span className={styles.rowTitle} id={`card-title-${item.slug}`}>{item.name}</span><span className={styles.rowDetail} id={`card-description-${item.slug}`}>{item.caption.split(' · ').map((part, index) => <span key={part} className={index ? styles.rowCredential : undefined}>{index > 0 && ' · '}{part}</span>)}</span></span></a></li>)}</ul>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schema }} />
   </section></SiteFrame>;
 }

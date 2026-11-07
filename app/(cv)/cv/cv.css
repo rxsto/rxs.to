@@ -60,3 +60,16 @@
 
 .cv b, .cv strong { font-weight: 500; }
 @media print { .cv { font-size: 10pt; line-height: 1.5; } .cv-page { gap: 0; } }
+
+.cv { display: contents; }
+.cv header { order: 1; }
+.cv-topbar { order: 0; }
+.cv-toolbar { order: 2; }
+.cv-sections { order: 3; }
+.cv main { order: 4; margin-block-start: 0; }
+.cv-sections a, .cv .contact a { display: inline-flex; align-items: center; min-block-size: 1.5rem; }
+@media print {
+  .cv { display: block; }
+  .cv-topbar { display: none; }
+  .cv main { margin-block-start: 1.5rem; }
+}
