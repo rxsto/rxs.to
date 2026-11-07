@@ -16,7 +16,8 @@
     "check:metadata": "node tools/metadata-check.mjs",
     "cv:pdf": "tsx tools/cv/pdf.ts",
     "deploy": "vinext-cloudflare deploy --config dist/server/wrangler.json",
-    "compare": "tsx tools/compare.ts"
+    "compare": "tsx tools/compare.ts",
+    "check:cls": "node tools/cls.mjs"
   },
   "dependencies": {
     "@fontsource-variable/geist": "5.3.0",

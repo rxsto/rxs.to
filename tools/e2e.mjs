@@ -49,12 +49,12 @@ try {
             const rgb = [...context.getImageData(0, 0, 1, 1).data].slice(0, 3).map(channel => { const value = channel / 255; return value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4; });
             return rgb[0] * .2126 + rgb[1] * .7152 + rgb[2] * .0722;
           };
-          return ['--foreground', '--text-secondary', '--text-muted'].flatMap(ink => ['--background', '--surface', '--surface-muted'].map(surface => {
+          return ['--foreground', '--text-secondary', '--text-muted', '--focus-outline'].flatMap(ink => (ink === '--focus-outline' ? ['--background', '--surface', '--surface-muted', '--accent', '--accent-strong', '--pastel-mint', '--pastel-rose', '--pastel-peach'] : ['--background', '--surface', '--surface-muted']).map(surface => {
             const a = luminance(ink), b = luminance(surface);
             return { ink, surface, ratio: (Math.max(a, b) + .05) / (Math.min(a, b) + .05) };
           }));
         });
-        for (const pair of contrast) assert.ok(pair.ratio >= 4.5, `${colorScheme} ${pair.ink} on ${pair.surface}: ${pair.ratio}`);
+        for (const pair of contrast) assert.ok(pair.ratio >= (pair.ink === '--focus-outline' ? 3 : 4.5), `${colorScheme} ${pair.ink} on ${pair.surface}: ${pair.ratio}`);
         results.push({ colorScheme, contrast });
         const tabOrder = [];
         for (let i = 0; i < 5; i++) {
@@ -63,6 +63,7 @@ try {
         }
         assert.deepEqual(tabOrder.map(item => item.label), ['GitHub', 'Twitter', 'Email me', 'Copy email', 'CV']);
         assert.ok(tabOrder.every(item => item.focus));
+        if (colorScheme === 'light') await page.screenshot({ path: `${directory}/focus-${width}-light.png`, fullPage: true });
         for (const slug of ['hydra', 'hey-netflix', 'soundcloud']) assert.equal(await page.locator(`#card-${slug} a`).getAttribute('href'), `/${slug}`);
         await page.locator('h1').click();
         await page.locator('[class*="actions"]').screenshot({ path: `${directory}/buttons-2x-${width}-${colorScheme}.png` });
@@ -79,7 +80,10 @@ try {
         await page.waitForURL('**/#card-hydra');
         await page.waitForFunction(() => document.activeElement === document.querySelector('#card-hydra a'));
       }
-      if (path === '/cv') assert.equal(await page.getByText('Oskar Lang', { exact: true }).count(), 1);
+      if (path === '/cv') {
+        assert.equal(await page.getByText('Oskar Lang', { exact: true }).count(), 1);
+        for (const link of await page.locator('.cv-sections a, .cv .contact a').all()) assert.ok((await link.boundingBox()).height >= 24);
+      }
       if (path === '/nope') {
         const gap = await page.locator('h1').evaluate(element => element.nextElementSibling.getBoundingClientRect().top - element.getBoundingClientRect().bottom);
         assert.ok(Math.abs(gap - 16) < 1, `404 paragraph gap: ${gap}`);
@@ -102,7 +106,7 @@ try {
       assert.equal(await page.locator('[data-period] svg').count(), 1);
     }
     await page.goto(origin);
-    await page.getByRole('button', { name: /Switch to/ }).click();
+    await page.getByRole('button', { name: `Switch to ${colorScheme === 'light' ? 'dark' : 'light'} theme` }).click();
     assert.equal(await page.locator('html').getAttribute('data-theme'), colorScheme === 'light' ? 'dark' : 'light');
     for (const failure of ['malformed', 'network']) {
       await page.unroute('**/api/weather');
@@ -129,7 +133,7 @@ try {
   await page.goto(`${origin}/cv`);
   await page.emulateMedia({ media: 'print' });
   assert.equal(await page.locator('.cv-toolbar').isVisible(), false);
-  assert.equal(await page.getByRole('link', { name: '← Home' }).isVisible(), false);
+  assert.equal(await page.getByRole('link', { name: 'Back home' }).isVisible(), false);
   await page.pdf({ path: `${directory}/cv-print.pdf`, format: 'A4' });
   await page.emulateMedia({ media: 'screen' });
   for (const path of ['/nope', '/story', '/work/hydra']) {

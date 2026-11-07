@@ -1,7 +1,11 @@
+import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
-import { writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import process from 'node:process';
 /* global window, PerformanceObserver, console */
+const directory = process.env.EVIDENCE_DIR ?? '.compare/cls';
+await mkdir(directory, { recursive: true });
+const origin = process.env.SITE_ORIGIN ?? 'http://127.0.0.1:5187';
 const browser = await chromium.launch();
 const results = [];
 try {
@@ -12,12 +16,13 @@ try {
    window.shifts=[];
    new PerformanceObserver(list=>{for(const e of list.getEntries()) if(!e.hadRecentInput) window.shifts.push({value:e.value,time:e.startTime});}).observe({type:'layout-shift',buffered:true});
   });
-  await page.goto(`http://127.0.0.1:5187${path}`);
+  await page.goto(`${origin}${path}`);
   await page.waitForTimeout(2200);
   const shifts=await page.evaluate(()=>window.shifts);
   results.push({width,path,cls:shifts.reduce((sum,e)=>sum+e.value,0),shifts});
   await context.close();
  }
 } finally {await browser.close();}
-await writeFile(`/home/dev/worktrees/rxs.to/evidence-climb/r2/cls-${process.argv[2]}.json`,JSON.stringify(results,null,2));
+await writeFile(`${directory}/cls.json`,JSON.stringify(results,null,2));
 console.log(results);
+for (const result of results) assert.equal(result.cls, 0, `${result.path} at ${result.width}px shifted`);

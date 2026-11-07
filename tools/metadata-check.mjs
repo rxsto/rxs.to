@@ -13,7 +13,7 @@ const agents = [
   ['iMessage', 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'],
 ];
 const records = [];
-for (const path of ['/', '/hydra', '/hey-netflix', '/soundcloud', '/nope']) {
+for (const path of ['/', '/hydra', '/hey-netflix', '/soundcloud', '/cv', '/nope']) {
   for (const [name, agent] of agents) {
     const html = execFileSync('curl', ['--silent', '--show-error', '-A', agent, `${origin}${path}`], { encoding: 'utf8' });
     const head = html.split('</head>')[0];
@@ -23,11 +23,17 @@ for (const path of ['/', '/hydra', '/hey-netflix', '/soundcloud', '/nope']) {
       assert.equal([...html.matchAll(pattern)].length, 1, `${path} ${name} ${pattern} in document`);
     }
     if (path === '/nope') {
-      assert.ok(head.includes('<title>Page not found | rxsto - Oskar Lang</title>'));
+      assert.ok(head.includes('<title>Page not found | Oskar Lang</title>'));
       const robots = [...html.matchAll(/<meta\s+name="robots"\s+content="([^"]+)"/g)].map(match => match[1]);
       assert.ok(robots.length > 0);
       assert.ok(robots.every(value => value.split(/,\s*/).includes('noindex')), `404 robots disagree: ${robots}`);
     }
+    const projectImages = { '/hydra': '/work/hydra-1280.webp', '/soundcloud': '/work/soundcloud-1280.webp', '/hey-netflix': '/avatar.png' };
+    const expectedImage = projectImages[path] ?? '/avatar.png';
+    assert.ok(head.includes(`property="og:image" content="https://rxs.to${expectedImage}"`), `${path} share image`);
+    assert.ok(head.includes('property="og:site_name" content="Oskar Lang"'));
+    assert.ok(head.includes(`name="twitter:card" content="${path in projectImages ? 'summary_large_image' : 'summary'}"`), `${path} card`);
+    if (path === '/cv') assert.ok(head.includes('<title>CV | Oskar Lang</title>'));
     records.push(`${path} ${name}: one title, description, og:title and twitter:title, all in head${path === '/nope' ? '; robots consistently noindex' : ''}`);
   }
 }
