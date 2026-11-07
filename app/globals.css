@@ -37,8 +37,6 @@ body {
 
 :root {
   --focus-outline: oklch(45% .08 285);
-  --netflix-mark: invert(19%) sepia(72%) saturate(2798%) hue-rotate(340deg);
-  --soundcloud-mark: invert(46%) sepia(80%) saturate(1350%) hue-rotate(348deg);
   --background: oklch(98.5% .006 80);
   --surface: oklch(99.5% .003 80);
   --surface-muted: oklch(95% .013 80);
@@ -53,12 +51,10 @@ body {
   --accent-foreground: oklch(29% .04 285);
   --pastel-mint: oklch(94% .025 175);
   --pastel-rose: oklch(95% .025 15);
-  --pastel-peach: oklch(95% .03 65);
+  --pastel-peach: oklch(99% .015 65);
 }
 :root[data-theme="dark"] {
   --focus-outline: oklch(78% .08 285);
-  --netflix-mark: brightness(0) invert(.85);
-  --soundcloud-mark: brightness(0) invert(.85);
   --background: oklch(20% .012 270);
   --surface: oklch(23% .012 270);
   --surface-muted: oklch(26% .015 270);
@@ -71,14 +67,12 @@ body {
   --accent: oklch(36% .04 285);
   --accent-strong: oklch(41% .04 285);
   --accent-foreground: oklch(92% .025 285);
-  --pastel-mint: oklch(26% .002 175);
-  --pastel-rose: oklch(26% .002 15);
-  --pastel-peach: oklch(26% .002 65);
+  --pastel-mint: oklch(28% .03 175);
+  --pastel-rose: oklch(28% .03 15);
+  --pastel-peach: oklch(28% .03 65);
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme]) {
   --focus-outline: oklch(78% .08 285);
-  --netflix-mark: brightness(0) invert(.85);
-  --soundcloud-mark: brightness(0) invert(.85);
   --background: oklch(20% .012 270);
   --surface: oklch(23% .012 270);
   --surface-muted: oklch(26% .015 270);
@@ -91,9 +85,9 @@ body {
   --accent: oklch(36% .04 285);
   --accent-strong: oklch(41% .04 285);
   --accent-foreground: oklch(92% .025 285);
-  --pastel-mint: oklch(26% .002 175);
-  --pastel-rose: oklch(26% .002 15);
-  --pastel-peach: oklch(26% .002 65);
+  --pastel-mint: oklch(28% .03 175);
+  --pastel-rose: oklch(28% .03 15);
+  --pastel-peach: oklch(28% .03 65);
 }
  }
 ::selection { background: var(--accent); color: var(--accent-foreground); }

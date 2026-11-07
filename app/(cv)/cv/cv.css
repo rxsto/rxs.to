@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 16px;
 }
 
@@ -26,11 +26,11 @@
   color: var(--foreground);
 }
 
-.cv-sections { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; line-height: 16px; }
+.cv-sections { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 14px; line-height: 16px; }
 
 .cv { font-size: 1rem; line-height: 1.75; color: var(--text-secondary); }
 .cv h1 { font-size: 16px; line-height: 24px; font-weight: 500; color: var(--foreground); }
-.cv .contact { margin-block-start: 2px; font-size: 12px; line-height: 16px; color: var(--text-muted); }
+.cv .contact { margin-block-start: 2px; font-size: 14px; line-height: 16px; color: var(--text-muted); }
 .cv .sep { padding-inline: 0.15em; }
 .cv main { display: flex; flex-direction: column; gap: 2.5rem; margin-block-start: 2.5rem; }
 .cv h2 { color: var(--foreground); margin-block-end: var(--space-3); font-size: 1rem; font-weight: 500; scroll-margin-block-start: 16px; }
@@ -38,7 +38,7 @@
 .cv h3 { display: inline; margin-inline-end: 0.25em; font: inherit; }
 .cv .org { font-weight: 500; }
 .cv .role { color: var(--text-toned); }
-.cv .date { font-size: 12px; color: var(--text-muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cv .date { font-size: 14px; color: var(--text-muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .cv article p { margin-block-start: 2px; color: var(--text-toned); }
 .cv ul { margin-block-start: 4px; padding-inline-start: 1em; list-style: '– '; color: var(--text-toned); }
 .cv li::marker { color: var(--text-muted); }
@@ -61,15 +61,8 @@
 .cv b, .cv strong { font-weight: 500; }
 @media print { .cv { font-size: 10pt; line-height: 1.5; } .cv-page { gap: 0; } }
 
-.cv { display: contents; }
-.cv header { order: 1; }
-.cv-topbar { order: 0; }
-.cv-toolbar { order: 2; }
-.cv-sections { order: 3; }
-.cv main { order: 4; margin-block-start: 0; }
 .cv-sections a, .cv .contact a { display: inline-flex; align-items: center; min-block-size: 1.5rem; }
 @media print {
-  .cv { display: block; }
   .cv-topbar { display: none; }
   .cv main { margin-block-start: 1.5rem; }
 }

@@ -1,7 +1,6 @@
 import { cv, CvDocument, cvJsonLd, cvMetadata, cvSections, cvVariants } from '../../../shared/cv';
 import './cv.css';
 import { ArrowLeft } from 'lucide-react';
-import { Portrait } from '../../../components/site/Identity';
 import styles from '../../../components/site/site.module.css';
 
 export const metadata = { ...cvMetadata, title: { absolute: 'CV | Oskar Lang' }, openGraph: { ...cvMetadata.openGraph, title: 'CV' }, twitter: { card: 'summary', title: 'CV', images: ['/avatar.png'] } };
@@ -9,8 +8,7 @@ export const metadata = { ...cvMetadata, title: { absolute: 'CV | Oskar Lang' },
 export default function Page() {
   return (
     <div className="cv-page">
-      <nav className={`${styles.articleNav} cv-topbar`} aria-label="Article actions"><a className={styles.roundButton} href="/" aria-label="Back home"><ArrowLeft aria-hidden="true" /></a><Portrait /></nav>
-      <CvDocument cv={cv} />
+      <nav className={`${styles.articleNav} cv-topbar`} aria-label="Article actions"><a className={styles.roundButton} href="/" aria-label="Back home"><ArrowLeft aria-hidden="true" /></a></nav>
       <div className="cv-toolbar">
         <ul className="cv-downloads" aria-label="Download the CV">
           {cvVariants.map(v => (
@@ -23,6 +21,7 @@ export default function Page() {
       <nav aria-label="CV sections" className="cv-sections">
         {cvSections.map(s => <a key={s.id} href={`#${s.id}`}>{s.title}</a>)}
       </nav>
+      <CvDocument cv={cv} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: cvJsonLd }} />
     </div>
   );

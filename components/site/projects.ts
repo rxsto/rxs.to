@@ -20,13 +20,13 @@ export const hydraImage: Image = {
 export const projects: Project[] = [
   {
     slug: 'hydra', name: 'Hydra', period: '2020 to now', role: 'Co-owner and engineer',
-    caption: `Leveling and community bot · Co-owner, ${figures.hydraServers} servers`,
+    caption: `Co-owner · ${figures.hydraServers} servers`,
     description: `I co-own Hydra, a leveling and community bot serving ${figures.hydraServers} Discord servers.`,
     mark: { src: '/marks/hydra.png' },
     body: {
       paragraphs: [
-        `I co-own Hydra, a leveling, welcome and reaction-role bot founded by Jochen Segner. It serves ${figures.hydraServers} Discord servers as of ${asOf}. I built most of the hydra.bot web app, including premium subscriptions, and co-develop the Kotlin backend as its second-largest contributor.`,
-        'For the 2026 rebuild, I lead the frontend, infrastructure and monorepo.',
+        `I built most of the hydra.bot web app, including premium subscriptions, and co-develop the Kotlin backend as its second-largest contributor. For the 2026 rebuild, I lead the frontend, infrastructure and monorepo.`,
+        `Founded by Jochen Segner, Hydra is a leveling, welcome and reaction-role bot serving ${figures.hydraServers} Discord servers as of ${asOf}.`,
       ],
       facts: [{ term: 'Stack', value: 'Vue, Nuxt, Kotlin; 2026 rebuild in Rust on Kubernetes' }],
       links: [{ label: 'hydra.bot', url: 'https://hydra.bot' }], figures: [hydraImage],
@@ -34,23 +34,23 @@ export const projects: Project[] = [
   },
   {
     slug: 'hey-netflix', name: 'Hey, Netflix', period: '2022 to 2023', role: 'Software engineer',
-    caption: 'Movie-night bot built for Netflix · Webby Honoree',
+    caption: 'Built for Netflix · Webby Honoree',
     description: 'I built Hey, Netflix with Jochen Segner for Netflix, a Webby Honoree in 2023.',
     mark: { src: '/marks/netflix.svg' },
     body: {
       paragraphs: [`I built Hey, Netflix, a movie-night Discord bot, with Jochen Segner for Netflix under the HydraBot name. It reached ${figures.netflixServers} servers and ${figures.netflixSessions} sessions in its first month and was billed as the fastest-growing branded app on Discord. The project was a Webby Honoree in 2023.`],
-      facts: [], links: [], figures: [],
+      facts: [], links: [{ label: 'Webby Honoree 2023', url: 'https://winners.webbyawards.com/2023/advertising-media-pr/individual/game-or-application/251137/hey-netflix-discord-bot' }], figures: [],
     },
   },
   {
     slug: 'soundcloud', name: 'SoundCloud', period: '2021 to now', role: 'Engineer and project lead',
-    caption: 'Official SoundCloud Discord bot · Project lead',
+    caption: `Project lead · ${figures.soundcloudServers} servers`,
     description: `I lead the official SoundCloud bot project, on ${figures.soundcloudServers} servers.`,
     mark: { src: '/marks/soundcloud.svg' },
     body: {
       paragraphs: [
-        `I’m the engineer and project lead for the official SoundCloud Discord bot, built and run with Jochen Segner. It serves ${figures.soundcloudServers} servers as of ${asOf}. I managed its 2022 launch and lead the web frontend while co-developing the Kotlin backend.`,
-        'I set up and run production in the SoundCloud AWS organization with Terraform.',
+        `I lead the web frontend, co-develop the Kotlin backend and managed the 2022 launch. I set up and run production in the SoundCloud AWS organization with Terraform.`,
+        `Built and run with Jochen Segner, the official SoundCloud Discord bot serves ${figures.soundcloudServers} servers as of ${asOf}.`,
       ],
       facts: [{ term: 'Stack', value: 'TypeScript and Nuxt frontend; Kotlin backend; Terraform on AWS' }],
       links: [{ label: 'soundcloud.bot', url: 'https://soundcloud.bot' }],

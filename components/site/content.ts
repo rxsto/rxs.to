@@ -11,7 +11,6 @@ export const hero = { name: cv.name };
 
 /** Current client work first; earlier ventures appear only here. */
 export const since = [
-  { year: 2026, title: 'Contracting for Digital Office 24, Top.gg and Finaure; leading Hydra’s rebuild', href: '/cv#experience' },
   { year: 2022, title: 'Helping lead a youth summer camp' },
   { year: 2018, title: `Co-founded Groovy at 16; ${figures.groovyServers} servers and ${figures.groovyRevenue} revenue before YouTube forced it offline in 2021`, archive: 'https://web.archive.org/web/20210807122905/https://groovy.bot/' },
 ] as const;

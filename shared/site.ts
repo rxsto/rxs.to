@@ -33,6 +33,6 @@ export function pageMetadata({ path, title, description, types, image = site.ima
     description,
     twitter: { card: largeImage ? 'summary_large_image' : 'summary', title, description, images: [image] },
     alternates: { canonical: path, ...(types && { types }) },
-    openGraph: { type: 'website', title, description, url: path, siteName: site.name, images: [image] },
+    openGraph: { type: 'website', title, description, url: path === '/' ? `${site.origin}/` : path, siteName: site.name, images: [image] },
   };
 }

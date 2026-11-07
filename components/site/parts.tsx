@@ -19,6 +19,8 @@ export function Footer() {
       <LocalTime />
       <div className={styles.footerRow}>
         <ul className={styles.footerLinks} aria-label="Elsewhere">
+          <li><a href="https://github.com/rxsto" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://x.com/rxsto_official" target="_blank" rel="noopener noreferrer">Twitter</a></li>
           <li><a href="https://linkedin.com/in/oskar-lang" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
           <li><a href="https://discord.gg/r7tqQVs" target="_blank" rel="noopener noreferrer">Discord</a></li>
         </ul>
