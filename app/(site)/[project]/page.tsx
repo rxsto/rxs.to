@@ -15,5 +15,5 @@ export default async function Page({ params }: Props) {
   const { project } = await params;
   const item = projects.find(item => item.slug === project);
   if (!item) notFound();
-  return <SiteFrame view="project" currentProject={item.slug}><CaseStudy item={item} /></SiteFrame>;
+  return <SiteFrame view="project"><CaseStudy item={item} /></SiteFrame>;
 }

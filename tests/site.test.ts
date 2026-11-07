@@ -17,6 +17,6 @@ test('the project registry has distinct routes and complete project content', ()
   assert.equal(new Set(projects.map(item => item.slug)).size, projects.length);
   for (const item of projects) {
     assert.ok(item.body.owned.length > 0);
-    assert.ok(item.role && item.period && item.caption && item.brand);
+    assert.ok(item.role && item.period && item.caption);
   }
 });

@@ -10,5 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function NotFound() {
-  return <SiteFrame view="missing"><section id="work" tabIndex={-1} className={styles.section}><h2 className={styles.heading}>Page not found</h2><p>This page does not exist. <a className={styles.link} href="/">Back home</a>.</p></section></SiteFrame>;
+  return <SiteFrame view="missing"><section id="work" tabIndex={-1} className={styles.section}><h1 className={styles.heading}>Page not found</h1><p>This page does not exist. <a className={styles.link} href="/">Back home</a>.</p></section></SiteFrame>;
 }

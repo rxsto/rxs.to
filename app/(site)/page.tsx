@@ -1,5 +1,4 @@
 import { SiteFrame } from '../../components/site/SiteFrame';
-import { Card } from '@/components/arc/card/card';
 import { projects } from '../../components/site/projects';
 import { ProjectHero } from '../../components/site/ProjectHero';
 import styles from '../../components/site/site.module.css';
@@ -22,7 +21,7 @@ const schema = jsonLd([
 export default function Page() {
   return <SiteFrame><section id="work" tabIndex={-1} className={styles.section} aria-labelledby="work-title">
     <h2 id="work-title" className={styles.heading}>Selected work</h2>
-    <ul className={styles.cards}>{projects.map(item => <li key={item.slug} id={`card-${item.slug}`}><a className={styles.cardLink} href={`/${item.slug}#work`} aria-labelledby={`card-title-${item.slug}`} aria-describedby={`card-description-${item.slug}`}><Card title={item.name} titleId={`card-title-${item.slug}`} description={item.caption} descriptionId={`card-description-${item.slug}`} media={<ProjectHero project={item} />}><p className={styles.cardMeta}>{item.role}, {item.period}</p></Card></a></li>)}</ul>
+    <ul className={styles.rows}>{projects.map(item => <li key={item.slug} id={`card-${item.slug}`}><a className={styles.row} href={`/${item.slug}`} aria-labelledby={`card-title-${item.slug}`} aria-describedby={`card-description-${item.slug}`}><ProjectHero project={item} /><span className={styles.rowText}><span className={styles.rowTitle} id={`card-title-${item.slug}`}>{item.name}</span><span className={styles.rowDetail} id={`card-description-${item.slug}`}>{item.caption}</span></span></a></li>)}</ul>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schema }} />
   </section></SiteFrame>;
 }

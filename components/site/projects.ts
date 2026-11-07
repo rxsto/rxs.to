@@ -1,4 +1,4 @@
-import { asOf, hydraServers } from './content';
+import { asOf } from './content';
 
 /** `approved` drops the "not yet approved" note: set it only for Oskar's own product. */
 type Figure = { image?: Image; approved?: boolean; missing?: string };
@@ -21,7 +21,6 @@ export type Project = {
   role: string;
   /** One line for the homepage card: the decision and the dated number. */
   caption: string;
-  brand: string;
   mark: { src: string; size: number; appearance: 'original' | 'monochrome' };
   body: Body;
 };
@@ -36,10 +35,10 @@ const bodies: Record<Project['slug'], Body> = {
   hydra: {
     quote: { text: 'Client quote to come.', attribution: 'Name and role to come.' },
     owned: [
-      'Co-own Hydra, a leveling, welcome and reaction-role bot founded by Jochen Segner',
-      'Built most of the hydra.bot web app, including premium subscriptions (Vue, Nuxt)',
-      'Co-develop the Kotlin backend as its second-largest contributor',
-      'Lead frontend, infrastructure and the monorepo for the 2026 rebuild (Rust, Kubernetes)',
+      'I co-own Hydra, a leveling, welcome and reaction-role bot founded by Jochen Segner',
+      'I built most of the hydra.bot web app, including premium subscriptions (Vue, Nuxt)',
+      'I co-develop the Kotlin backend as its second-largest contributor',
+      'I lead frontend, infrastructure and the monorepo for the 2026 rebuild (Rust, Kubernetes)',
     ],
     facts: [
       { term: 'Role', value: 'Co-owner and engineer' },
@@ -55,7 +54,7 @@ const bodies: Record<Project['slug'], Body> = {
   },
   'hey-netflix': {
     owned: [
-      'Built the bot with Jochen Segner for Netflix, credited at HydraBot',
+      'I built the bot with Jochen Segner for Netflix, credited at HydraBot',
       'Billed as the fastest-growing branded app on Discord',
     ],
     facts: [
@@ -76,9 +75,9 @@ const bodies: Record<Project['slug'], Body> = {
       note: 'Who built, shared and operated each part. Oskar’s account to come.',
     },
     owned: [
-      'Manage the project with SoundCloud, including the 2022 launch',
-      'Lead the web frontend (TypeScript, Nuxt) and co-develop the Kotlin backend',
-      'Set up and run production in the SoundCloud AWS organization with Terraform',
+      'I manage the project with SoundCloud, including the 2022 launch',
+      'I lead the web frontend (TypeScript, Nuxt) and co-develop the Kotlin backend',
+      'I set up and run production in the SoundCloud AWS organization with Terraform',
     ],
     facts: [
       { term: 'Role', value: 'Engineer and project lead' },
@@ -94,7 +93,7 @@ const bodies: Record<Project['slug'], Body> = {
 };
 
 export const projects: Project[] = [
-  { slug: 'hydra', name: 'Hydra', period: '2020 to now', role: 'Co-owner and engineer', caption: `Leading frontend, infrastructure and the monorepo for the 2026 rebuild. ${hydraServers}.`, brand: 'oklch(30% .065 210)', mark: { src: '/marks/hydra.svg', size: 100, appearance: 'original' }, body: bodies.hydra },
-  { slug: 'hey-netflix', name: 'Hey, Netflix', period: '2022 to 2023', role: 'Software engineer, built for Netflix', caption: '150K+ servers in its first month in 2022. Webby Honoree 2023.', brand: 'oklch(30% .11 25)', mark: { src: '/marks/netflix.svg', size: 80, appearance: 'monochrome' }, body: bodies['hey-netflix'] },
-  { slug: 'soundcloud', name: 'SoundCloud', period: '2021 to now', role: 'Engineer and project lead', caption: `Running production in SoundCloud’s own AWS organization with Terraform. 667K servers as of ${asOf}.`, brand: 'oklch(35% .12 40)', mark: { src: '/marks/soundcloud.svg', size: 88, appearance: 'monochrome' }, body: bodies.soundcloud },
+  { slug: 'hydra', name: 'Hydra', period: '2020 to now', role: 'Co-owner and engineer', caption: `A home for Discord communities.`, mark: { src: '/marks/hydra.png', size: 100, appearance: 'original' }, body: bodies.hydra },
+  { slug: 'hey-netflix', name: 'Hey, Netflix', period: '2022 to 2023', role: 'Software engineer, built for Netflix', caption: 'Movie nights, made for Discord.', mark: { src: '/marks/netflix.svg', size: 80, appearance: 'monochrome' }, body: bodies['hey-netflix'] },
+  { slug: 'soundcloud', name: 'SoundCloud', period: '2021 to now', role: 'Engineer and project lead', caption: `Official SoundCloud bot.`, mark: { src: '/marks/soundcloud.svg', size: 88, appearance: 'monochrome' }, body: bodies.soundcloud },
 ];
