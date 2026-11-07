@@ -24,6 +24,9 @@
 .archiveLink { margin-inline-start: .5em; font-size: .75rem; color: var(--text-muted); white-space: nowrap; }
 .ledgerYear, .localDetails { font-variant-numeric: tabular-nums; }
 .actions { justify-self: start; display: flex; align-items: center; gap: .75rem; margin-block-start: .5rem; }
+.heroActions { flex-wrap: wrap; }
+.availability { display: inline-flex; align-items: center; gap: .5rem; padding: .25rem .625rem; border-radius: 999px; background: var(--pastel-mint); color: var(--foreground); font-size: .8125rem; line-height: 1.5; }
+.availability > span { flex: none; inline-size: .375rem; block-size: .375rem; border-radius: 50%; background: currentColor; }
 .button { display: inline-flex; align-items: center; justify-content: center; block-size: 2.5rem; padding-inline: .875rem; border-radius: .75rem; background: var(--accent); color: var(--accent-foreground); font-size: .875rem; font-weight: 500; text-decoration: none; }
 .button:active { background: var(--accent-strong); }
 .splitButton { display: inline-flex; align-items: stretch; }
@@ -41,6 +44,8 @@
 .tile[data-project='hydra'] { background: var(--pastel-mint); }
 .tile[data-project='hey-netflix'] { background: var(--pastel-rose); }
 .tile[data-project='soundcloud'] { background: var(--pastel-peach); }
+.tile[data-project='digital-office-24'] { background: oklch(100% 0 none); }
+.tile[data-project='digital-office-24'] .brandMark { inline-size: 100%; block-size: 100%; }
 .brandMark { inline-size: 1.75rem; block-size: 1.75rem; object-fit: contain; }
 .tile[data-project='hydra'] .brandMark { inline-size: 2.25rem; block-size: 2.25rem; }
 .tile[data-project='hey-netflix'] .brandMark { inline-size: 1.3rem; }
@@ -57,7 +62,7 @@
 .localDetails { display: flex; flex-wrap: wrap; gap: .5rem 1rem; min-block-size: 1.7em; margin: 0; padding: 0; list-style: none; }
 .localDetails li, .weatherGroup > span { display: inline-flex; align-items: center; gap: .4em; block-size: 1.7em; white-space: nowrap; }
 .localDetails svg { inline-size: 1.15em; block-size: 1.15em; flex: none; }
-.localDetails .weatherSlot[data-condition="pending"] { min-inline-size: 8rem; }
+.localDetails .weatherSlot:is([data-condition="pending"], [data-condition="unavailable"]) { min-inline-size: 8rem; }
 .articleNav { display: flex; align-items: center; justify-content: space-between; }
 .articleNav .roundButton, .roundButton { display: inline-flex; align-items: center; justify-content: center; inline-size: 2.75rem; block-size: 2.75rem; border: 1px solid var(--border); border-radius: 50%; background: var(--surface-muted); color: var(--foreground); text-decoration: none; transition: none; }
 .roundButton svg { inline-size: 1.1rem; block-size: 1.1rem; }

@@ -9,6 +9,9 @@ export const asOf = new Date(Date.UTC(asOfYear!, asOfMonth! - 1)).toLocaleString
 
 export const hero = { name: cv.name };
 
+/** Set enabled to false to hide the hero's availability signal. */
+export const availability = { enabled: true, text: 'Open to new projects' };
+
 /** Current client work first; earlier ventures appear only here. */
 export const since = [
   { year: 2018, title: `Co-founded Groovy at 16; ${figures.groovyServers} servers and ${figures.groovyRevenue} revenue before YouTube forced it offline in 2021`, archive: 'https://web.archive.org/web/20210807122905/https://groovy.bot/' },

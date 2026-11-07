@@ -2,6 +2,7 @@ import { CopyButton } from '@/components/arc/copy-button/copy-button';
 import { email } from './content';
 import { LocalTime } from './LocalTime';
 import { ThemeToggle } from './ThemeToggle';
+import { Availability } from './Availability';
 import styles from './site.module.css';
 
 export function EmailButton() {
@@ -10,9 +11,10 @@ export function EmailButton() {
 
 export function Actions() {
   return (
-    <div className={styles.actions}>
+    <div className={`${styles.actions} ${styles.heroActions}`}>
       <EmailButton />
       <a className={`${styles.button} ${styles.secondaryButton}`} href="/cv">CV</a>
+      <Availability className={styles.availability} />
     </div>
   );
 }

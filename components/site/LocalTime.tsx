@@ -39,7 +39,7 @@ export function LocalTime() {
   const WeatherIcon = condition === null ? Cloud : { clear: night ? Moon : Sun, 'few-clouds': night ? CloudMoon : CloudSun, clouds: Cloud, drizzle: CloudDrizzle, rain: CloudRain, thunderstorm: CloudLightning, snow: Snowflake, fog: CloudFog }[condition];
   const SolarIcon = solar?.startsWith('sunrise') ? Sunrise : Sunset;
   return <ul aria-label="Live in Kufstein" className={styles.localDetails}>
-    <li data-period={period ?? 'pending'}><TimeIcon aria-hidden="true" /><span>{time !== null ? `${viennaClock.format(time * 60_000)} in Kufstein, Austria` : 'Kufstein, Austria (CET)'}</span></li>
+    <li data-period={period ?? 'pending'}><TimeIcon aria-hidden="true" /><span><span style={{ visibility: time === null ? 'hidden' : 'visible' }}>{time === null ? '00:00' : viennaClock.format(time * 60_000)}</span> in Kufstein, Austria</span></li>
     <li className={styles.weatherGroup}><span className={styles.weatherSlot} data-condition={condition ?? (failed ? 'unavailable' : 'pending')}>{weather ? <><WeatherIcon aria-hidden="true" /><span>{weather.temperature}°C, {weatherDescription(weather.description)}</span></> : failed ? <span>Weather unavailable</span> : null}</span>
     <span style={{ visibility: solar ? 'visible' : 'hidden' }}><SolarIcon aria-hidden="true" /><span>{solar ?? 'sunrise 00:00'}</span></span></li>
   </ul>;
