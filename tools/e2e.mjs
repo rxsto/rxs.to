@@ -31,7 +31,10 @@ try {
       await page.screenshot({ path: `${directory}/${path.slice(1) || 'home'}-${width}-${colorScheme}.png`, fullPage: true });
       assert.equal(await page.getByRole('list', { name: 'Live in Kufstein' }).locator('li').count(), 3);
       assert.equal(await page.locator('[data-condition="unavailable"]').innerText(), 'Weather unavailable');
+      assert.deepEqual(await page.locator('footer [aria-label="Elsewhere"] a').allTextContents(), ['GitHub', 'Twitter', 'LinkedIn', 'Discord']);
+      for (const link of await page.locator('footer a, [class*="facts"] a, [class*="articleProse"] a').all()) assert.ok((await link.boundingBox()).height >= 24);
       if (path === '/') {
+        await page.locator('[class*="rows"]').screenshot({ path: `${directory}/tiles-2x-${width}-${colorScheme}.png` });
         assert.equal((await page.title()).match(/Oskar Lang/g)?.length, 1);
         for (const link of await page.locator('a').filter({ hasText: /Archive ↗|^LinkedIn$|^Discord$/ }).all()) {
           assert.ok((await link.boundingBox()).height >= 24);
@@ -56,6 +59,29 @@ try {
         });
         for (const pair of contrast) assert.ok(pair.ratio >= (pair.ink === '--focus-outline' ? 3 : 4.5), `${colorScheme} ${pair.ink} on ${pair.surface}: ${pair.ratio}`);
         results.push({ colorScheme, contrast });
+        const marks = await page.locator('[data-project]').evaluateAll(tiles => tiles.map(tile => {
+          const canvas = document.createElement('canvas');
+          canvas.width = canvas.height = 512;
+          const context = canvas.getContext('2d');
+          const luminance = rgb => rgb.map(v => v / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4).reduce((sum, v, i) => sum + v * [.2126, .7152, .0722][i], 0);
+          context.fillStyle = getComputedStyle(tile).backgroundColor;
+          context.fillRect(0, 0, 1, 1);
+          const surface = luminance([...context.getImageData(0, 0, 1, 1).data].slice(0, 3));
+          context.clearRect(0, 0, 512, 512);
+          context.drawImage(tile.querySelector('img'), 0, 0, 512, 512);
+          const pixels = context.getImageData(0, 0, 512, 512).data;
+          let opaque = 0, visible = 0, maximum = 0;
+          for (let i = 0; i < pixels.length; i += 4) if (pixels[i + 3] >= 250) {
+            opaque++;
+            const ink = luminance([...pixels.slice(i, i + 3)]);
+            const ratio = (Math.max(ink, surface) + .05) / (Math.min(ink, surface) + .05);
+            maximum = Math.max(maximum, ratio);
+            if (ratio >= 3) visible++;
+          }
+          return { project: tile.dataset.project, fractionAt3: visible / opaque, maximum };
+        }));
+        for (const mark of marks) assert.ok(mark.fractionAt3 >= .25, `${mark.project}: mark contrast ${JSON.stringify(mark)}`);
+        results.push({ colorScheme, marks });
         const tabOrder = [];
         for (let i = 0; i < 5; i++) {
           await page.keyboard.press('Tab');
@@ -81,6 +107,8 @@ try {
         await page.waitForFunction(() => document.activeElement === document.querySelector('#card-hydra a'));
       }
       if (path === '/cv') {
+        assert.deepEqual(await page.locator('.cv-page > :is(.cv-toolbar, .cv-sections, .cv)').evaluateAll(nodes => nodes.map(node => node.className)), ['cv-toolbar', 'cv-sections', 'cv']);
+        assert.equal(await page.locator('.cv-topbar img').count(), 0);
         assert.equal(await page.getByText('Oskar Lang', { exact: true }).count(), 1);
         for (const link of await page.locator('.cv-sections a, .cv .contact a').all()) assert.ok((await link.boundingBox()).height >= 24);
       }
@@ -89,6 +117,16 @@ try {
         assert.ok(Math.abs(gap - 16) < 1, `404 paragraph gap: ${gap}`);
       }
       if (['/hydra', '/hey-netflix', '/soundcloud'].includes(path)) {
+        const buttons = await page.locator('[aria-label="Article actions"] :is(a[aria-label], button)').evaluateAll(nodes => nodes.map(node => {
+          const box = node.getBoundingClientRect(), style = getComputedStyle(node);
+          return { width: box.width, height: box.height, radius: style.borderRadius, background: style.backgroundColor };
+        }));
+        assert.equal(buttons.length, 2);
+        assert.deepEqual(buttons[0], buttons[1]);
+        assert.equal(buttons[0].width, 44);
+        assert.equal(buttons[0].height, 44);
+        assert.equal(buttons[0].radius, '50%');
+        if (path === '/hydra') await page.locator('[aria-label="Article actions"]').screenshot({ path: `${directory}/article-actions-2x-${width}-${colorScheme}.png` });
         assert.equal(await page.locator('#project-title').count(), 1);
         assert.equal(await page.locator('#now').count(), 0);
         assert.ok((await page.title()).includes(await page.locator('#project-title').innerText()));

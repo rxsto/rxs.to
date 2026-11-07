@@ -17,6 +17,7 @@
     "cv:pdf": "tsx tools/cv/pdf.ts",
     "deploy": "vinext-cloudflare deploy --config dist/server/wrangler.json",
     "compare": "tsx tools/compare.ts",
+    "capture:reference": "node tools/reference.mjs",
     "check:cls": "node tools/cls.mjs"
   },
   "dependencies": {

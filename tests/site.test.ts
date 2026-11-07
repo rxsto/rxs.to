@@ -6,14 +6,24 @@ import { projectFigures, figures } from '../components/site/figures.ts';
 import { since } from '../components/site/content.ts';
 import { projects } from '../components/site/projects.ts';
 import { GET } from '../app/sitemap.xml/route.ts';
+import { pageMetadata } from '../shared/site.ts';
 
-// vinext renders the root canonical and og:url as the bare origin, so every other mention of the home page matches it.
 test('the sitemap includes each project and names the home page as the bare origin', async () => {
   const response = GET();
   assert.equal(response.headers.get('content-type'), 'application/xml');
   const locs = [...(await response.text()).matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
   assert.deepEqual(locs, [site.origin, ...projects.map(item => `${site.origin}/${item.slug}`), `${site.origin}/cv`]);
   assert.equal(websiteNode.url, site.origin);
+});
+
+test('figure cards use a large image and figureless cards use the avatar summary', () => {
+  for (const project of projects) {
+    const figure = project.body.figures[0];
+    const metadata = pageMetadata({ path: `/${project.slug}`, title: project.name, description: project.description, image: figure?.src, largeImage: Boolean(figure) });
+    assert.ok(metadata.twitter && 'card' in metadata.twitter);
+    assert.equal(metadata.twitter.card, figure ? 'summary_large_image' : 'summary');
+    assert.deepEqual(metadata.twitter?.images, [figure?.src ?? '/avatar.png']);
+  }
 });
 
 test('the project registry has distinct routes and complete project content', () => {
@@ -26,9 +36,9 @@ test('the project registry has distinct routes and complete project content', ()
 
 test('work rows explain products with short credentials, with sentence metadata', () => {
   assert.deepEqual(projects.map(item => item.caption), [
-    'Leveling and community bot · Co-owner, 6.1M servers',
-    'Movie-night bot built for Netflix · Webby Honoree',
-    'Official SoundCloud Discord bot · Project lead',
+    'Co-owner · 6.1M servers',
+    'Built for Netflix · Webby Honoree',
+    'Project lead · 667K servers',
   ]);
   for (const item of projects) {
     assert.match(item.description, /^I .+\.$/);
@@ -46,13 +56,12 @@ test('project figures follow changes in the CV source', () => {
   assert.ok(projects[2]?.body.paragraphs.join(' ').includes(figures.soundcloudServers));
   assert.ok(projects[1]?.body.paragraphs.join(' ').includes(figures.netflixServers));
   assert.ok(projects[1]?.body.paragraphs.join(' ').includes(figures.netflixSessions));
-  assert.ok(since[2].title.includes(figures.groovyServers));
-  assert.ok(since[2].title.includes(figures.groovyRevenue));
+  assert.ok(since[1].title.includes(figures.groovyServers));
+  assert.ok(since[1].title.includes(figures.groovyRevenue));
 });
-test('timeline is newest first, links client work to experience and has no duplicate project rows', () => {
-  assert.deepEqual(since.map(row => row.year), [2026, 2022, 2018]);
-  assert.equal(since[0].href, '/cv#experience');
-  assert.match(since[1].title, /youth summer camp/);
+test('timeline is newest first, does not repeat the hero or project rows', () => {
+  assert.deepEqual(since.map(row => row.year), [2022, 2018]);
+  assert.match(since[0].title, /youth summer camp/);
   assert.equal(since.filter(row => /Groovy/.test(row.title)).length, 1);
-  for (const row of since.slice(1)) assert.doesNotMatch(row.title, /Hydra|SoundCloud|Netflix/);
+  for (const row of since) assert.doesNotMatch(row.title, /Hydra|SoundCloud|Netflix/);
 });
