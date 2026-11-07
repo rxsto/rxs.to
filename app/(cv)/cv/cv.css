@@ -25,7 +25,9 @@
 .cv main { display: flex; flex-direction: column; gap: 2.5rem; margin-block-start: 2.5rem; }
 .cv h2 { color: var(--foreground); margin-block-end: var(--space-3); font-size: 1rem; font-weight: 500; scroll-margin-block-start: 16px; }
 .cv article + article { margin-block-start: 1.5rem; }
-.cv h3 { display: inline; margin-inline-end: 0.25em; font: inherit; }
+.cv article { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: .75rem; align-items: baseline; }
+.cv article > :is(p, ul) { grid-column: 1 / -1; }
+.cv h3 { display: block; margin-inline-end: 0.25em; font: inherit; }
 .cv .org { font-weight: 500; }
 .cv .role { color: var(--text-toned); }
 .cv .date { font-size: 14px; color: var(--text-muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
