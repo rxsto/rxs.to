@@ -6,7 +6,7 @@ import { ProjectHero } from '../../components/site/ProjectHero';
 import styles from '../../components/site/site.module.css';
 import { jsonLd, pageMetadata, site, websiteNode } from '../../shared/site';
 const title = 'Oskar Lang, software engineer';
-const description = 'Software engineer in Kufstein, Austria. I build web products and Discord bots, co-own Hydra and lead the official SoundCloud bot.';
+const description = 'I build web products for clients like Digital Office 24, Top.gg and Finaure, alongside my own products.';
 const url = site.origin;
 
 export const metadata = pageMetadata({ path: '/', title, description });

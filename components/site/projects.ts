@@ -57,7 +57,7 @@ export const projects: Project[] = [
     description: 'I built Hey, Netflix with Jochen Segner for Netflix, a Webby Honoree in 2023.',
     mark: { src: '/marks/netflix.svg' },
     body: {
-      paragraphs: [`I built Hey, Netflix, a movie-night Discord bot, with Jochen Segner for Netflix under the HydraBot name. It reached ${figures.netflixServers} servers and ${figures.netflixSessions} sessions in its first month. The project was a Webby Honoree in 2023.`],
+      paragraphs: [`I built Hey, Netflix, a movie-night Discord bot, with Jochen Segner for Netflix, credited to HydraBot. It reached ${figures.netflixServers} servers and ${figures.netflixSessions} sessions in its first month. The project was a Webby Honoree in 2023.`],
       facts: [], links: [{ label: 'Webby Honoree 2023', url: 'https://winners.webbyawards.com/2023/advertising-media-pr/individual/game-or-application/251137/hey-netflix-discord-bot' }], figures: [],
     },
   },
