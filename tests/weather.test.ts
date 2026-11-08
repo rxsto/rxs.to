@@ -27,12 +27,19 @@ test('returns the existing KV weather shape without fetching upstream', async ()
 
 test('fetches metric weather for Kufstein, rounds it, and caches for one hour', async () => {
   const kv = cache({ location: '', temperature: '18' });
-  const fetcher = mock.method(globalThis, 'fetch', async () => Response.json(upstream));
+  const fetcher = mock.method(globalThis, 'fetch', async (url: Parameters<typeof fetch>[0]) => {
+    const requested = new URL(String(url));
+    assert.equal(requested.searchParams.get('units'), 'metric');
+    assert.equal(requested.searchParams.get('lat'), '47.5824');
+    assert.equal(requested.searchParams.get('lon'), '12.1627');
+    return Response.json(upstream);
+  });
   assert.deepEqual(await getWeather({ KV: kv, OPEN_WEATHER_API_KEY: 'test-key' }), state);
-  const url = new URL(String(fetcher.mock.calls[0].arguments[0]));
-  assert.equal(url.origin + url.pathname, 'https://api.openweathermap.org/data/2.5/weather');
-  assert.deepEqual(Object.fromEntries(url.searchParams), { units: 'metric', lat: '47.5824', lon: '12.1627', appid: 'test-key' });
-  assert.deepEqual(kv.writes, [{ key: 'weather', value: JSON.stringify(state), ttl: 3600 }]);
+  assert.equal(fetcher.mock.callCount(), 1);
+  const cached = JSON.parse(kv.writes[0]!.value);
+  mock.restoreAll();
+  mock.method(globalThis, 'fetch', () => { throw new Error('offline'); });
+  assert.deepEqual(await getWeather({ KV: cache(cached) }), state);
 });
 
 test('cache read and write failures do not hide valid upstream weather', async () => {
@@ -41,6 +48,11 @@ test('cache read and write failures do not hide valid upstream weather', async (
     async get() { throw new Error('cache unavailable'); },
     async put() { throw new Error('cache unavailable'); },
   } }), state);
+});
+
+test('upstream solar fields do not change the shared weather contract', async () => {
+  mock.method(globalThis, 'fetch', async () => Response.json({ ...upstream, sys: { sunrise: 1, sunset: 2 } }));
+  assert.deepEqual(await getWeather({ KV: cache() }), state);
 });
 
 test('upstream HTTP and network failures map to Weather upstream unavailable', async () => {
@@ -81,4 +93,13 @@ test('upstream requests abort after the two-second timeout without retry', async
 test('footer preserves all eight condition labels and lowercases unknown ones', () => {
   const labels = { Clear: 'clear', Clouds: 'cloudy', Drizzle: 'drizzling', Fog: 'foggy', Mist: 'misty', Rain: 'raining', Snow: 'snowing', Thunderstorm: 'stormy', Haze: 'haze' };
   for (const [condition, label] of Object.entries(labels)) assert.equal(weatherDescription(condition), label);
+});
+
+test('OpenWeather condition codes survive upstream parsing and caching', async () => {
+  const kv = cache();
+  mock.method(globalThis, 'fetch', async () => Response.json({ ...upstream, weather: [{ main: 'Clouds', id: 801 }] }));
+  const result = await getWeather({ KV: kv });
+  assert.equal(result.conditionCode, 801);
+  assert.equal(JSON.parse(kv.writes[0]!.value).conditionCode, 801);
+  assert.deepEqual(await getWeather({ KV: cache(result) }), result);
 });

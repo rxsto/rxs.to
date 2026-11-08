@@ -9,7 +9,7 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
-  "main": "vinext/server/fetch-handler",
+  "main": "server/worker.ts",
   "assets": {
     "directory": "dist/client",
     "html_handling": "none",
