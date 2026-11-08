@@ -1,5 +1,6 @@
 import { chromium } from 'playwright';
 import process from 'node:process';
+import { URL } from 'node:url';
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 /* global document, window, innerWidth, navigator, getComputedStyle */
@@ -39,6 +40,8 @@ try {
       assert.deepEqual(await page.locator('footer [aria-label="Elsewhere"] a').allTextContents(), ['GitHub', 'Twitter', 'LinkedIn', 'Discord', 'CV']);
       for (const link of await page.locator('footer a, [class*="facts"] a, [class*="articleProse"] a').all()) assert.ok((await link.boundingBox()).height >= 24);
       if (path === '/') {
+        assert.equal(await page.getByText(/BUNDjugend/).count(), 0);
+        assert.equal(await page.locator('header p svg').count(), 4);
         assert.equal(await page.getByRole('heading', { name: 'Previously' }).count(), 0);
         for (const name of ['GitHub', 'Twitter', 'LinkedIn']) assert.equal(await page.locator('header').getByRole('link', { name, exact: true }).locator('svg path').count(), 0);
         assert.equal(await page.locator('[class*="rows"] > li').count(), 4);
@@ -105,6 +108,15 @@ try {
         await page.waitForFunction(() => document.activeElement === document.querySelector('#card-hydra a'));
       }
       if (path === '/cv') {
+        const resume = await (await page.request.get(`${origin}/cv.json`)).json();
+        const text = (await page.locator('.cv').innerText()).replace(/\s+/g, ' ');
+        for (const entry of [...resume.work, ...resume.volunteer, ...resume.education]) {
+          for (const field of ['name', 'organization', 'institution', 'position', 'summary']) {
+            if (entry[field]) assert.ok(text.includes(entry[field].replace(/\s+/g, ' ')), `CV web rendering preserves ${field}: ${entry[field]}`);
+          }
+          for (const point of entry.highlights ?? []) assert.ok(text.includes(point.replace(/\s+/g, ' ')), `CV web rendering preserves ${point}`);
+        }
+        for (const row of resume.skills) for (const skill of row.keywords) assert.ok(text.includes(skill), `CV web rendering preserves ${skill}`);
         for (const entry of await page.locator('.cv article').all()) {
           const heading = await entry.locator('h3').boundingBox();
           const date = await entry.locator('.date').boundingBox();
@@ -117,10 +129,20 @@ try {
         assert.equal(await page.locator('.cv-topbar img').count(), 0);
         const topbar = await page.locator('.cv-topbar').evaluate(node => {
           const back = node.querySelector('a').getBoundingClientRect();
-          const downloads = node.querySelector('ul').getBoundingClientRect();
+          const downloads = node.querySelector('[download]').getBoundingClientRect();
           return Math.abs((back.top + back.bottom) / 2 - (downloads.top + downloads.bottom) / 2);
         });
         assert.ok(topbar < 1, 'CV downloads share the back-button row');
+        assert.equal(await page.locator('.cv-topbar a').count(), 2);
+        assert.equal(await page.locator('.cv-topbar a[download]').getAttribute('href'), '/cv.pdf');
+        for (const [type, href] of [['application/json', '/cv.json'], ['text/markdown', '/cv.md']]) {
+          assert.equal(new URL(await page.locator(`head link[rel="alternate"][type="${type}"]`).getAttribute('href'), origin).pathname, href);
+          assert.equal(await page.locator(`.cv-formats a[href="${href}"]`).count(), 1);
+        }
+        await page.getByRole('link', { name: 'Download PDF' }).focus();
+        await page.getByRole('tooltip').waitFor();
+        assert.equal(await page.getByRole('tooltip').innerText(), 'Download PDF');
+        await page.keyboard.press('Escape');
         assert.equal(await page.getByText('Oskar Lang', { exact: true }).count(), 1);
         for (const link of await page.locator('.cv .contact a').all()) assert.ok((await link.boundingBox()).height >= 24);
       }
@@ -131,6 +153,19 @@ try {
         assert.ok(Math.abs(gap - 16) < 1, `404 paragraph gap: ${gap}`);
       }
       if (['/digital-office-24', '/hydra', '/hey-netflix', '/soundcloud'].includes(path)) {
+        assert.equal(await page.locator('figcaption').count(), 0);
+        assert.equal(await page.locator('dt').filter({ hasText: /^Links$/ }).count(), 0);
+        const technologies = page.getByRole('list', { name: 'Technologies' });
+        if (await technologies.count()) {
+          const technology = technologies.locator('[tabindex="0"]').first();
+          await technology.focus();
+          await page.getByRole('tooltip').waitFor();
+          assert.equal(await page.getByRole('tooltip').innerText(), await technology.getAttribute('aria-label'));
+          await page.keyboard.press('Escape');
+        }
+        const visit = page.locator('article > a[target="_blank"]');
+        assert.equal(await visit.count(), path === '/digital-office-24' ? 0 : 1);
+        if (await visit.count()) assert.equal((await visit.boundingBox()).height, 36);
         const next = await page.locator('[aria-label="Project navigation"] a').boundingBox();
         const article = await page.locator('article').boundingBox();
         assert.ok(Math.abs(next.x + next.width - article.x - article.width) < 1, 'Next navigation aligns with the right edge');
