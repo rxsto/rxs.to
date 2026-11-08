@@ -87,11 +87,11 @@
 .headingRow { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; align-items: baseline; }
 .stamp, .ledgerYear { color: var(--text-secondary); font-size: .8125rem; }
 .ledger { list-style: none; margin: 0; padding: 0; display: grid; row-gap: var(--space-body); }
-.ledgerRow { --node-center: calc(.5 * 1.75rem + .1rem); position: relative; display: grid; align-items: start; grid-template-columns: 3rem minmax(0, 1fr); column-gap: var(--space-body); }
-.ledgerRow::before { content: ''; position: absolute; inset-inline-start: calc(3rem + var(--space-small)); inset-block-start: var(--node-center); block-size: calc(100% + var(--space-body)); border-inline-start: 1px solid var(--border); }
+.ledgerRow { --node-center: calc(.5 * 1.75rem + .1rem); position: relative; display: grid; align-items: start; --rail-gap: calc(var(--space-body) + var(--space-small)); grid-template-columns: 3rem minmax(0, 1fr); column-gap: var(--rail-gap); }
+.ledgerRow::before { content: ''; position: absolute; inset-inline-start: calc(3rem + var(--rail-gap) / 2); inset-block-start: var(--node-center); block-size: calc(100% + var(--space-body)); border-inline-start: 1px solid var(--border); }
 .ledgerRow:last-child::before { display: none; }
 .ledgerYear { display: grid; place-items: center; box-sizing: border-box; block-size: 1.5rem; margin-block-start: calc(.5 * 1.75rem + .1rem - .75rem); border: 1px solid transparent; border-radius: .3rem; background: var(--surface-muted); font-size: .75rem; line-height: 1; font-variant-numeric: tabular-nums; }
-.ledgerYear::after { content: ''; position: absolute; inset-inline-start: calc(3rem + var(--space-small)); inset-block-start: var(--node-center); inline-size: .35rem; block-size: .35rem; translate: calc(-50% + .5px) -50%; border-radius: 50%; background: var(--text-secondary); }
+.ledgerYear::after { content: ''; position: absolute; inset-inline-start: calc(3rem + var(--rail-gap) / 2); inset-block-start: var(--node-center); inline-size: .35rem; block-size: .35rem; translate: calc(-50% + .5px) -50%; border-radius: 50%; background: var(--text-secondary); }
 
 .portraitLarge { inline-size: 3.5rem; block-size: 3.5rem; }
 .link:active, .archiveLink:active, .footerLinks a:active { color: var(--foreground); }
