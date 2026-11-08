@@ -83,15 +83,32 @@ try {
         const resting = await row.evaluate(node => [getComputedStyle(node).backgroundColor, getComputedStyle(node).transitionDuration]);
         await row.hover();
         assert.deepEqual(await row.evaluate(node => [getComputedStyle(node).backgroundColor, getComputedStyle(node).transitionDuration]), resting);
-        assert.equal(await row.locator('svg').count(), 0);
+        assert.equal(await row.locator('svg').count(), 1);
+        await page.waitForTimeout(180);
+        assert.equal(await row.locator('svg').evaluate(node => getComputedStyle(node).opacity), '1');
         await page.mouse.move(0, 0);
+        await row.focus();
+        await page.waitForTimeout(180);
+        assert.equal(await row.locator('svg').evaluate(node => getComputedStyle(node).opacity), '1');
+        await page.locator('h1').click();
+        await page.waitForTimeout(180);
+        assert.equal(await row.locator('svg').evaluate(node => getComputedStyle(node).opacity), '0');
+        await page.emulateMedia({ reducedMotion: 'reduce' });
+        assert.equal(await row.locator('svg').evaluate(node => getComputedStyle(node).translate), 'none');
+        assert.equal(await row.locator('svg').evaluate(node => getComputedStyle(node).transitionDuration), '0s');
+        await page.emulateMedia({ reducedMotion: 'no-preference' });
+        await page.goto(origin);
+        await page.locator('[data-period="noon"]').waitFor();
         const tabOrder = [];
         for (let i = 0; i < 2; i++) {
           await page.keyboard.press('Tab');
           tabOrder.push(await page.evaluate(() => ({ label: document.activeElement.getAttribute('aria-label') ?? document.activeElement.textContent, focus: document.activeElement.matches(':focus-visible') })));
         }
         assert.deepEqual(tabOrder.map(item => item.label), ['Email me', 'CV']);
-        assert.equal(await page.getByRole('link', { name: 'Digital Office 24’s customer platform' }).getAttribute('href'), '/digital-office-24');
+        const now = page.locator('section[aria-labelledby="now"]');
+        assert.doesNotMatch(await now.innerText(), /Digital Office/);
+        assert.equal(await now.locator('a').count(), 0);
+        for (const name of ['Hydra', 'Top.gg', 'Finaure', 'SoundCloud']) assert.ok((await now.innerText()).includes(name));
         assert.ok(tabOrder.every(item => item.focus));
         if (colorScheme === 'light') await page.screenshot({ path: `${directory}/focus-${width}-light.png`, fullPage: true });
         for (const slug of ['digital-office-24', 'hydra', 'hey-netflix', 'soundcloud']) assert.equal(await page.locator(`#card-${slug} a`).getAttribute('href'), `/${slug}`);
@@ -129,19 +146,26 @@ try {
         assert.equal(await page.locator('.cv-topbar img').count(), 0);
         const topbar = await page.locator('.cv-topbar').evaluate(node => {
           const back = node.querySelector('a').getBoundingClientRect();
-          const downloads = node.querySelector('[download]').getBoundingClientRect();
+          const downloads = node.querySelector('[href="/cv.pdf"]').getBoundingClientRect();
           return Math.abs((back.top + back.bottom) / 2 - (downloads.top + downloads.bottom) / 2);
         });
         assert.ok(topbar < 1, 'CV downloads share the back-button row');
         assert.equal(await page.locator('.cv-topbar a').count(), 2);
-        assert.equal(await page.locator('.cv-topbar a[download]').getAttribute('href'), '/cv.pdf');
+        const pdf = page.getByRole('link', { name: 'Open PDF' });
+        assert.equal(await pdf.getAttribute('href'), '/cv.pdf');
+        assert.equal(await pdf.getAttribute('download'), null);
+        assert.equal(await pdf.getAttribute('target'), '_blank');
+        assert.equal(await pdf.getAttribute('rel'), 'noopener');
+        const pdfResponse = await page.request.get(`${origin}/cv.pdf`);
+        assert.equal(pdfResponse.headers()['content-type'], 'application/pdf');
+        assert.ok(!pdfResponse.headers()['content-disposition']?.includes('attachment'));
         for (const [type, href] of [['application/json', '/cv.json'], ['text/markdown', '/cv.md']]) {
           assert.equal(new URL(await page.locator(`head link[rel="alternate"][type="${type}"]`).getAttribute('href'), origin).pathname, href);
           assert.equal(await page.locator(`.cv-formats a[href="${href}"]`).count(), 1);
         }
-        await page.getByRole('link', { name: 'Download PDF' }).focus();
+        await page.getByRole('link', { name: 'Open PDF' }).focus();
         await page.getByRole('tooltip').waitFor();
-        assert.equal(await page.getByRole('tooltip').innerText(), 'Download PDF');
+        assert.equal(await page.getByRole('tooltip').innerText(), 'Open PDF');
         await page.keyboard.press('Escape');
         assert.equal(await page.getByText('Oskar Lang', { exact: true }).count(), 1);
         for (const link of await page.locator('.cv .contact a').all()) assert.ok((await link.boundingBox()).height >= 24);
@@ -157,15 +181,22 @@ try {
         assert.equal(await page.locator('dt').filter({ hasText: /^Links$/ }).count(), 0);
         const technologies = page.getByRole('list', { name: 'Technologies' });
         if (await technologies.count()) {
-          const technology = technologies.locator('[tabindex="0"]').first();
-          await technology.focus();
-          await page.getByRole('tooltip').waitFor();
-          assert.equal(await page.getByRole('tooltip').innerText(), await technology.getAttribute('aria-label'));
-          await page.keyboard.press('Escape');
+          assert.ok((await technologies.locator('li').first().innerText()).length > 0);
+          assert.equal(await technologies.locator('[tabindex], img, svg').count(), 0);
+          await technologies.locator('li').first().hover();
+          assert.equal(await page.getByRole('tooltip').count(), 0);
         }
-        const visit = page.locator('article > a[target="_blank"]');
+        const visit = page.locator('article a[target="_blank"]');
         assert.equal(await visit.count(), path === '/digital-office-24' ? 0 : 1);
         if (await visit.count()) assert.equal((await visit.boundingBox()).height, 36);
+        if (await visit.count()) {
+          assert.doesNotMatch(await visit.innerText(), /Visit|Honoree/);
+          const button = await visit.boundingBox();
+          const next = await page.locator('[aria-label="Project navigation"] a').boundingBox();
+          if (width >= 390 && path !== '/hey-netflix') assert.ok(Math.abs(button.y + button.height / 2 - next.y - next.height / 2) < 1, 'Site and Next share a vertical centre');
+        }
+        const expectedDates = { '/digital-office-24': 'February 2026 to now', '/hydra': '2020 to now', '/hey-netflix': '2022 to 2023', '/soundcloud': '2021 to now' };
+        assert.equal(await page.locator('dl > div').filter({ has: page.locator('dt', { hasText: /^Period$/ }) }).locator('dd').innerText(), expectedDates[path]);
         const next = await page.locator('[aria-label="Project navigation"] a').boundingBox();
         const article = await page.locator('article').boundingBox();
         assert.ok(Math.abs(next.x + next.width - article.x - article.width) < 1, 'Next navigation aligns with the right edge');
@@ -245,6 +276,12 @@ try {
     assert.equal(await page.getByRole('link', { name: 'Back home' }).getAttribute('href'), '/');
   }
   await context.close();
+  const touch = await browser.newContext({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 900 } });
+  const touchPage = await touch.newPage();
+  await touchPage.route('**/api/weather', route => route.fulfill({ status: 502, body: '{}' }));
+  await touchPage.goto(origin);
+  assert.equal(await touchPage.locator('#card-hydra svg').evaluate(node => getComputedStyle(node).opacity), '0');
+  await touch.close();
   const noJs = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 900 } });
   const direct = await noJs.newPage();
   for (const path of ['/', '/digital-office-24', '/hydra', '/hey-netflix', '/soundcloud', '/cv']) {
