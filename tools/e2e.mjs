@@ -74,12 +74,20 @@ try {
           const s = getComputedStyle(node); return [node.getBoundingClientRect().height, s.borderRadius, s.paddingInline, s.fontSize];
         }));
         assert.deepEqual(actions[0], actions[1]);
+        assert.ok(actions[0][0] >= 24);
+        assert.equal(await page.locator('header em, header [data-intro-links]').count(), 0);
+        const row = page.locator('[class*="rows"] a').first();
+        const resting = await row.evaluate(node => [getComputedStyle(node).backgroundColor, getComputedStyle(node).transitionDuration]);
+        await row.hover();
+        assert.deepEqual(await row.evaluate(node => [getComputedStyle(node).backgroundColor, getComputedStyle(node).transitionDuration]), resting);
+        assert.equal(await row.locator('svg').count(), 0);
+        await page.mouse.move(0, 0);
         const tabOrder = [];
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 2; i++) {
           await page.keyboard.press('Tab');
           tabOrder.push(await page.evaluate(() => ({ label: document.activeElement.getAttribute('aria-label') ?? document.activeElement.textContent, focus: document.activeElement.matches(':focus-visible') })));
         }
-        assert.deepEqual(tabOrder.map(item => item.label), ['GitHub', 'Twitter', 'LinkedIn', 'email', 'CV', 'Email me', 'CV']);
+        assert.deepEqual(tabOrder.map(item => item.label), ['Email me', 'CV']);
         assert.equal(await page.getByRole('link', { name: 'Digital Office 24’s customer platform' }).getAttribute('href'), '/digital-office-24');
         assert.ok(tabOrder.every(item => item.focus));
         if (colorScheme === 'light') await page.screenshot({ path: `${directory}/focus-${width}-light.png`, fullPage: true });
@@ -123,9 +131,11 @@ try {
         assert.ok(Math.abs(gap - 16) < 1, `404 paragraph gap: ${gap}`);
       }
       if (['/digital-office-24', '/hydra', '/hey-netflix', '/soundcloud'].includes(path)) {
-        const next = await page.locator('[aria-label="Project navigation"]').boundingBox();
-        const email = await page.getByRole('link', { name: 'Email me', exact: true }).boundingBox();
-        assert.ok(Math.abs(next.x - email.x) < 1, 'Next navigation aligns with the contact action');
+        const next = await page.locator('[aria-label="Project navigation"] a').boundingBox();
+        const article = await page.locator('article').boundingBox();
+        assert.ok(Math.abs(next.x + next.width - article.x - article.width) < 1, 'Next navigation aligns with the right edge');
+        assert.equal(await page.getByRole('link', { name: 'Email me', exact: true }).count(), 0);
+        assert.equal(await page.locator('article a[href="/cv"]').count(), 0);
         assert.equal(await page.getByRole('link', { name: 'All work', exact: true }).count(), 0);
         if (['/hydra', '/soundcloud'].includes(path)) {
           const figure = await page.locator('figure').boundingBox();
@@ -137,7 +147,9 @@ try {
           return { width: box.width, height: box.height, radius: style.borderRadius, background: style.backgroundColor };
         }));
         assert.equal(buttons.length, 2);
-        assert.ok(buttons.every(button => button.width >= 36 && button.height >= 36));
+        assert.ok(buttons.every(button => button.width === 44 && button.height === 44));
+        assert.equal(buttons[0].radius, buttons[1].radius);
+        assert.equal(buttons[0].background, buttons[1].background);
         if (path === '/hydra') await page.locator('[aria-label="Article actions"]').screenshot({ path: `${directory}/article-actions-2x-${width}-${colorScheme}.png` });
         assert.equal(await page.locator('#project-title').count(), 1);
         assert.equal(await page.locator('#now').count(), 0);

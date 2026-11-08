@@ -6,14 +6,14 @@ import Link from 'next/link';
 import styles from './site.module.css';
 
 export function EmailButton() {
-  return <a className={`${button.button} ${button.primary} ${button.md}`} href={`mailto:${email}`}>Email me</a>;
+  return <a className={`${button.button} ${button.primary} ${button.sm}`} href={`mailto:${email}`}>Email me</a>;
 }
 
 export function Actions() {
   return (
     <div className={`${styles.actions} ${styles.heroActions}`}>
       <EmailButton />
-      <Link className={`${button.button} ${button.secondary} ${button.md}`} href="/cv">CV</Link>
+      <Link className={`${button.button} ${button.secondary} ${button.sm}`} href="/cv">CV</Link>
     </div>
   );
 }

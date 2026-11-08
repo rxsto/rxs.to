@@ -1,4 +1,8 @@
 .page {
+  --space-tight: .25rem;
+  --space-small: .5rem;
+  --space-body: 1rem;
+  --space-group: 2rem;
   --section-gap: clamp(3.5rem, 3rem + 2vw, 5rem);
   display: grid;
   min-block-size: 100svh;
@@ -13,21 +17,24 @@
 .page > * { grid-column: 2; min-inline-size: 0; }
 .page > :is(header, a):has(+ :global(.cv-page)) { margin-block-end: calc(2rem - var(--section-gap)); }
 .main { display: grid; align-content: start; row-gap: var(--section-gap); }
-.section, .hero { display: grid; gap: 1rem; }
+.section, .hero { display: grid; gap: var(--space-body); }
+.hero > .identity { margin-block-end: var(--space-body); }
 .section > :where(p, ul, ol), .hero > p, .caseHead > p { margin: 0; }
 .heading, .name, .caseTitle { margin: 0; font: inherit; font-weight: 500; color: var(--foreground); }
 .identity { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; }
 .identityLine { margin: 0; color: var(--text-secondary); }
+.hero .identityLine { font-size: .875rem; line-height: 2; }
+.hero .identity > div { flex: 1; min-inline-size: 0; }
 .link, .archiveLink { color: var(--foreground); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
 .archiveLink { font-size: inherit; color: var(--text-secondary); }
 .localDetails { font-variant-numeric: tabular-nums; }
-.actions { justify-self: start; display: flex; align-items: center; gap: .75rem; margin-block-start: .5rem; }
+.actions { justify-self: start; display: flex; align-items: center; gap: .75rem; margin-block-start: var(--space-body); }
 .heroActions { flex-wrap: wrap; }
 .rows { display: grid; gap: .75rem; margin: 0; padding: 0; list-style: none; }
-.row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1.25rem; padding: .5rem; margin-inline: -.5rem; border-radius: .75rem; color: inherit; text-decoration: none; }
-.row:active { background: var(--surface-muted); }
+.row { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 1.25rem; padding: .5rem; margin-inline: -.5rem; border-radius: .75rem; color: inherit; text-decoration: none; }
+.row:active .rowTitle { color: var(--text-secondary); }
 .tile { display: grid; place-items: center; inline-size: 3rem; block-size: 3rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--surface); overflow: clip; }
-.rowText { display: grid; line-height: 1.75; }
+.rowText { display: grid; gap: var(--space-tight); line-height: 1.4; }
 .rowTitle { color: var(--foreground); font-weight: 500; }
 .rowDetail { color: var(--text-secondary); text-wrap: pretty; }
 .footer { display: grid; gap: 1rem; align-self: end; padding-block-start: 1.5rem; font-size: .8125rem; line-height: 1.7; color: var(--text-secondary); }
@@ -43,14 +50,15 @@
 .caseHead { display: grid; gap: 1rem; }
 
 .caseTitle { font-size: 1rem; }
-.figure { display: grid; gap: 1rem; margin: 0; }
+.figure { display: grid; gap: var(--space-small); margin: 0; }
 .frame { padding: .4rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--surface); overflow: clip; }
 .frame > img { display: block; inline-size: 100%; block-size: auto; border-radius: .6rem; border: 1px solid var(--border); }
-.figure figcaption { font-size: .8125rem; color: var(--text-secondary); }
-.next { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .875rem; }
+.figure figcaption { font-size: .75rem; line-height: 1.5; color: var(--text-secondary); }
+.next { display: flex; justify-content: end; gap: var(--space-small); font-size: .875rem; }
 @media (hover: hover) and (pointer: fine) {
   .footerLinks a:hover, .link:hover, .archiveLink:hover { color: var(--foreground); text-decoration: underline; }
-  .row:hover { background: var(--surface-muted); }
+  .row:hover .rowTitle { color: var(--text-secondary); }
+  .nextLink:hover { text-decoration: underline; }
 }
 @media (scripting: none) { .noScriptHide { display: none !important; } }
 @media print { .page:has(:global(.cv-page)) { display: block; min-block-size: 0; padding: 0; } .page:has(:global(.cv-page)) > :is(header, a) { display: none; } }
@@ -70,11 +78,10 @@
 
 .facts { display: grid; gap: .5rem; margin: 0; font-size: .875rem; line-height: 1.6; }
 .facts > div { display: grid; grid-template-columns: 4rem minmax(0, 1fr); gap: 1rem; }
-.facts dt { color: var(--text-secondary); }
+.facts dt { color: var(--foreground); font-weight: 500; }
 .facts dd { margin: 0; }
 
 
-.rowArrow { color: var(--text-muted); inline-size: 1em; block-size: 1em; }
 .facts a, .articleProse a, .next a, .section > p > a, .hero > p > a { display: inline-flex; align-items: center; min-block-size: 1.5rem; }
 
 .localDetails .weatherGroup { gap: 1rem; block-size: auto; }
@@ -84,8 +91,17 @@
 .ledger { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
 .ledgerRow { display: grid; align-items: baseline; grid-template-columns: 3rem minmax(0, 1fr); gap: 1rem; }
 
-.portraitLarge { inline-size: 4rem; block-size: 4rem; }
-.serif { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+.portraitLarge { inline-size: 3.5rem; block-size: 3.5rem; }
 .link:active, .archiveLink:active, .footerLinks a:active { color: var(--foreground); }
 .tile { padding: .25rem; color: var(--foreground); }
 .tile > span { display: grid; place-items: center; inline-size: 100%; block-size: 100%; border: 1px solid var(--border); border-radius: .45rem; font-size: .875rem; font-weight: 500; background: var(--background); }
+
+.emphasis { color: var(--foreground); }
+.emphasis > svg { display: inline; inline-size: .9em; block-size: .9em; margin-inline-end: .25em; vertical-align: -.08em; stroke-width: 1.5; color: var(--text-secondary); }
+.externalArrow { display: inline; flex: none; inline-size: .75em; block-size: .75em; margin-inline-start: .25em; vertical-align: baseline; stroke-width: 1.5; color: var(--text-secondary); }
+.articleNav .articleButton { inline-size: 44px; min-inline-size: 44px; block-size: 44px; min-block-size: 44px; padding: 0; border-radius: var(--radius-control); }
+.articleButton:focus-visible { background: var(--surface-muted); }
+.nextLink { display: inline-flex; gap: .35em; color: var(--text-secondary); text-align: end; text-decoration: none; }
+.nextLink:active { color: var(--foreground); }
+.stackIcon { display: inline-block; inline-size: 1.1em; block-size: 1.1em; margin-inline: .1em .25em; vertical-align: -.15em; background: currentColor; mask: var(--stack-icon) center / contain no-repeat; }
+.stackTechnology { white-space: nowrap; }

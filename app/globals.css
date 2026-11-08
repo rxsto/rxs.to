@@ -32,3 +32,5 @@ body {
 /* The squash base used accent ink for its primary action. */
 :root, :root[data-theme], :root:not([data-theme]) { --foreground: light-dark(oklch(33% 0 none), oklch(80% 0 none)); }
 ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+
+a { text-decoration-skip-ink: none; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--border-strong); }
