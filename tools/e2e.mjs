@@ -40,6 +40,33 @@ try {
       assert.deepEqual(await page.locator('footer [aria-label="Elsewhere"] a').allTextContents(), ['GitHub', 'Twitter', 'LinkedIn', 'Discord', 'CV']);
       for (const link of await page.locator('footer a, [class*="facts"] a, [class*="articleProse"] a').all()) assert.ok((await link.boundingBox()).height >= 24);
       if (path === '/') {
+        const rail = await page.locator('[class*="ledgerRow"]').evaluateAll(rows => rows.map(row => {
+          const year = row.firstElementChild;
+          const text = row.lastElementChild;
+          const textStyle = getComputedStyle(text);
+          const marker = document.createElement('span');
+          marker.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline';
+          text.prepend(marker);
+          const baseline = marker.getBoundingClientRect().top;
+          marker.remove();
+          const canvas = document.createElement('canvas').getContext('2d');
+          canvas.font = `${textStyle.fontWeight} ${textStyle.fontSize} ${textStyle.fontFamily}`;
+          const x = canvas.measureText('x');
+          const top = row.getBoundingClientRect().top;
+          const node = getComputedStyle(year, '::after');
+          const line = getComputedStyle(row, '::before');
+          return { top, bottom: row.getBoundingClientRect().bottom, yearWidth: year.getBoundingClientRect().width, node: top + parseFloat(node.top), xCentre: baseline - (x.actualBoundingBoxAscent - x.actualBoundingBoxDescent) / 2, lineEnd: top + parseFloat(line.top) + parseFloat(line.height), lineVisible: line.display !== 'none', halo: node.boxShadow };
+        }));
+        assert.equal(rail.length, 5);
+        for (const [index, row] of rail.entries()) {
+          assert.ok(Math.abs(row.node - row.xCentre) < .25, 'Rail node centres on first-line x-height');
+          assert.equal(row.yearWidth, rail[0].yearWidth);
+          assert.equal(row.halo, 'none', 'No halo interrupts the rail');
+          if (index + 1 < rail.length) {
+            assert.equal(rail[index + 1].top - row.bottom, 16, 'Same gap after one- and two-line entries');
+            assert.ok(Math.abs(row.lineEnd - rail[index + 1].node) < .25, 'Rail connects to the next node');
+          } else assert.equal(row.lineVisible, false, 'Rail ends at the final node');
+        }
         assert.equal(await page.getByText(/BUNDjugend/).count(), 0);
         assert.equal(await page.locator('header p svg').count(), 4);
         assert.equal(await page.getByRole('heading', { name: 'Previously' }).count(), 0);
@@ -183,6 +210,13 @@ try {
         if (await technologies.count()) {
           assert.ok((await technologies.locator('li').first().innerText()).length > 0);
           assert.equal(await technologies.locator('[tabindex], img, svg').count(), 0);
+          assert.equal(await technologies.locator('[aria-hidden="true"]').count(), await technologies.locator('li').count());
+          for (const icon of await technologies.locator('[aria-hidden="true"]').all()) {
+            const source = await icon.evaluate(node => getComputedStyle(node, '::before').maskImage);
+            const asset = source.match(/url\("?([^")]+)"?\)/)?.[1];
+            assert.ok(asset, 'Technology has a visible icon mask');
+            assert.equal((await page.request.get(asset)).status(), 200);
+          }
           await technologies.locator('li').first().hover();
           assert.equal(await page.getByRole('tooltip').count(), 0);
         }
