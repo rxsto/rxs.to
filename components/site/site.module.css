@@ -109,6 +109,7 @@
 .stackList { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 0; padding: 0; }
 .stackList > li { padding: .125rem .5rem; border-radius: .3rem; background: var(--surface-muted); font-size: .8125rem; }
 .visitButton { justify-self: start; }
+.visitButton .externalArrow { color: inherit; opacity: .72; }
 .period { font-variant-numeric: tabular-nums; }
 .projectActions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
 .projectActions .next { margin-inline-start: auto; }
