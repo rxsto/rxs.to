@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import button from '@/components/arc/button/button.module.css';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { CopyButton } from '@/components/arc/copy-button/copy-button';
 import { projects, type Project } from './projects';
 import { ExternalArrow } from './ExternalArrow';
 import { Stack } from './Stack';
+import { ProjectPeriod } from './ProjectPeriod';
 import { ProjectHero } from './ProjectHero';
 import styles from './site.module.css';
 
@@ -23,12 +24,11 @@ export function CaseStudy({ item }: { item: Project }) {
     </header>
     {study.figures.map(figure => <figure key={figure.src} className={styles.figure}>
       <div className={styles.frame}><img src={figure.src} srcSet={figure.srcSet} sizes="(min-width: 40rem) 40rem, 100vw" alt={figure.alt} width={figure.width} height={figure.height} decoding="async" /></div>
-      <figcaption>{figure.caption}</figcaption>
     </figure>)}
     <dl className={styles.facts}>
-      {[{ term: 'Role', value: item.role }, { term: 'Period', value: item.period }, ...study.facts].map(fact => <div key={fact.term}><dt>{fact.term}</dt><dd>{fact.term === 'Stack' ? <Stack value={fact.value} /> : fact.value}</dd></div>)}
-      {study.links.length > 0 && <div><dt>Links</dt><dd>{study.links.map(link => <a key={link.url} className={styles.link} href={link.url} target="_blank" rel="noopener noreferrer">{link.label}<ExternalArrow /></a>)}</dd></div>}
+      {[{ term: 'Role', value: item.role }, { term: 'Period', value: item.period }, ...study.facts].map(fact => <div key={fact.term}><dt>{fact.term}</dt><dd>{fact.term === 'Stack' ? <Stack value={fact.value} /> : fact.term === 'Period' ? <ProjectPeriod value={fact.value} /> : fact.value}</dd></div>)}
     </dl>
-    <nav className={styles.next} aria-label="Project navigation"><Link prefetch className={styles.nextLink} href={`/${next.slug}`}><span>Next</span> <span className={styles.emphasis}>{next.name}</span><ExternalArrow /></Link></nav>
+    {study.links.map(link => <a key={link.url} className={`${button.button} ${button.secondary} ${button.sm} ${styles.visitButton}`} href={link.url} target="_blank" rel="noopener noreferrer">Visit {link.label}<ExternalArrow /></a>)}
+    <nav className={styles.next} aria-label="Project navigation"><Link prefetch className={styles.nextLink} href={`/${next.slug}`}><span>Next</span> <span className={styles.emphasis}>{next.name}</span><ArrowRight className={styles.externalArrow} aria-hidden="true" /></Link></nav>
   </article>;
 }

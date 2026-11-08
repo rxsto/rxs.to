@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+import { Tooltip } from '../arc/tooltip/tooltip';
 import styles from './site.module.css';
 
 const icons: Record<string, string> = {
@@ -8,10 +9,8 @@ const icons: Record<string, string> = {
 };
 
 export function Stack({ value }: { value: string }) {
-  return value.split(/(TypeScript|Nuxt|Kotlin|Terraform|AWS|Bun|Hono|Next\.js|Vue|Rust|Kubernetes)/).map((part, index) => {
-    const icon = icons[part];
-    if (!icon) return part;
+  return <ul className={styles.stackList} aria-label="Technologies">{Object.entries(icons).filter(([name]) => value.includes(name)).map(([part, icon]) => {
     const style: CSSProperties & { '--stack-icon': string } = { '--stack-icon': `url(/stack/${icon}.svg)` };
-    return <span className={styles.stackTechnology} key={index} title={part}><span className={styles.stackIcon} style={style} aria-hidden="true" />{part}</span>;
-  });
+    return <li key={part}><Tooltip content={part}><span tabIndex={0} className={styles.stackTechnology} aria-label={part}><span className={styles.stackIcon} style={style} aria-hidden="true" /></span></Tooltip></li>;
+  })}</ul>;
 }

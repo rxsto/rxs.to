@@ -53,7 +53,6 @@
 .figure { display: grid; gap: var(--space-small); margin: 0; }
 .frame { padding: .4rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--surface); overflow: clip; }
 .frame > img { display: block; inline-size: 100%; block-size: auto; border-radius: .6rem; border: 1px solid var(--border); }
-.figure figcaption { font-size: .75rem; line-height: 1.5; color: var(--text-secondary); }
 .next { display: flex; justify-content: end; gap: var(--space-small); font-size: .875rem; }
 @media (hover: hover) and (pointer: fine) {
   .footerLinks a:hover, .link:hover, .archiveLink:hover { color: var(--foreground); text-decoration: underline; }
@@ -97,11 +96,25 @@
 .tile > span { display: grid; place-items: center; inline-size: 100%; block-size: 100%; border: 1px solid var(--border); border-radius: .45rem; font-size: .875rem; font-weight: 500; background: var(--background); }
 
 .emphasis { color: var(--foreground); }
-.emphasis > svg { display: inline; inline-size: .9em; block-size: .9em; margin-inline-end: .25em; vertical-align: -.08em; stroke-width: 1.5; color: var(--text-secondary); }
+.introEmphasis { color: light-dark(oklch(26% 0 none), oklch(89% 0 none)); white-space: nowrap; }
+.introEmphasis > svg { display: inline; inline-size: .9em; block-size: .9em; margin-inline-end: .25em; vertical-align: -.08em; stroke-width: 2; fill: color-mix(in oklch, currentColor 18%, transparent); }
 .externalArrow { display: inline; flex: none; inline-size: .75em; block-size: .75em; margin-inline-start: .25em; vertical-align: baseline; stroke-width: 1.5; color: var(--text-secondary); }
 .articleNav .articleButton { inline-size: 44px; min-inline-size: 44px; block-size: 44px; min-block-size: 44px; padding: 0; border-radius: var(--radius-control); }
 .articleButton:focus-visible { background: var(--surface-muted); }
 .nextLink { display: inline-flex; gap: .35em; color: var(--text-secondary); text-align: end; text-decoration: none; }
 .nextLink:active { color: var(--foreground); }
-.stackIcon { display: inline-block; inline-size: 1.1em; block-size: 1.1em; margin-inline: .1em .25em; vertical-align: -.15em; background: currentColor; mask: var(--stack-icon) center / contain no-repeat; }
-.stackTechnology { white-space: nowrap; }
+.stackList { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 0; padding: 0; }
+.stackTechnology { display: grid; place-items: center; inline-size: 2rem; block-size: 2rem; border-radius: .25rem; color: var(--foreground); }
+.stackIcon { display: block; inline-size: 1.25rem; block-size: 1.25rem; background: currentColor; mask: var(--stack-icon) center / contain no-repeat; }
+.stackTechnology[aria-label="AWS"] .stackIcon { inline-size: 1.4rem; }
+.stackTechnology[aria-label="Nuxt"] .stackIcon { inline-size: 1.4rem; }
+.stackTechnology[aria-label="Kotlin"] .stackIcon { inline-size: 1.1rem; block-size: 1.1rem; }
+.stackTechnology[aria-label="Hono"] .stackIcon { block-size: 1.4rem; }
+.stackTechnology:focus-visible { outline: 2px solid var(--foreground); outline-offset: 2px; }
+.visitButton { justify-self: start; }
+.period { display: inline-flex; align-items: center; gap: .65rem; font-variant-numeric: tabular-nums; }
+.periodLine { display: inline-flex; align-items: center; inline-size: 2.5rem; color: var(--text-secondary); }
+.periodLine svg { inline-size: 100%; block-size: 1em; stroke-width: 1.5; }
+.periodNow { display: inline-flex; align-items: center; gap: .4rem; }
+.periodNow::before { content: ''; inline-size: .3rem; block-size: .3rem; background: currentColor; border-radius: 50%; }
+.screenReaderOnly { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
