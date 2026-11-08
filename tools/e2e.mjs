@@ -51,15 +51,15 @@ try {
           marker.remove();
           const canvas = document.createElement('canvas').getContext('2d');
           canvas.font = `${textStyle.fontWeight} ${textStyle.fontSize} ${textStyle.fontFamily}`;
-          const x = canvas.measureText('x');
+          const x = canvas.measureText('H');
           const top = row.getBoundingClientRect().top;
           const node = getComputedStyle(year, '::after');
           const line = getComputedStyle(row, '::before');
-          return { top, bottom: row.getBoundingClientRect().bottom, yearWidth: year.getBoundingClientRect().width, node: top + parseFloat(node.top), xCentre: baseline - (x.actualBoundingBoxAscent - x.actualBoundingBoxDescent) / 2, lineEnd: top + parseFloat(line.top) + parseFloat(line.height), lineVisible: line.display !== 'none', halo: node.boxShadow };
+          return { top, bottom: row.getBoundingClientRect().bottom, yearWidth: year.getBoundingClientRect().width, node: top + parseFloat(node.top), capCentre: baseline - (x.actualBoundingBoxAscent - x.actualBoundingBoxDescent) / 2, lineEnd: top + parseFloat(line.top) + parseFloat(line.height), lineVisible: line.display !== 'none', halo: node.boxShadow };
         }));
         assert.equal(rail.length, 5);
         for (const [index, row] of rail.entries()) {
-          assert.ok(Math.abs(row.node - row.xCentre) < .25, 'Rail node centres on first-line x-height');
+          assert.ok(Math.abs(row.node - row.capCentre) < .25, 'Rail node centres on first-line cap height');
           assert.equal(row.yearWidth, rail[0].yearWidth);
           assert.equal(row.halo, 'none', 'No halo interrupts the rail');
           if (index + 1 < rail.length) {
