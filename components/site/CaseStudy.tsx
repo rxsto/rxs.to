@@ -3,7 +3,7 @@ import button from '@/components/arc/button/button.module.css';
 import { ArrowLeft } from 'lucide-react';
 import { CopyButton } from '@/components/arc/copy-button/copy-button';
 import { projects, type Project } from './projects';
-import { EmailButton } from './parts';
+import { Actions } from './parts';
 import { ProjectHero } from './ProjectHero';
 import styles from './site.module.css';
 
@@ -28,7 +28,7 @@ export function CaseStudy({ item }: { item: Project }) {
       {[{ term: 'Role', value: item.role }, { term: 'Period', value: item.period }, ...study.facts].map(fact => <div key={fact.term}><dt>{fact.term}</dt><dd>{fact.value}</dd></div>)}
       {study.links.length > 0 && <div><dt>Links</dt><dd>{study.links.map(link => <a key={link.url} className={styles.link} href={link.url} target="_blank" rel="noopener noreferrer">{link.label} ↗</a>)}</dd></div>}
     </dl>
-    <div className={styles.section}><div className={styles.actions}><EmailButton /></div></div>
+    <Actions />
     <nav className={styles.next} aria-label="Project navigation"><Link prefetch className={styles.link} href={`/${next.slug}`}>Next: {next.name} →</Link></nav>
   </article>;
 }

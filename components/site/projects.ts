@@ -14,7 +14,7 @@ export type Project = {
   role: string;
   caption: string;
   shareImage?: string;
-  mark: { src: string };
+  letter: 'D' | 'H' | 'N' | 'S';
   body: { paragraphs: string[]; facts: { term: string; value: string }[]; links: { label: string; url: string }[]; figures: Image[] };
 };
 export const hydraImage: Image = {
@@ -27,9 +27,9 @@ export const projects: Project[] = [
     slug: 'digital-office-24', name: digitalOffice.org,
     period: `${'start' in digitalOffice.period ? new Date(`${digitalOffice.period.start}-01T00:00:00Z`).toLocaleString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }) : ''} to now`,
     role: `${digitalOffice.title} (contract)`,
-    caption: 'A home for the working day.',
+    caption: 'A customer platform, from booking to billing.',
     description: 'I built Digital Office 24’s production customer platform alone, from HubSpot CRM integration to billing.',
-    mark: { src: '/marks/digital-office-24.png' },
+    letter: 'D',
     body: {
       paragraphs: ['I built and run Digital Office 24’s production customer platform alone, from HubSpot CRM integration to billing.', 'The platform brings demo booking and the customer area together. I also handled its GDPR and consent work.'],
       facts: [{ term: 'Stack', value: digitalOffice.summary.match(/\(([^)]+)\)/)?.[1] ?? '' }],
@@ -41,7 +41,7 @@ export const projects: Project[] = [
     slug: 'hydra', name: 'Hydra', period: '2020 to now', role: 'Co-owner and engineer',
     caption: 'A home for Discord communities.',
     description: `I co-own Hydra, a leveling and community bot serving ${figures.hydraServers} Discord servers.`,
-    mark: { src: '/marks/hydra.png' },
+    letter: 'H',
     body: {
       paragraphs: [
         `I built most of the hydra.bot web app in Vue and Nuxt, including premium subscriptions, and co-develop the Kotlin backend as its second-largest contributor. For the 2026 rebuild in Rust on Kubernetes, I lead the frontend, infrastructure and monorepo.`,
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     slug: 'hey-netflix', name: 'Hey, Netflix', period: '2022 to 2023', role: 'Software engineer (contract)',
     caption: 'Movie nights, made for Discord.',
     description: 'I built Hey, Netflix with Jochen Segner for Netflix, a Webby Honoree in 2023.',
-    mark: { src: '/marks/netflix.svg' },
+    letter: 'N',
     body: {
       paragraphs: [`I built Hey, Netflix, a movie-night Discord bot, with Jochen Segner for Netflix, credited to HydraBot. It reached ${figures.netflixServers} servers and ${figures.netflixSessions} sessions in its first month. It was billed as the fastest-growing branded app on Discord and was a Webby Honoree in 2023.`],
       facts: [], links: [{ label: 'Webby Honoree 2023', url: 'https://winners.webbyawards.com/2023/advertising-media-pr/individual/game-or-application/251137/hey-netflix-discord-bot' }], figures: [],
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     slug: 'soundcloud', name: 'SoundCloud', period: '2021 to now', role: 'Engineer and project lead (contract)',
     caption: 'Official SoundCloud bot.',
     description: `I lead the official SoundCloud bot project, on ${figures.soundcloudServers} servers.`,
-    mark: { src: '/marks/soundcloud.svg' },
+    letter: 'S',
     body: {
       paragraphs: [
         `I manage the project with SoundCloud, including the 2022 launch and the move to OAuth 2.1. I lead the TypeScript and Nuxt web frontend and co-develop the Kotlin backend. I set up and run production in the SoundCloud AWS organization with Terraform.`,

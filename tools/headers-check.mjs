@@ -11,7 +11,7 @@ for (const [path, method, status] of [
   ['/', 'GET', 200], ['/digital-office-24', 'GET', 200], ['/hydra', 'GET', 200], ['/soundcloud', 'GET', 200], ['/cv', 'GET', 200],
   ['/api/weather', 'GET', 200], ['/api/weather', 'HEAD', 200],
   ...['POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'].map(method => ['/api/weather', method, 405]),
-  ['/cv.json', 'GET', 200], ['/cv.md', 'GET', 200], ['/sitemap.xml', 'GET', 200], ['/nope', 'GET', 404], ['/marks/hydra.png', 'GET', 200],
+  ['/cv.json', 'GET', 200], ['/cv.md', 'GET', 200], ['/sitemap.xml', 'GET', 200], ['/nope', 'GET', 404], ['/avatar.png', 'GET', 200],
 ]) {
   const response = await fetch(`${origin}${path}`, { method });
   const missingKey = path === '/api/weather' && status === 200 && response.status === 502;

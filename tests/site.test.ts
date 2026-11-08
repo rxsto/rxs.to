@@ -36,7 +36,7 @@ test('the project registry has distinct routes and complete project content', ()
 
 test('work rows use warm captions, with sentence metadata', () => {
   assert.deepEqual(projects.map(item => item.caption), [
-    'A home for the working day.',
+    'A customer platform, from booking to billing.',
     'A home for Discord communities.',
     'Movie nights, made for Discord.',
     'Official SoundCloud bot.',

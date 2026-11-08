@@ -6,7 +6,12 @@ const [asOfYear, asOfMonth] = cv.meta.asOf.split('-').map(Number);
 /** "November 2026", the month the CV's current figures were last checked. */
 export const asOf = new Date(Date.UTC(asOfYear!, asOfMonth! - 1)).toLocaleString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
 
-export const hero = { name: cv.name };
+export const hero = {
+  name: cv.name,
+  identity: `Software engineer in ${cv.location.city}, ${cv.location.country}`,
+  build: 'I build web products and Discord bots. I co-own Hydra, lead the official SoundCloud bot, and have been self-employed since 2018.',
+  engagement: 'I take on contracts to build a product on my own, to lead a team’s engineering, or to add features to an app that already exists.',
+};
 
 /** The Since 2018 index. Plain dated rows. */
 export const since = [

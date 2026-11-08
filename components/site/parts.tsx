@@ -1,4 +1,3 @@
-import { CopyButton } from '@/components/arc/copy-button/copy-button';
 import { email } from './content';
 import { LocalTime } from './LocalTime';
 import { ThemeToggle } from './ThemeToggle';
@@ -7,7 +6,7 @@ import Link from 'next/link';
 import styles from './site.module.css';
 
 export function EmailButton() {
-  return <span className={styles.emailActions}><a className={`${button.button} ${button.primary} ${button.md}`} href={`mailto:${email}`}>Email me</a><span className={styles.noScriptHide}><CopyButton value={email} label="Copy email" iconOnly /></span></span>;
+  return <a className={`${button.button} ${button.primary} ${button.md}`} href={`mailto:${email}`}>Email me</a>;
 }
 
 export function Actions() {

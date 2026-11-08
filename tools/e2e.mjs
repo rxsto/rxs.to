@@ -40,7 +40,7 @@ try {
       for (const link of await page.locator('footer a, [class*="facts"] a, [class*="articleProse"] a').all()) assert.ok((await link.boundingBox()).height >= 24);
       if (path === '/') {
         assert.equal(await page.getByRole('heading', { name: 'Previously' }).count(), 0);
-        for (const name of ['GitHub', 'Twitter', 'LinkedIn']) assert.equal(await page.locator('header').getByRole('link', { name, exact: true }).locator('svg path').count(), 1);
+        for (const name of ['GitHub', 'Twitter', 'LinkedIn']) assert.equal(await page.locator('header').getByRole('link', { name, exact: true }).locator('svg path').count(), 0);
         assert.equal(await page.locator('[class*="rows"] > li').count(), 4);
         assert.equal(await page.locator('[class*="rows"] > li').first().getAttribute('id'), 'card-digital-office-24');
         await page.locator('[class*="rows"]').screenshot({ path: `${directory}/tiles-2x-${width}-${colorScheme}.png` });
@@ -68,56 +68,24 @@ try {
         });
         for (const pair of contrast) assert.ok(pair.ratio >= (pair.ink === '--focus-outline' ? 3 : 4.5), `${colorScheme} ${pair.ink} on ${pair.surface}: ${pair.ratio}`);
         results.push({ colorScheme, contrast });
-        for (const mark of await page.locator('[data-project] img').all()) {
-          assert.ok((await mark.evaluate(node => getComputedStyle(node).filter)).includes('grayscale(1)'));
-          assert.ok(await mark.evaluate(node => node.complete && node.naturalWidth > 0));
-        }
-        const marks = await page.locator('[data-project]').evaluateAll(tiles => tiles.map(tile => {
-          const canvas = document.createElement('canvas');
-          canvas.width = canvas.height = 128;
-          const context = canvas.getContext('2d');
-          const image = tile.querySelector('img'), style = getComputedStyle(image);
-          context.drawImage(image, 0, 0, 128, 128);
-          const source = context.getImageData(0, 0, 128, 128).data;
-          context.clearRect(0, 0, 128, 128);
-          const luminance = rgb => rgb.map(v => v / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4).reduce((sum, v, i) => sum + v * [.2126, .7152, .0722][i], 0);
-          context.fillStyle = getComputedStyle(tile).backgroundColor;
-          context.fillRect(0, 0, 128, 128);
-          const background = [...context.getImageData(0, 0, 1, 1).data].slice(0, 3);
-          context.filter = style.filter;
-          context.globalCompositeOperation = style.mixBlendMode === 'normal' ? 'source-over' : style.mixBlendMode;
-          context.drawImage(image, 0, 0, 128, 128);
-          const pixels = context.getImageData(0, 0, 128, 128).data;
-          const surface = luminance(background);
-          let ink = 0, visible = 0;
-          for (let i = 0; i < pixels.length; i += 4) {
-            if (source[i + 3] < 250) continue;
-            const rgb = [...pixels.slice(i, i + 3)];
-            if (rgb.every((channel, index) => Math.abs(channel - background[index]) < 5)) continue;
-            ink++;
-            const value = luminance(rgb);
-            if ((Math.max(value, surface) + .05) / (Math.min(value, surface) + .05) >= 3) visible++;
-          }
-          return {project:tile.dataset.project, fractionAt3:visible / ink};
+        assert.deepEqual(await page.locator('[data-project]').allTextContents(), ['D', 'H', 'N', 'S']);
+        assert.equal(await page.getByRole('button', { name: 'Copy email' }).count(), 0);
+        const actions = await page.locator('[class*="heroActions"] a').evaluateAll(nodes => nodes.map(node => {
+          const s = getComputedStyle(node); return [node.getBoundingClientRect().height, s.borderRadius, s.paddingInline, s.fontSize];
         }));
-        for (const mark of marks) assert.ok(mark.fractionAt3 >= .25, `${colorScheme} mark contrast: ${JSON.stringify(mark)}`);
-        results.push({colorScheme, marks});
+        assert.deepEqual(actions[0], actions[1]);
         const tabOrder = [];
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 7; i++) {
           await page.keyboard.press('Tab');
           tabOrder.push(await page.evaluate(() => ({ label: document.activeElement.getAttribute('aria-label') ?? document.activeElement.textContent, focus: document.activeElement.matches(':focus-visible') })));
         }
-        assert.deepEqual(tabOrder.map(item => item.label), ['GitHub', 'Twitter', 'LinkedIn', 'Email me', 'Copy email', 'CV']);
+        assert.deepEqual(tabOrder.map(item => item.label), ['GitHub', 'Twitter', 'LinkedIn', 'email', 'CV', 'Email me', 'CV']);
         assert.equal(await page.getByRole('link', { name: 'Digital Office 24’s customer platform' }).getAttribute('href'), '/digital-office-24');
         assert.ok(tabOrder.every(item => item.focus));
         if (colorScheme === 'light') await page.screenshot({ path: `${directory}/focus-${width}-light.png`, fullPage: true });
         for (const slug of ['digital-office-24', 'hydra', 'hey-netflix', 'soundcloud']) assert.equal(await page.locator(`#card-${slug} a`).getAttribute('href'), `/${slug}`);
         await page.locator('h1').click();
         await page.locator('[class*="actions"]').screenshot({ path: `${directory}/buttons-2x-${width}-${colorScheme}.png` });
-        await page.getByRole('button', { name: 'Copy email', exact: true }).click();
-        await page.getByRole('status').filter({ hasText: 'Copy email: Copied' }).waitFor();
-        const email = await page.getByRole('link', { name: 'Email me', exact: true }).getAttribute('href');
-        assert.equal(await page.evaluate(() => navigator.clipboard.readText()), email.slice(7));
         await page.evaluate(() => { window.navigationSentinel = true; });
         await page.getByRole('link', { name: 'Hydra', exact: true }).click();
         await page.waitForURL('**/hydra');
@@ -191,7 +159,7 @@ try {
     }
     await page.goto(origin);
     await page.getByRole('button', { name: `Switch to ${colorScheme === 'light' ? 'dark' : 'light'} theme` }).click();
-    assert.equal(await page.locator('html').getAttribute('data-theme'), colorScheme === 'light' ? 'dark' : 'light');
+    await page.waitForFunction(expected => document.documentElement.dataset.theme === expected, colorScheme === 'light' ? 'dark' : 'light');
     for (const failure of ['malformed', 'network']) {
       await page.unroute('**/api/weather');
       await page.route('**/api/weather', route => failure === 'network' ? route.abort() : route.fulfill({ json: { temperature: 'invalid' } }));
@@ -238,6 +206,7 @@ try {
     assert.equal(await direct.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
   }
   await direct.goto(origin);
+  assert.equal(await direct.getByRole('button', { name: /Switch to/ }).count(), 0);
   await direct.evaluate(() => document.fonts.ready);
   const serverHeight = await direct.getByRole('list', { name: 'Live in Kufstein' }).evaluate(element => element.getBoundingClientRect().height);
   const live = await browser.newContext({ viewport: { width: 390, height: 900 } });
@@ -250,6 +219,6 @@ try {
   await live.close();
   results.push({ hydration: { serverHeight, liveHeight } });
   await noJs.close();
-  results.push({ weather: 'success, HTTP failure, malformed and network failure', viewTransitions: 'client navigation without page animation in both motion settings', clipboard: 'email and project URL verified', noJavaScript: 'all pages readable', removedRoutes: 404 });
+  results.push({ weather: 'success, HTTP failure, malformed and network failure', viewTransitions: 'client navigation without page animation in both motion settings', clipboard: 'project URL verified; email copy removed', noJavaScript: 'all pages readable', removedRoutes: 404 });
   await writeFile(`${directory}/checks.json`, JSON.stringify(results, null, 2));
 } finally { await browser.close(); }
