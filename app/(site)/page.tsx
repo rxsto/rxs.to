@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ChevronRight } from 'lucide-react';
 import { ReturnFocus } from '../../components/site/ReturnFocus';
 import { SiteFrame } from '../../components/site/SiteFrame';
 import { projects } from '../../components/site/projects';
@@ -23,7 +24,7 @@ const schema = jsonLd([
 export default function Page() {
   return <SiteFrame><ReturnFocus /><section id="work" tabIndex={-1} className={styles.section} aria-labelledby="work-title">
     <h2 id="work-title" className={styles.heading}>Selected work</h2>
-    <ul className={styles.rows}>{projects.map(item => <li key={item.slug} id={`card-${item.slug}`}><Link prefetch className={styles.row} href={`/${item.slug}`} aria-labelledby={`card-title-${item.slug}`} aria-describedby={`card-description-${item.slug}`}><ProjectHero project={item} /><span className={styles.rowText}><span className={styles.rowTitle} id={`card-title-${item.slug}`}>{item.name}</span><span className={styles.rowDetail} id={`card-description-${item.slug}`}>{item.caption}</span></span></Link></li>)}</ul>
+    <ul className={styles.rows}>{projects.map(item => <li key={item.slug} id={`card-${item.slug}`}><Link prefetch className={styles.row} href={`/${item.slug}`} aria-labelledby={`card-title-${item.slug}`} aria-describedby={`card-description-${item.slug}`}><ProjectHero project={item} /><span className={styles.rowText}><span className={styles.rowTitle} id={`card-title-${item.slug}`}>{item.name}<ChevronRight className={styles.workChevron} aria-hidden="true" /></span><span className={styles.rowDetail} id={`card-description-${item.slug}`}>{item.caption}</span></span></Link></li>)}</ul>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schema }} />
   </section></SiteFrame>;
 }

@@ -13,7 +13,7 @@ export const hero = {
   engagement: 'I take on contracts to build a product on my own, to lead a team’s engineering, or to add features to an app that already exists.',
 };
 
-/** The Since 2018 index. Plain dated rows. */
+/** Dated milestones for the semantic Since 2018 rail. */
 export const since = [
   { year: 2018, title: 'Co-founded Groovy at 16', detail: 'With Nik Ammerlaan. I wrote the original bot in Python and then Java, and led frontend and monetization.', archive: 'https://web.archive.org/web/20181114170958/https://groovy.bot/' },
   { year: 2020, title: 'Became co-owner of Hydra' },

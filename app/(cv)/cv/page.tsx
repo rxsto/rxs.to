@@ -1,6 +1,6 @@
 import { cv, cvJsonLd, cvMetadata, cvVariants, cvSections } from '../../../shared/cv';
 import './cv.css';
-import { ArrowLeft, Download } from 'lucide-react';
+import { ArrowLeft, FileText } from 'lucide-react';
 import { Tooltip } from '../../../components/arc/tooltip/tooltip';
 import button from '../../../components/arc/button/button.module.css';
 import styles from '../../../components/site/site.module.css';
@@ -42,7 +42,7 @@ export default function Page() {
     <div className="cv-page">
       <nav className={`${styles.articleNav} cv-topbar`} aria-label="Article actions">
         <a className={`${button.button} ${button.ghost} ${button.md} ${styles.articleButton}`} href="/" aria-label="Back home"><ArrowLeft size={18} aria-hidden="true" /></a>
-        <Tooltip content="Download PDF"><a className={`${button.button} ${button.ghost} ${button.md} ${styles.articleButton}`} href="/cv.pdf" type="application/pdf" download="Oskar-Lang-CV.pdf" aria-label="Download PDF"><Download size={18} aria-hidden="true" /></a></Tooltip>
+        <Tooltip content="Open PDF"><a className={`${button.button} ${button.ghost} ${button.md} ${styles.articleButton}`} href="/cv.pdf" type="application/pdf" target="_blank" rel="noopener" aria-label="Open PDF"><FileText size={18} aria-hidden="true" /></a></Tooltip>
       </nav>
       <CvContent />
       <p className="cv-formats">Also available as {cvVariants.filter(v => 'format' in v).map((v, index) => <span key={v.path}>{index > 0 && ' and '}<a href={v.path} type={v.mediaType}>{v.label}</a></span>)}.</p>

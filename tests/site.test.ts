@@ -73,7 +73,7 @@ test('client work comes first and derives its contribution and stack from the CV
   assert.deepEqual(project.body.links, []);
 });
 
-test('timeline restores the simple dated list', () => {
+test('milestones preserve their years and archive source', () => {
   assert.deepEqual(since.map(row => row.year), [2018, 2020, 2021, 2022, 2026]);
   assert.ok(since[0].archive.startsWith('https://web.archive.org/'));
 });

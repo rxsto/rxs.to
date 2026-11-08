@@ -28,7 +28,9 @@ export function CaseStudy({ item }: { item: Project }) {
     <dl className={styles.facts}>
       {[{ term: 'Role', value: item.role }, { term: 'Period', value: item.period }, ...study.facts].map(fact => <div key={fact.term}><dt>{fact.term}</dt><dd>{fact.term === 'Stack' ? <Stack value={fact.value} /> : fact.term === 'Period' ? <ProjectPeriod value={fact.value} /> : fact.value}</dd></div>)}
     </dl>
-    {study.links.map(link => <a key={link.url} className={`${button.button} ${button.secondary} ${button.sm} ${styles.visitButton}`} href={link.url} target="_blank" rel="noopener noreferrer">Visit {link.label}<ExternalArrow /></a>)}
-    <nav className={styles.next} aria-label="Project navigation"><Link prefetch className={styles.nextLink} href={`/${next.slug}`}><span>Next</span> <span className={styles.emphasis}>{next.name}</span><ArrowRight className={styles.externalArrow} aria-hidden="true" /></Link></nav>
+    <div className={styles.projectActions}>
+      {study.links.map(link => <a key={link.url} className={`${button.button} ${button.primary} ${button.sm} ${styles.visitButton}`} href={link.url} target="_blank" rel="noopener noreferrer">{new URL(link.url).hostname}<ExternalArrow /></a>)}
+      <nav className={styles.next} aria-label="Project navigation"><Link prefetch className={styles.nextLink} href={`/${next.slug}`}><span>Next</span> <span className={styles.emphasis}>{next.name}</span><ArrowRight className={styles.externalArrow} aria-hidden="true" /></Link></nav>
+    </div>
   </article>;
 }
