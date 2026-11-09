@@ -44,7 +44,7 @@ for (const path of ['/', '/digital-office-24', '/hydra', '/hey-netflix', '/sound
     if (path === '/digital-office-24') {
       assert.ok(head.includes('<title>Digital Office 24 | Oskar Lang</title>'));
       assert.ok(head.includes('rel="canonical" href="https://rxs.to/digital-office-24"'));
-      assert.ok(head.includes('I built Digital Office 24'));
+      assert.ok(head.includes('I built and run Digital Office 24'));
     }
     records.push(`${path} ${name}: one title, description, og:title and twitter:title, all in head${path === '/nope' ? '; robots consistently noindex' : ''}`);
   }

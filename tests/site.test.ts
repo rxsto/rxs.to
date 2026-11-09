@@ -69,7 +69,7 @@ test('client work comes first and derives its contribution and stack from the CV
   assert.equal(project.role, 'Software engineer (contract)');
   assert.equal(project.period, 'February 2026 to present');
   assert.doesNotMatch(project.body.paragraphs.join(' '), /Bun|Hono|Next\.js/);
-  for (const fact of ['alone', 'HubSpot CRM', 'demo booking', 'customer portal', 'billing', 'GDPR and consent']) assert.ok(project.body.paragraphs.join(' ').includes(fact));
+  for (const fact of ['by myself', 'HubSpot CRM', 'demo booking', 'customer portal', 'billing', 'GDPR and consent']) assert.ok(project.body.paragraphs.join(' ').includes(fact));
   assert.deepEqual(project.body.facts, [{ term: 'Stack', value: 'Bun, Hono, Next.js' }]);
   assert.deepEqual(project.body.figures, []);
   assert.deepEqual(project.body.links, []);

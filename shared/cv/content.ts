@@ -15,14 +15,14 @@ export const cv = {
     { network: 'GitHub', username: 'rxsto', url: 'https://github.com/rxsto' },
     { network: 'LinkedIn', username: 'oskar-lang', url: 'https://linkedin.com/in/oskar-lang' },
   ],
-  summary: 'Software engineer and entrepreneur, self-employed since 2018. Co-founded Groovy (16M+ Discord servers, $1M+ revenue) and wrote its original bot at 16. Co-own Hydra (6.1M servers) and built the official SoundCloud and Netflix Discord bots with Jochen Segner.',
+  summary: 'Software engineer and entrepreneur, self-employed since 2018. Co-founded Groovy (16M+ Discord servers, $1M+ revenue) and wrote its first version at 16. Co-own Hydra (6.1M servers). With Jochen Segner, built the official SoundCloud Discord bot and Hey, Netflix for Netflix.',
   experience: [
     {
       org: 'Hydra', title: 'Co-owner and engineer', relationship: 'venture', period: { start: '2020', end: 'present' }, url: 'https://hydra.bot',
       summary: 'Leveling, welcome and reaction-role bot founded by Jochen Segner, on 6.1M Discord servers.',
       highlights: [
         'Built most of the hydra.bot web app, including premium subscriptions (Vue, Nuxt)',
-        'Co-develop the Kotlin backend as its second-largest contributor',
+        'Second-largest contributor to the Kotlin backend',
         'Lead frontend, infrastructure and the monorepo for the 2026 rebuild (Rust, Kubernetes)',
       ],
     },
@@ -31,17 +31,17 @@ export const cv = {
       summary: 'Official SoundCloud Discord bot, on 667K servers, built and run with Jochen Segner.',
       highlights: [
         'Manage the project with SoundCloud, including the 2022 launch and the move to OAuth 2.1',
-        'Lead the web frontend (TypeScript, Nuxt) and co-develop the Kotlin backend',
-        'Set up and run production in the SoundCloud AWS organization with Terraform',
+        'Lead the web frontend (TypeScript, Nuxt) and contribute to the Kotlin backend',
+        'Set up and run production infrastructure in the SoundCloud AWS organization (Terraform)',
       ],
     },
     {
       org: 'Digital Office 24', title: 'Software engineer', relationship: 'contract', period: { start: '2026-02', end: 'present' },
-      summary: 'Built the production customer platform alone: HubSpot CRM integration, demo booking, customer portal and billing (Bun, Hono, Next.js). Also did its GDPR and consent work.',
+      summary: 'Built and run the customer platform by myself: demo booking, customer portal, billing and HubSpot CRM integration (Bun, Hono, Next.js). Also did its GDPR and consent work.',
     },
     {
       org: 'Finaure', title: 'Tech lead', relationship: 'contract', period: { start: '2026-09', end: 'present' },
-      summary: 'Self-funded digital wealth-management startup by Dr. Jürgen Lange, built AI-first. In the core team, built its independent review program and an implementation-agnostic test lab.',
+      summary: 'The self-funded digital wealth-management startup of Dr. Jürgen Lange, built AI-first. In its core team, built the independent review program and an implementation-agnostic test lab.',
     },
     {
       org: 'Top.gg', title: 'Software engineer', relationship: 'contract', period: { start: '2026-06', end: 'present' }, url: 'https://top.gg',
