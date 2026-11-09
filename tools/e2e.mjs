@@ -135,7 +135,7 @@ try {
         const now = page.locator('section[aria-labelledby="now"]');
         assert.doesNotMatch(await now.innerText(), /Digital Office/);
         assert.equal(await now.locator('a').count(), 0);
-        for (const name of ['Hydra', 'Top.gg', 'Finaure', 'SoundCloud']) assert.ok((await now.innerText()).includes(name));
+        for (const name of ['Hydra', 'Top.gg', 'wealth-management startup', 'SoundCloud']) assert.ok((await now.innerText()).includes(name));
         assert.ok(tabOrder.every(item => item.focus));
         if (colorScheme === 'light') await page.screenshot({ path: `${directory}/focus-${width}-light.png`, fullPage: true });
         for (const slug of ['digital-office-24', 'hydra', 'hey-netflix', 'soundcloud']) assert.equal(await page.locator(`#card-${slug} a`).getAttribute('href'), `/${slug}`);
