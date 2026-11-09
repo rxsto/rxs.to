@@ -21,7 +21,7 @@ export function SiteFrame({ children, view = 'home' }: { children: ReactNode; vi
           <h2 id="since" className={styles.heading}>Since 2018</h2>
           <ol className={styles.ledger}>{since.map(row => <li key={row.year} id={String(row.year)} className={styles.ledgerRow}><span className={styles.ledgerYear}>{row.year}</span><span>{row.title}{'archive' in row && <> <a className={styles.archiveLink} href={row.archive} target="_blank" rel="noopener noreferrer" aria-label={`${row.year} archived site`}>Archive<ExternalArrow /></a></>}</span></li>)}</ol>
         </section>
-        <CommitCalendar days={commits.days} last={commits.last} repos={commits.repos} years={Object.keys(commits.years).map(Number).sort((a, b) => b - a)} />
+        <CommitCalendar days={commits.days} last={commits.last} years={Object.keys(commits.years).map(Number).sort((a, b) => b - a)} />
       </>}
     </main>
     <Footer />

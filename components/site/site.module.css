@@ -136,6 +136,6 @@
 .commitDay[data-level="2"] { background: color-mix(in oklch, var(--foreground) 40%, var(--surface-muted)); }
 .commitDay[data-level="3"] { background: color-mix(in oklch, var(--foreground) 70%, var(--surface-muted)); }
 .commitDay[data-level="4"] { background: var(--foreground); }
-.commitGrid:focus-visible .commitDay[data-active="true"] { outline: 2px solid var(--foreground); outline-offset: 1px; }
-.section > .commitDetail, .section > .commitNote { color: var(--text-secondary); font-size: .8125rem; line-height: 1.7; font-variant-numeric: tabular-nums; }
-.section > .commitNote { margin-block-start: -.5rem; }
+.commitGrid { outline: none; }
+.commitDay[data-current="true"] { outline: 1.5px solid var(--foreground); outline-offset: 1.5px; }
+.section > .commitDetail { color: var(--text-secondary); font-size: .8125rem; line-height: 1.7; font-variant-numeric: tabular-nums; }

@@ -6,10 +6,11 @@ import button from '../arc/button/button.module.css';
 import styles from './site.module.css';
 
 const number = new Intl.NumberFormat('en');
-const dateFormat = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+const monthFormat = new Intl.DateTimeFormat('en-US', { month: 'short', timeZone: 'UTC' });
+const formatDate = (date: Date) => `${date.getUTCDate()} ${monthFormat.format(date)} ${date.getUTCFullYear()}`;
 
-export function CommitCalendar({ days, last, repos, years }: {
-  days: Record<string, number>; last: string; repos: number; years: number[];
+export function CommitCalendar({ days, last, years }: {
+  days: Record<string, number>; last: string; years: number[];
 }) {
   const [year, setYear] = useState(Number(last.slice(0, 4)));
   const [index, setIndex] = useState(0);
@@ -20,7 +21,7 @@ export function CommitCalendar({ days, last, repos, years }: {
   const describe = (dayIndex: number) => {
     const day = calendar[dayIndex];
     const count = days[day.date] ?? 0;
-    return `${dateFormat.format(new Date(`${day.date}T00:00:00Z`))} · ${number.format(count)} ${count === 1 ? 'commit' : 'commits'}`;
+    return `${formatDate(new Date(`${day.date}T00:00:00Z`))} · ${number.format(count)} ${count === 1 ? 'commit' : 'commits'}`;
   };
 
   return <section className={styles.section} aria-labelledby="commits">
@@ -39,7 +40,6 @@ export function CommitCalendar({ days, last, repos, years }: {
       if (!(event.target instanceof HTMLElement)) return;
       const value = event.target.dataset.dayIndex;
       if (value !== undefined) setDetail(Number(value));
-      else setDetail(null);
     }} onPointerDown={event => {
       if (!(event.target instanceof HTMLElement)) return;
       const value = event.target.dataset.dayIndex;
@@ -62,9 +62,8 @@ export function CommitCalendar({ days, last, repos, years }: {
       next = Math.max(0, Math.min(calendar.length - 1, next));
       setIndex(next); setDetail(next);
     }}>
-      {calendar.map((day, dayIndex) => <span key={day.date} aria-hidden="true" className={styles.commitDay} data-day-index={dayIndex} data-level={commitLevel(days[day.date] ?? 0, thresholds)} data-active={index === dayIndex} style={{ gridColumn: day.column, gridRow: day.row }} />)}
+      {calendar.map((day, dayIndex) => <span key={day.date} aria-hidden="true" className={styles.commitDay} data-day-index={dayIndex} data-level={commitLevel(days[day.date] ?? 0, thresholds)} data-current={detail === dayIndex} style={{ gridColumn: day.column, gridRow: day.row }} />)}
     </div>
     <p className={styles.commitDetail} data-commit-detail="">{detail === null ? `${number.format(total)} commits in ${year}` : describe(detail)}</p>
-    <p className={styles.commitNote}>Commits on default branches across {repos} repositories. Some client work isn’t included.</p>
   </section>;
 }
