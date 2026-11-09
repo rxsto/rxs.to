@@ -18,6 +18,6 @@ export const since = [
   { year: 2018, title: 'Co-founded Groovy at 16', detail: 'With Nik Ammerlaan. I wrote the original bot in Python and then Java, and led frontend and monetization.', archive: 'https://web.archive.org/web/20181114170958/https://groovy.bot/' },
   { year: 2020, title: 'Became co-owner of Hydra' },
   { year: 2021, title: 'Started on SoundCloud’s Discord bot as Groovy shut down', detail: 'Groovy had reached 16M+ servers and $1M+ revenue by 2021.', archive: 'https://web.archive.org/web/20210807122905/https://groovy.bot/' },
-  { year: 2022, title: 'Built the Hey, Netflix bot for Netflix' },
+  { year: 2022, title: 'Built Netflix’s official Discord bot' },
   { year: 2026, title: 'Began Hydra’s rebuild and took on three new clients', isNew: true },
 ] as const;

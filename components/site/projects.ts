@@ -45,7 +45,7 @@ export const projects: Project[] = [
     body: {
       paragraphs: [
         `Hydra is a Discord bot with leveling, welcome and reaction-role features. It runs on ${figures.hydraServers} Discord servers as of ${asOf}. Jochen Segner founded it.`,
-        `I built most of the hydra.bot web app in Vue and Nuxt, including premium subscriptions. I’m the second-largest contributor to the Kotlin backend. I got the 2026 rebuild in Rust on Kubernetes started and drive it together with Jochen. I lead its frontend, infrastructure and monorepo.`,
+        `I built most of the hydra.bot web app in Vue and Nuxt, including premium subscriptions. I’m the second-largest contributor to the Kotlin backend. I started the 2026 rebuild in Rust on Kubernetes, and Jochen and I lead it together. I’m responsible for its frontend, infrastructure and monorepo.`,
       ],
       facts: [{ term: 'Stack', value: 'Vue, Nuxt, Kotlin; 2026 rebuild in Rust on Kubernetes' }],
       links: [{ label: 'hydra.bot', url: 'https://hydra.bot' }], figures: [hydraImage],
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     description: 'Jochen Segner and I built and hosted Netflix’s official movie-night Discord bot, Hey, Netflix. It was a 2023 Webby Honoree.',
     letter: 'N',
     body: {
-      paragraphs: [`Hey, Netflix was Netflix’s official movie-night Discord bot. Jochen Segner and I built and hosted it with Netflix as the team behind Hydra. In its first month it reached ${figures.netflixServers} servers and ${figures.netflixSessions} sessions, and it was billed as the fastest-growing branded app on Discord. It was a 2023 Webby Honoree.`],
+      paragraphs: [`Hey, Netflix was Netflix’s official movie-night Discord bot. As the team behind Hydra, Jochen Segner and I built and hosted it in collaboration with Netflix. In its first month it reached ${figures.netflixServers} servers and ${figures.netflixSessions} sessions, and it was billed as the fastest-growing branded app on Discord. It was a 2023 Webby Honoree.`],
       facts: [], links: [{ label: '2023 Webby Honoree', url: 'https://winners.webbyawards.com/2023/advertising-media-pr/individual/game-or-application/251137/hey-netflix-discord-bot' }], figures: [],
     },
   },
@@ -70,7 +70,7 @@ export const projects: Project[] = [
     body: {
       paragraphs: [
         `SoundCloud’s official Discord bot runs on ${figures.soundcloudServers} servers as of ${asOf}. Jochen Segner and I build and run it.`,
-        `I manage the project for SoundCloud, from the 2022 launch to the move to OAuth 2.1. I lead the TypeScript and Nuxt web frontend and also work on the Kotlin backend. I set up and run the production infrastructure in SoundCloud’s AWS organization with Terraform.`,
+        `I manage the project for SoundCloud. That has included the 2022 launch and the move to OAuth 2.1. I lead the TypeScript and Nuxt web frontend and also work on the Kotlin backend. I set up and run the production infrastructure in SoundCloud’s AWS organization with Terraform.`,
       ],
       facts: [{ term: 'Stack', value: 'TypeScript and Nuxt frontend; Kotlin backend; Terraform on AWS' }],
       links: [{ label: 'soundcloud.bot', url: 'https://soundcloud.bot' }],
