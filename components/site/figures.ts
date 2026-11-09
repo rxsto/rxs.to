@@ -15,7 +15,7 @@ export function projectFigures(source: { experience: readonly { org: string; sum
   const groovy = experience('Groovy');
   const netflix = experience('“Hey, Netflix” Discord bot');
   return {
-    hydraServers: figure(experience('Hydra').summary, /([\d.]+M) Discord servers/),
+    hydraServers: figure(experience('Hydra').summary, /([\d.]+M) servers/),
     soundcloudServers: figure(experience('SoundCloud').summary, /(\d+K) servers/),
     netflixServers: figure(netflix.summary, /(\d+K\+) servers/),
     netflixSessions: figure(netflix.summary, /(\d+K\+) sessions/),

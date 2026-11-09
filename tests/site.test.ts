@@ -39,7 +39,7 @@ test('the project registry has distinct routes and complete project content', ()
 test('work rows describe the projects, with sentence metadata', () => {
   assert.deepEqual(projects.map(item => item.caption), [
     'A customer platform, from demo booking to billing.',
-    'A leveling, welcome and reaction-role bot for Discord.',
+    'A Discord bot with leveling, welcome and reaction-role features.',
     'A movie-night bot for Discord, built for Netflix.',
     'SoundCloud’s official Discord bot.',
   ]);
@@ -69,7 +69,7 @@ test('client work comes first and derives its contribution and stack from the CV
   assert.equal(project.role, 'Software engineer (contract)');
   assert.equal(project.period, 'February 2026 to present');
   assert.doesNotMatch(project.body.paragraphs.join(' '), /Bun|Hono|Next\.js/);
-  for (const fact of ['by myself', 'HubSpot CRM', 'demo booking', 'customer portal', 'billing', 'GDPR and consent']) assert.ok(project.body.paragraphs.join(' ').includes(fact));
+  for (const fact of ['sole engineer', 'HubSpot CRM', 'demo booking', 'customer portal', 'billing', 'GDPR and consent']) assert.ok(project.body.paragraphs.join(' ').includes(fact));
   assert.deepEqual(project.body.facts, [{ term: 'Stack', value: 'Bun, Hono, Next.js' }]);
   assert.deepEqual(project.body.figures, []);
   assert.deepEqual(project.body.links, []);

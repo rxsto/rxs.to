@@ -15,11 +15,11 @@ export const cv = {
     { network: 'GitHub', username: 'rxsto', url: 'https://github.com/rxsto' },
     { network: 'LinkedIn', username: 'oskar-lang', url: 'https://linkedin.com/in/oskar-lang' },
   ],
-  summary: 'Software engineer and entrepreneur, self-employed since 2018. Co-founded Groovy (16M+ Discord servers, $1M+ revenue) and wrote its first version at 16. Co-own Hydra (6.1M servers). With Jochen Segner, built the official SoundCloud Discord bot and Hey, Netflix for Netflix.',
+  summary: 'I am a software engineer and entrepreneur, self-employed since 2018. I co-founded Groovy and wrote its first version at 16 (16M+ Discord servers, $1M+ revenue). I co-own Hydra (6.1M servers). With Jochen Segner, I built the official SoundCloud Discord bot and Hey, Netflix.',
   experience: [
     {
       org: 'Hydra', title: 'Co-owner and engineer', relationship: 'venture', period: { start: '2020', end: 'present' }, url: 'https://hydra.bot',
-      summary: 'Leveling, welcome and reaction-role bot founded by Jochen Segner, on 6.1M Discord servers.',
+      summary: 'Discord bot founded by Jochen Segner. Leveling, welcome and reaction roles. 6.1M servers.',
       highlights: [
         'Built most of the hydra.bot web app, including premium subscriptions (Vue, Nuxt)',
         'Second-largest contributor to the Kotlin backend',
@@ -30,14 +30,14 @@ export const cv = {
       org: 'SoundCloud', title: 'Engineer and project lead', relationship: 'contract', period: { start: '2021', end: 'present' }, url: 'https://soundcloud.bot',
       summary: 'Official SoundCloud Discord bot, on 667K servers, built and run with Jochen Segner.',
       highlights: [
-        'Manage the project with SoundCloud, including the 2022 launch and the move to OAuth 2.1',
+        'Manage the project with SoundCloud. Work spans the 2022 launch and move to OAuth 2.1',
         'Lead the web frontend (TypeScript, Nuxt) and contribute to the Kotlin backend',
         'Set up and run production infrastructure in the SoundCloud AWS organization (Terraform)',
       ],
     },
     {
       org: 'Digital Office 24', title: 'Software engineer', relationship: 'contract', period: { start: '2026-02', end: 'present' },
-      summary: 'Built and run the customer platform by myself: demo booking, customer portal, billing and HubSpot CRM integration (Bun, Hono, Next.js). Also did its GDPR and consent work.',
+      summary: 'Sole engineer. Built and run the customer platform: demo booking, customer portal, billing and HubSpot CRM integration (Bun, Hono, Next.js). Also handled GDPR and consent.',
     },
     {
       org: 'Finaure', title: 'Tech lead', relationship: 'contract', period: { start: '2026-09', end: 'present' },
@@ -54,21 +54,21 @@ export const cv = {
     },
     {
       org: 'Groovy', title: 'Co-founder', relationship: 'venture', period: { start: '2018', end: '2021' }, url: 'https://groovy.bot',
-      summary: 'Discord music bot with Nik Ammerlaan; 16M+ servers before YouTube forced it offline.',
+      summary: 'Discord music bot I co-founded with Nik Ammerlaan. 16M+ servers until YouTube shut it down.',
       highlights: ['Wrote the original bot at 16 (Python, then Java)', 'Led frontend and monetization as revenue passed $1M'],
     },
   ],
   education: [
     {
       institution: 'University of Passau', qualification: { kind: 'unfinished', area: 'Computer Science' }, period: { start: '2020', end: '2021' },
-      summary: 'Left after the first semester to focus on my ventures.',
+      summary: 'Left after the first semester to focus on my own projects.',
     },
     { institution: 'Gabelsberger-Gymnasium Mainburg', qualification: { kind: 'awarded', title: 'Abitur' }, period: { on: '2020' } },
   ],
   volunteering: [
     {
-      org: 'BUNDjugend Bayern', title: 'Camp leadership team (Leitungsteam)', period: { start: '2022', end: 'present' },
-      summary: 'Member since 2018; co-organize the Zeltlager, its largest yearly camp for children and teens.',
+      org: 'BUNDjugend Bayern', title: 'Camp leadership team', period: { start: '2022', end: 'present' },
+      summary: 'Member since 2018. I help organize Zeltlager, its largest yearly tent camp for kids and teens.',
     },
   ],
   skills: [

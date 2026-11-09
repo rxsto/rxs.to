@@ -28,10 +28,10 @@ export const projects: Project[] = [
     period: `${'start' in digitalOffice.period ? new Date(`${digitalOffice.period.start}-01T00:00:00Z`).toLocaleString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }) : ''} to present`,
     role: `${digitalOffice.title} (contract)`,
     caption: 'A customer platform, from demo booking to billing.',
-    description: 'I built and run Digital Office 24’s customer platform by myself, from demo booking to billing.',
+    description: 'I built and run Digital Office 24’s customer platform on my own, from demo booking to billing.',
     letter: 'D',
     body: {
-      paragraphs: ['I built Digital Office 24’s customer platform by myself and run it in production. It handles demo booking, the customer portal, billing and the HubSpot CRM integration. I also did its GDPR and consent work.'],
+      paragraphs: ['I’m the sole engineer on Digital Office 24’s customer platform. I built it and run it in production. It handles demo booking, the customer portal, billing and the HubSpot CRM integration. I also handled GDPR and consent.'],
       facts: [{ term: 'Stack', value: digitalOffice.summary.match(/\(([^)]+)\)/)?.[1] ?? '' }],
       links: [], figures: [],
     },
@@ -39,12 +39,12 @@ export const projects: Project[] = [
   {
     shareImage: '/work/hydra-share.jpg',
     slug: 'hydra', name: 'Hydra', period: '2020 to present', role: 'Co-owner and engineer',
-    caption: 'A leveling, welcome and reaction-role bot for Discord.',
-    description: `I co-own Hydra, a leveling, welcome and reaction-role bot on ${figures.hydraServers} Discord servers.`,
+    caption: 'A Discord bot with leveling, welcome and reaction-role features.',
+    description: `I co-own Hydra, a Discord bot with leveling, welcome and reaction-role features on ${figures.hydraServers} servers.`,
     letter: 'H',
     body: {
       paragraphs: [
-        `Hydra is a leveling, welcome and reaction-role bot on ${figures.hydraServers} Discord servers as of ${asOf}. Jochen Segner founded it.`,
+        `Hydra is a Discord bot with leveling, welcome and reaction-role features. It runs on ${figures.hydraServers} Discord servers as of ${asOf}. Jochen Segner founded it.`,
         `I built most of the hydra.bot web app in Vue and Nuxt, including premium subscriptions. I’m the second-largest contributor to the Kotlin backend. For the 2026 rebuild in Rust on Kubernetes, I lead the frontend, infrastructure and monorepo.`,
       ],
       facts: [{ term: 'Stack', value: 'Vue, Nuxt, Kotlin; 2026 rebuild in Rust on Kubernetes' }],
@@ -65,12 +65,12 @@ export const projects: Project[] = [
     shareImage: '/work/soundcloud-share.jpg',
     slug: 'soundcloud', name: 'SoundCloud', period: '2021 to present', role: 'Engineer and project lead (contract)',
     caption: 'SoundCloud’s official Discord bot.',
-    description: `I lead the project behind SoundCloud’s official Discord bot, which runs on ${figures.soundcloudServers} servers.`,
+    description: `I lead development of SoundCloud’s official Discord bot, which runs on ${figures.soundcloudServers} servers.`,
     letter: 'S',
     body: {
       paragraphs: [
         `SoundCloud’s official Discord bot runs on ${figures.soundcloudServers} servers as of ${asOf}. Jochen Segner and I build and run it.`,
-        `I manage the project with SoundCloud, including the 2022 launch and the move to OAuth 2.1. I lead the TypeScript and Nuxt web frontend and also work on the Kotlin backend. I set up and run the production infrastructure in SoundCloud’s AWS organization with Terraform.`,
+        `I manage the project with SoundCloud. My work includes the 2022 launch and the move to OAuth 2.1. I lead the TypeScript and Nuxt web frontend and also work on the Kotlin backend. I set up and run the production infrastructure in SoundCloud’s AWS organization with Terraform.`,
       ],
       facts: [{ term: 'Stack', value: 'TypeScript and Nuxt frontend; Kotlin backend; Terraform on AWS' }],
       links: [{ label: 'soundcloud.bot', url: 'https://soundcloud.bot' }],
