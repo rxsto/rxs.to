@@ -40,7 +40,7 @@ test('work rows describe the projects, with sentence metadata', () => {
   assert.deepEqual(projects.map(item => item.caption), [
     'A customer platform, from demo booking to billing.',
     'A Discord bot with leveling, welcome and reaction-role features.',
-    'A movie-night bot for Discord, built for Netflix.',
+    'Netflix’s official movie-night bot for Discord.',
     'SoundCloud’s official Discord bot.',
   ]);
   for (const item of projects) {

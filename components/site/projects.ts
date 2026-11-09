@@ -31,7 +31,7 @@ export const projects: Project[] = [
     description: 'I built and run Digital Office 24’s customer platform on my own, from demo booking to billing.',
     letter: 'D',
     body: {
-      paragraphs: ['I’m the sole engineer on Digital Office 24’s customer platform. I built it and run it in production. It handles demo booking, the customer portal, billing and the HubSpot CRM integration. I also handled GDPR and consent.'],
+      paragraphs: ['Digital Office 24 makes wealth-management software. I’m the sole engineer on its customer platform. I built it and run it in production. It handles demo booking, the customer portal, billing and the HubSpot CRM integration. I also handled GDPR and consent.'],
       facts: [{ term: 'Stack', value: digitalOffice.summary.match(/\(([^)]+)\)/)?.[1] ?? '' }],
       links: [], figures: [],
     },
@@ -45,7 +45,7 @@ export const projects: Project[] = [
     body: {
       paragraphs: [
         `Hydra is a Discord bot with leveling, welcome and reaction-role features. It runs on ${figures.hydraServers} Discord servers as of ${asOf}. Jochen Segner founded it.`,
-        `I built most of the hydra.bot web app in Vue and Nuxt, including premium subscriptions. I’m the second-largest contributor to the Kotlin backend. For the 2026 rebuild in Rust on Kubernetes, I lead the frontend, infrastructure and monorepo.`,
+        `I built most of the hydra.bot web app in Vue and Nuxt, including premium subscriptions. I’m the second-largest contributor to the Kotlin backend. I got the 2026 rebuild in Rust on Kubernetes started and drive it together with Jochen. I lead its frontend, infrastructure and monorepo.`,
       ],
       facts: [{ term: 'Stack', value: 'Vue, Nuxt, Kotlin; 2026 rebuild in Rust on Kubernetes' }],
       links: [{ label: 'hydra.bot', url: 'https://hydra.bot' }], figures: [hydraImage],
@@ -53,11 +53,11 @@ export const projects: Project[] = [
   },
   {
     slug: 'hey-netflix', name: 'Hey, Netflix', period: '2022 to 2023', role: 'Software engineer (contract)',
-    caption: 'A movie-night bot for Discord, built for Netflix.',
-    description: 'Jochen Segner and I built Hey, Netflix, a movie-night Discord bot for Netflix. It was a 2023 Webby Honoree.',
+    caption: 'Netflix’s official movie-night bot for Discord.',
+    description: 'Jochen Segner and I built and hosted Netflix’s official movie-night Discord bot, Hey, Netflix. It was a 2023 Webby Honoree.',
     letter: 'N',
     body: {
-      paragraphs: [`Hey, Netflix is a movie-night Discord bot that Jochen Segner and I built for Netflix. The work was credited to HydraBot. In its first month it reached ${figures.netflixServers} servers and ${figures.netflixSessions} sessions, and it was billed as the fastest-growing branded app on Discord. It was a 2023 Webby Honoree.`],
+      paragraphs: [`Hey, Netflix was Netflix’s official movie-night Discord bot. Jochen Segner and I built and hosted it with Netflix as the team behind Hydra. In its first month it reached ${figures.netflixServers} servers and ${figures.netflixSessions} sessions, and it was billed as the fastest-growing branded app on Discord. It was a 2023 Webby Honoree.`],
       facts: [], links: [{ label: '2023 Webby Honoree', url: 'https://winners.webbyawards.com/2023/advertising-media-pr/individual/game-or-application/251137/hey-netflix-discord-bot' }], figures: [],
     },
   },

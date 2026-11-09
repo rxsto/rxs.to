@@ -15,7 +15,7 @@ export const cv = {
     { network: 'GitHub', username: 'rxsto', url: 'https://github.com/rxsto' },
     { network: 'LinkedIn', username: 'oskar-lang', url: 'https://linkedin.com/in/oskar-lang' },
   ],
-  summary: 'I am a software engineer and entrepreneur, self-employed since 2018. I co-founded Groovy at 16 and wrote its first version (later 16M+ servers, $1M+ revenue). I co-own Hydra (6.1M servers). With Jochen Segner, I built the official SoundCloud Discord bot and Hey, Netflix.',
+  summary: 'I am a software engineer and entrepreneur, self-employed since 2018. I co-founded Groovy at 16 and wrote its first version (later 16M+ servers, $1M+ revenue). I co-own Hydra (6.1M servers). With Jochen Segner, I built the official SoundCloud and Netflix Discord bots.',
   experience: [
     {
       org: 'Hydra', title: 'Co-owner and engineer', relationship: 'venture', period: { start: '2020', end: 'present' }, url: 'https://hydra.bot',
@@ -49,7 +49,7 @@ export const cv = {
     },
     {
       org: '“Hey, Netflix” Discord bot', title: 'Software engineer', relationship: 'contract', period: { start: '2022', end: '2023' },
-      summary: 'Built with Jochen Segner for Netflix, credited to HydraBot. 150K+ servers and 250K+ sessions in its first month; billed as the fastest-growing branded app on Discord.',
+      summary: 'Official Netflix bot, built and hosted with Jochen Segner. 150K+ servers and 250K+ sessions in its first month; billed as the fastest-growing branded app on Discord.',
       award: { title: 'Webby Honoree', date: '2023', awarder: 'The Webby Awards' },
     },
     {
