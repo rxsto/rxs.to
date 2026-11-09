@@ -126,9 +126,10 @@
 }
 .screenReaderOnly { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-.commitYears { display: flex; flex-wrap: wrap; justify-content: end; gap: .125rem; margin-inline-start: auto; }
-.commitYears .commitYear { min-block-size: 1.5rem; min-height: 1.5rem; padding-inline: .4rem; border-radius: .375rem; font-size: .75rem; font-weight: 400; font-variant-numeric: tabular-nums; transition: none; }
+.commitYears { display: flex; flex: 1 1 0; contain: inline-size; justify-content: safe end; gap: .125rem; padding-block: 3px; margin-block: -3px; overflow-x: auto; scrollbar-width: none; }
+.commitYears .commitYear { flex: none; min-block-size: 1.5rem; padding-inline: .4rem; border-radius: .375rem; font-size: .75rem; font-weight: 400; font-variant-numeric: tabular-nums; transition: none; }
 .commitYear[aria-pressed="true"] { color: var(--foreground); background: var(--surface-muted); }
+.commitYears .commitYear:focus-visible { outline-offset: -2px; }
 .commitGrid { display: grid; grid-template-columns: repeat(53, minmax(0, 1fr)); grid-template-rows: repeat(7, 1fr); gap: clamp(2px, .4vw, 3px); }
 .commitDay { aspect-ratio: 1; border-radius: 2px; background: var(--surface-muted); }
 .commitDay[data-level="1"] { background: color-mix(in oklch, var(--foreground) 20%, var(--surface-muted)); }
@@ -136,6 +137,5 @@
 .commitDay[data-level="3"] { background: color-mix(in oklch, var(--foreground) 70%, var(--surface-muted)); }
 .commitDay[data-level="4"] { background: var(--foreground); }
 .commitGrid:focus-visible .commitDay[data-active="true"] { outline: 2px solid var(--foreground); outline-offset: 1px; }
-.commitGrid:active { outline: 1px solid var(--border-strong); outline-offset: 3px; }
 .section > .commitDetail, .section > .commitNote { color: var(--text-secondary); font-size: .8125rem; line-height: 1.7; font-variant-numeric: tabular-nums; }
 .section > .commitNote { margin-block-start: -.5rem; }
