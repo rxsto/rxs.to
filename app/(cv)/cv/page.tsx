@@ -5,7 +5,7 @@ import { Tooltip } from '../../../components/arc/tooltip/tooltip';
 import button from '../../../components/arc/button/button.module.css';
 import styles from '../../../components/site/site.module.css';
 
-export const metadata = { ...cvMetadata, title: { absolute: 'CV | Oskar Lang' }, openGraph: { ...cvMetadata.openGraph, title: 'CV' }, twitter: { card: 'summary', title: 'CV', images: ['/avatar.png'] } };
+export const metadata = { ...cvMetadata, title: { absolute: 'CV | Oskar Lang' }, openGraph: { ...cvMetadata.openGraph, title: 'CV | Oskar Lang' }, twitter: { card: 'summary', title: 'CV | Oskar Lang', images: ['/avatar.png'] } };
 
 type Period = (typeof cv.education)[number]['period'] | (typeof cv.experience)[number]['period'] | (typeof cv.volunteering)[number]['period'];
 function dateLabel(date: string) {

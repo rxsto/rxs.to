@@ -37,7 +37,7 @@ export const cv = {
     },
     {
       org: 'Digital Office 24', title: 'Software engineer', relationship: 'contract', period: { start: '2026-02', end: 'present' },
-      summary: 'Built the production customer platform alone: HubSpot CRM integration, demo booking, customer area and billing (Bun, Hono, Next.js). Also did its GDPR and consent work.',
+      summary: 'Built the production customer platform alone: HubSpot CRM integration, demo booking, customer portal and billing (Bun, Hono, Next.js). Also did its GDPR and consent work.',
     },
     {
       org: 'Finaure', title: 'Tech lead', relationship: 'contract', period: { start: '2026-09', end: 'present' },
@@ -49,7 +49,7 @@ export const cv = {
     },
     {
       org: '“Hey, Netflix” Discord bot', title: 'Software engineer', relationship: 'contract', period: { start: '2022', end: '2023' },
-      summary: 'Built with Jochen Segner for Netflix, credited at HydraBot. 150K+ servers and 250K+ sessions in its first month; billed as the fastest-growing branded app on Discord.',
+      summary: 'Built with Jochen Segner for Netflix, credited to HydraBot. 150K+ servers and 250K+ sessions in its first month; billed as the fastest-growing branded app on Discord.',
       award: { title: 'Webby Honoree', date: '2023', awarder: 'The Webby Awards' },
     },
     {

@@ -5,7 +5,8 @@ import styles from '../../components/site/site.module.css';
 export const metadata: Metadata = {
   title: { absolute: `Page not found | ${site.name}` },
   description: 'This page does not exist.',
-  openGraph: { title: 'Page not found', description: 'This page does not exist.', type: 'website', siteName: site.name, images: [site.image] },
+  openGraph: { title: 'Page not found | Oskar Lang', description: 'This page does not exist.', type: 'website', siteName: site.name, images: [site.image] },
+  twitter: { card: 'summary', title: 'Page not found | Oskar Lang', images: [site.image] },
   robots: 'noindex, nofollow',
 };
 

@@ -23,6 +23,8 @@ test('figure cards use a large image and figureless cards use the avatar summary
     assert.ok(metadata.twitter && 'card' in metadata.twitter);
     assert.equal(metadata.twitter.card, figure ? 'summary_large_image' : 'summary');
     assert.deepEqual(metadata.twitter?.images, [project.shareImage ?? '/avatar.png']);
+    assert.equal(metadata.openGraph?.title, `${project.name} | Oskar Lang`);
+    assert.equal(metadata.twitter?.title, `${project.name} | Oskar Lang`);
   }
 });
 
@@ -34,15 +36,15 @@ test('the project registry has distinct routes and complete project content', ()
   }
 });
 
-test('work rows use warm captions, with sentence metadata', () => {
+test('work rows describe the projects, with sentence metadata', () => {
   assert.deepEqual(projects.map(item => item.caption), [
-    'A customer platform, from booking to billing.',
-    'A home for Discord communities.',
-    'Movie nights, made for Discord.',
-    'Official SoundCloud bot.',
+    'A customer platform, from demo booking to billing.',
+    'A leveling, welcome and reaction-role bot for Discord.',
+    'A movie-night bot for Discord, built for Netflix.',
+    'SoundCloud’s official Discord bot.',
   ]);
   for (const item of projects) {
-    assert.match(item.description, /^I .+\.$/);
+    assert.match(item.description, /^(?:I |Jochen Segner and I ).+\.$/);
     for (const figure of item.body.figures) {
       assert.ok(figure.width > 0 && figure.height > 0);
       assert.notEqual(figure.alt, figure.caption);
@@ -65,9 +67,9 @@ test('client work comes first and derives its contribution and stack from the CV
   assert.equal(project.slug, 'digital-office-24');
   assert.equal(project.name, source.org);
   assert.equal(project.role, 'Software engineer (contract)');
-  assert.equal(project.period, 'February 2026 to now');
+  assert.equal(project.period, 'February 2026 to present');
   assert.doesNotMatch(project.body.paragraphs.join(' '), /Bun|Hono|Next\.js/);
-  for (const fact of ['alone', 'HubSpot CRM', 'demo booking', 'customer area', 'billing', 'GDPR and consent']) assert.ok(project.body.paragraphs.join(' ').includes(fact));
+  for (const fact of ['alone', 'HubSpot CRM', 'demo booking', 'customer portal', 'billing', 'GDPR and consent']) assert.ok(project.body.paragraphs.join(' ').includes(fact));
   assert.deepEqual(project.body.facts, [{ term: 'Stack', value: 'Bun, Hono, Next.js' }]);
   assert.deepEqual(project.body.figures, []);
   assert.deepEqual(project.body.links, []);
