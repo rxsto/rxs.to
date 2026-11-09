@@ -31,14 +31,15 @@ export function pageMetadata({ path, title, description, types, image = site.ima
   const home = path === '/';
   const pageUrl = home ? `${site.origin}/` : path;
   const shareImage = home ? new URL(image, site.origin).href : image;
+  const pageTitle = title.includes('Oskar Lang') ? title : `${title} | Oskar Lang`;
   return {
     // vinext strips the root slash when resolving against metadataBase.
     // The home page uses absolute URLs so canonical and og:url retain it.
     ...(home && { metadataBase: null }),
-    title: { absolute: title.includes('Oskar Lang') ? title : `${title} | Oskar Lang` },
+    title: { absolute: pageTitle },
     description,
-    twitter: { card: largeImage ? 'summary_large_image' : 'summary', title, description, images: [shareImage] },
+    twitter: { card: largeImage ? 'summary_large_image' : 'summary', title: pageTitle, description, images: [shareImage] },
     alternates: { canonical: pageUrl, ...(types && { types }) },
-    openGraph: { type: 'website', title, description, url: pageUrl, siteName: site.name, images: [shareImage] },
+    openGraph: { type: 'website', title: pageTitle, description, url: pageUrl, siteName: site.name, images: [shareImage] },
   };
 }

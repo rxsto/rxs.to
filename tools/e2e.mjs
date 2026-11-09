@@ -37,7 +37,7 @@ try {
       await page.screenshot({ path: `${directory}/${path.slice(1) || 'home'}-${width}-${colorScheme}.png`, fullPage: true });
       assert.equal(await page.getByRole('list', { name: 'Live in Kufstein' }).locator('li').count(), 2);
       assert.equal(await page.locator('[data-condition="unavailable"]').innerText(), 'Weather unavailable');
-      assert.deepEqual(await page.locator('footer [aria-label="Elsewhere"] a').allTextContents(), ['GitHub', 'Twitter', 'LinkedIn', 'Discord', 'CV']);
+      assert.deepEqual(await page.locator('footer [aria-label="Elsewhere"] a').allTextContents(), ['GitHub', 'X', 'LinkedIn', 'Discord', 'CV']);
       for (const link of await page.locator('footer a, [class*="facts"] a, [class*="articleProse"] a').all()) assert.ok((await link.boundingBox()).height >= 24);
       if (path === '/') {
         const rail = await page.locator('[class*="ledgerRow"]').evaluateAll(rows => rows.map(row => {
@@ -70,7 +70,7 @@ try {
         assert.equal(await page.getByText(/BUNDjugend/).count(), 0);
         assert.equal(await page.locator('header p svg').count(), 4);
         assert.equal(await page.getByRole('heading', { name: 'Previously' }).count(), 0);
-        for (const name of ['GitHub', 'Twitter', 'LinkedIn']) assert.equal(await page.locator('header').getByRole('link', { name, exact: true }).locator('svg path').count(), 0);
+        for (const name of ['GitHub', 'X', 'LinkedIn']) assert.equal(await page.locator('header').getByRole('link', { name, exact: true }).locator('svg path').count(), 0);
         assert.equal(await page.locator('[class*="rows"] > li').count(), 4);
         assert.equal(await page.locator('[class*="rows"] > li').first().getAttribute('id'), 'card-digital-office-24');
         await page.locator('[class*="rows"]').screenshot({ path: `${directory}/tiles-2x-${width}-${colorScheme}.png` });
@@ -135,7 +135,7 @@ try {
         const now = page.locator('section[aria-labelledby="now"]');
         assert.doesNotMatch(await now.innerText(), /Digital Office/);
         assert.equal(await now.locator('a').count(), 0);
-        for (const name of ['Hydra', 'Top.gg', 'Finaure', 'SoundCloud']) assert.ok((await now.innerText()).includes(name));
+        for (const name of ['Hydra', 'Top.gg', 'wealth-management startup', 'SoundCloud']) assert.ok((await now.innerText()).includes(name));
         assert.ok(tabOrder.every(item => item.focus));
         if (colorScheme === 'light') await page.screenshot({ path: `${directory}/focus-${width}-light.png`, fullPage: true });
         for (const slug of ['digital-office-24', 'hydra', 'hey-netflix', 'soundcloud']) assert.equal(await page.locator(`#card-${slug} a`).getAttribute('href'), `/${slug}`);
@@ -229,7 +229,7 @@ try {
           const next = await page.locator('[aria-label="Project navigation"] a').boundingBox();
           if (width >= 390 && path !== '/hey-netflix') assert.ok(Math.abs(button.y + button.height / 2 - next.y - next.height / 2) < 1, 'Site and Next share a vertical centre');
         }
-        const expectedDates = { '/digital-office-24': 'February 2026 to now', '/hydra': '2020 to now', '/hey-netflix': '2022 to 2023', '/soundcloud': '2021 to now' };
+        const expectedDates = { '/digital-office-24': 'February 2026 to present', '/hydra': '2020 to present', '/hey-netflix': '2022 to 2023', '/soundcloud': '2021 to present' };
         assert.equal(await page.locator('dl > div').filter({ has: page.locator('dt', { hasText: /^Period$/ }) }).locator('dd').innerText(), expectedDates[path]);
         const next = await page.locator('[aria-label="Project navigation"] a').boundingBox();
         const article = await page.locator('article').boundingBox();
