@@ -40,6 +40,36 @@ try {
       assert.deepEqual(await page.locator('footer [aria-label="Elsewhere"] a').allTextContents(), ['GitHub', 'X', 'LinkedIn', 'Discord', 'CV']);
       for (const link of await page.locator('footer a, [class*="facts"] a, [class*="articleProse"] a').all()) assert.ok((await link.boundingBox()).height >= 24);
       if (path === '/') {
+        const commits = page.getByRole('region', { name: 'Commits', exact: true });
+        assert.ok((await response.text()).includes('3,859 commits in 2026'), 'Default calendar is server-rendered');
+        const grid = commits.getByRole('slider');
+        const detail = commits.locator('[data-commit-detail]');
+        assert.equal(await commits.getByRole('button', { pressed: true }).innerText(), '2026');
+        assert.deepEqual(await commits.getByRole('button').allTextContents(), ['2026', '2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018']);
+        const gridHeight = (await grid.boundingBox()).height;
+        await commits.getByRole('button', { name: '2020', exact: true }).click();
+        assert.equal(await detail.innerText(), '897 commits in 2020');
+        assert.equal(await grid.locator('[data-day-index]').count(), 366);
+        assert.ok(Math.abs((await grid.boundingBox()).height - gridHeight) < 1, 'Year grids keep their height');
+        await grid.focus();
+        assert.equal(await detail.innerText(), '1 Jan 2020 · 0 commits');
+        await grid.press('ArrowRight');
+        assert.equal(await detail.innerText(), '8 Jan 2020 · 0 commits');
+        await grid.press('End');
+        assert.match(await detail.innerText(), /^31 Dec 2020 ·/);
+        await commits.getByRole('button', { name: '2026', exact: true }).focus();
+        assert.equal(await detail.innerText(), '897 commits in 2020');
+        await commits.getByRole('button', { name: '2026', exact: true }).click();
+        await grid.locator('[data-day-index="301"]').hover();
+        assert.equal(await detail.innerText(), '29 Oct 2026 · 565 commits');
+        await page.mouse.move(0, 0);
+        assert.equal(await detail.innerText(), '3,859 commits in 2026');
+        await grid.locator('[data-day-index="301"]').dispatchEvent('pointerdown');
+        assert.equal(await detail.innerText(), '29 Oct 2026 · 565 commits');
+        await grid.dispatchEvent('pointerleave', { pointerType: 'touch' });
+        assert.equal(await detail.innerText(), '29 Oct 2026 · 565 commits', 'Touch detail survives lifting the finger');
+        await commits.getByRole('button', { name: '2026', exact: true }).focus();
+        assert.equal(await detail.innerText(), '3,859 commits in 2026');
         const rail = await page.locator('[class*="ledgerRow"]').evaluateAll(rows => rows.map(row => {
           const year = row.firstElementChild;
           const text = row.lastElementChild;
