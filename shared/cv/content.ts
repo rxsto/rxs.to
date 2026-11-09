@@ -15,7 +15,7 @@ export const cv = {
     { network: 'GitHub', username: 'rxsto', url: 'https://github.com/rxsto' },
     { network: 'LinkedIn', username: 'oskar-lang', url: 'https://linkedin.com/in/oskar-lang' },
   ],
-  summary: 'I am a software engineer and entrepreneur, self-employed since 2018. I co-founded Groovy and wrote its first version at 16 (16M+ Discord servers, $1M+ revenue). I co-own Hydra (6.1M servers). With Jochen Segner, I built the official SoundCloud Discord bot and Hey, Netflix.',
+  summary: 'I am a software engineer and entrepreneur, self-employed since 2018. I co-founded Groovy at 16 and wrote its first version (later 16M+ servers, $1M+ revenue). I co-own Hydra (6.1M servers). With Jochen Segner, I built the official SoundCloud Discord bot and Hey, Netflix.',
   experience: [
     {
       org: 'Hydra', title: 'Co-owner and engineer', relationship: 'venture', period: { start: '2020', end: 'present' }, url: 'https://hydra.bot',
@@ -30,7 +30,7 @@ export const cv = {
       org: 'SoundCloud', title: 'Engineer and project lead', relationship: 'contract', period: { start: '2021', end: 'present' }, url: 'https://soundcloud.bot',
       summary: 'Official SoundCloud Discord bot, on 667K servers, built and run with Jochen Segner.',
       highlights: [
-        'Manage the project with SoundCloud. Work spans the 2022 launch and move to OAuth 2.1',
+        'Manage the project for SoundCloud, from the 2022 launch to the move to OAuth 2.1',
         'Lead the web frontend (TypeScript, Nuxt) and contribute to the Kotlin backend',
         'Set up and run production infrastructure in the SoundCloud AWS organization (Terraform)',
       ],

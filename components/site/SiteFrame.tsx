@@ -13,7 +13,7 @@ export function SiteFrame({ children, view = 'home' }: { children: ReactNode; vi
       {view === 'home' && <>
         <section className={styles.section} aria-labelledby="now">
           <div className={styles.headingRow}><h2 id="now" className={styles.heading}>Now</h2><span className={styles.stamp}>{asOf}</span></div>
-          <p>Hydra’s rebuild, SoundCloud’s official Discord bot, and contract work for Top.gg and Finaure.</p>
+          <p>I’m working on Hydra’s rebuild and SoundCloud’s official Discord bot, and on contracts with Top.gg and Finaure.</p>
         </section>
         <section className={styles.section} aria-labelledby="since">
           <h2 id="since" className={styles.heading}>Since 2018</h2>

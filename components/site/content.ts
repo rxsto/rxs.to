@@ -10,7 +10,7 @@ export const hero = {
   name: cv.name,
   identity: `Software engineer in ${cv.location.city}, ${cv.location.country}`,
   build: 'I build web products and Discord bots. I co-own Hydra, lead development of SoundCloud’s official Discord bot, and have been self-employed since 2018.',
-  engagement: 'I take on contract work, from building a product on my own to leading a team or adding features to an existing app.',
+  engagement: 'I take on contract work. I can build a product on my own, lead a team, or add features to an existing app.',
 };
 
 /** Dated milestones for the semantic Since 2018 rail. */
@@ -19,5 +19,5 @@ export const since = [
   { year: 2020, title: 'Became co-owner of Hydra' },
   { year: 2021, title: 'Started on SoundCloud’s Discord bot as Groovy shut down', detail: 'Groovy had reached 16M+ servers and $1M+ revenue by 2021.', archive: 'https://web.archive.org/web/20210807122905/https://groovy.bot/' },
   { year: 2022, title: 'Built the Hey, Netflix bot for Netflix' },
-  { year: 2026, title: 'Began Hydra’s rebuild and new contracts with Digital Office 24, Top.gg and Finaure', isNew: true },
+  { year: 2026, title: 'Began Hydra’s rebuild and took on three new clients', isNew: true },
 ] as const;

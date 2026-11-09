@@ -70,7 +70,7 @@ export const projects: Project[] = [
     body: {
       paragraphs: [
         `SoundCloud’s official Discord bot runs on ${figures.soundcloudServers} servers as of ${asOf}. Jochen Segner and I build and run it.`,
-        `I manage the project with SoundCloud. My work includes the 2022 launch and the move to OAuth 2.1. I lead the TypeScript and Nuxt web frontend and also work on the Kotlin backend. I set up and run the production infrastructure in SoundCloud’s AWS organization with Terraform.`,
+        `I manage the project for SoundCloud, from the 2022 launch to the move to OAuth 2.1. I lead the TypeScript and Nuxt web frontend and also work on the Kotlin backend. I set up and run the production infrastructure in SoundCloud’s AWS organization with Terraform.`,
       ],
       facts: [{ term: 'Stack', value: 'TypeScript and Nuxt frontend; Kotlin backend; Terraform on AWS' }],
       links: [{ label: 'soundcloud.bot', url: 'https://soundcloud.bot' }],
