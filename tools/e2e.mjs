@@ -69,6 +69,9 @@ try {
         await grid.hover({ position: { x: 1, y: 1 } });
         assert.equal(await detail.innerText(), commitDay('29 Oct 2026', '2026-10-29'), 'Gaps between days keep the detail');
         assert.equal(await grid.locator('[data-current="true"]').getAttribute('data-day-index'), '301');
+        await page.waitForTimeout(200);
+        assert.equal(await grid.locator('[data-day-index="300"]').evaluate(element => getComputedStyle(element).opacity), '0.3', 'Other days fade while one is hovered');
+        assert.equal(await grid.locator('[data-day-index="301"]').evaluate(element => getComputedStyle(element).opacity), '1');
         await page.mouse.move(0, 0);
         assert.equal(await detail.innerText(), commitTotal('2026'));
         assert.equal(await grid.locator('[data-current="true"]').count(), 0);

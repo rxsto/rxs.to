@@ -34,7 +34,7 @@ export function CommitCalendar({ days, last, years }: {
       </div>
     </div>
     <span id="commit-help" className={styles.screenReaderOnly}>Use up and down for adjacent days, left and right for weeks, Home and End for the first and last day.</span>
-    <div className={styles.commitGrid} role="slider" tabIndex={0} aria-label={`Daily commits in ${year}`} aria-describedby="commit-help" aria-valuemin={1} aria-valuemax={calendar.length} aria-valuenow={index + 1} aria-valuetext={describe(index)} onFocus={() => setDetail(index)} onBlur={() => setDetail(null)} onPointerLeave={event => {
+    <div className={styles.commitGrid} role="slider" tabIndex={0} data-hovering={detail !== null} aria-label={`Daily commits in ${year}`} aria-describedby="commit-help" aria-valuemin={1} aria-valuemax={calendar.length} aria-valuenow={index + 1} aria-valuetext={describe(index)} onFocus={() => setDetail(index)} onBlur={() => setDetail(null)} onPointerLeave={event => {
       if (event.pointerType !== 'touch') setDetail(null);
     }} onPointerMove={event => {
       if (!(event.target instanceof HTMLElement)) return;

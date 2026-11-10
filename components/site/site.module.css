@@ -137,5 +137,7 @@
 .commitDay[data-level="3"] { background: color-mix(in oklch, var(--foreground) 70%, var(--surface-muted)); }
 .commitDay[data-level="4"] { background: var(--foreground); }
 .commitGrid { outline: none; }
-.commitDay[data-current="true"] { outline: 1.5px solid var(--foreground); outline-offset: 1.5px; }
+.commitGrid[data-hovering="true"] .commitDay:not([data-current="true"]) { opacity: .3; }
+.commitDay[data-current="true"][data-level="0"] { box-shadow: inset 0 0 0 1px var(--text-secondary); }
+@media (prefers-reduced-motion: no-preference) { .commitDay { transition: opacity .12s ease-out; } }
 .section > .commitDetail { color: var(--text-secondary); font-size: .8125rem; line-height: 1.7; font-variant-numeric: tabular-nums; }
